@@ -22,3 +22,6 @@ Usage:
 最后一步给敌人加上Enemy标签，给玩家加上Player标签（区分大小写）
 
 ![img](https://github.com/Qiantongzhou/Blue-Moon-s-RPG_beta/blob/Pathfinding/Readme-img/pathfinding-5.PNG)
+
+
+注：第一版中使用的simpleEnemy脚本为测试用脚本，请勿直接添加
