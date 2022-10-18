@@ -15,7 +15,8 @@ public class player : MonoBehaviour
     public int attackrange;
     public int attackspeed;
 
-    public gamesaving gamesaving;
+    gamesaving gamesaving;
+    sheshouanime x;
     void Start()
     {
         healthpoint = 100;
