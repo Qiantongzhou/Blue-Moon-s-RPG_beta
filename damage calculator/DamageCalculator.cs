@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DamageCalculator
@@ -45,7 +44,7 @@ public class DamageCalculator
     public static float TakeDamage(GameTag[] attacker, GameTag[] taker, float baseDamage)
     {
         float result = baseDamage;
-        result = result ;
+        result *= attackerAnalyser(attacker) ;
         foreach (GameTag tag in taker)
         {
 
@@ -58,16 +57,75 @@ public class DamageCalculator
 
     private static float attackerAnalyser(GameTag[] attacker)
     {
+        bool reduction = false;
         float result = 1;
+
+        float enemyTargetMulti = 1;
+
+
         foreach (GameTag tag in attacker)
         {
-            if (tag == GameTag.ignoreCrit)
+
+            if(tag == GameTag.isCountered)
             {
-                return 1;
+                result *= conditionCounter;
             }
+            if(tag == GameTag.isOverwhelmed)
+            {
+                result *= conditionOverwhelm;
+            }
+
+            if(tag == GameTag.careEnemyCount)
+            {
+                enemyTargetMulti += multiEnemyMultiplyer();
+            }
+            if(tag == GameTag.careEliteCount)
+            {
+                enemyTargetMulti += multiEliteMultiplyer();
+            }
+            if(tag == GameTag.careEnemyLife)
+            {
+                enemyTargetMulti += enemyLifeMulti();
+            }
+            if(tag == GameTag.careEliteLife)
+            {
+                enemyTargetMulti += eliteLifeMulti();
+            }
+            if(tag == GameTag.careBossLife)
+            {
+                enemyTargetMulti += bossLifeMulti();
+            }
+
+            if (tag == GameTag.isCriticable)
+            {
+                result *= attackerCritMulti()-1;
+            }
+            if (tag == GameTag.isRedution)
+            {
+                reduction = true;
+            }
+
+            if (tag == GameTag.careCurrentLife)
+            {
+                result *= healthMultiplyer();
+            }
+
+            if (reduction)
+            {
+                if(tag == GameTag.linearReduction)
+                {
+                    result *= linearReduction();
+                }
+                if(tag == GameTag.rootReduction)
+                {
+                    result *= rootReduction();
+                }
+            }
+
+
         }
-        //((conditionCounter+conditionOverwhelm) *(attackerCritMulti()-1)*reduction())*(enemyLifeMulti() + eliteLifeMulit() + bossLifeMulti()  + multiEliteMultiplyer() + multiEnemyMultiplyer()) * healthMultiplyer()
-        return result;
+        
+        return result * enemyTargetMulti;
     }
 
     private static float multiEnemyMultiplyer()
@@ -89,11 +147,6 @@ public class DamageCalculator
     {
         return isCritial ?  criticalDamage:1;
     }
-    private static float attackerDamageAddiction(GameTag[] attacker)
-    {
-        return 0;
-    }
-
 
     private static float reduction(GameTag reductionType)
     {
