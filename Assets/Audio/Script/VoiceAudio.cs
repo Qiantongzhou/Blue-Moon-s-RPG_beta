@@ -1,11 +1,13 @@
 using UnityEngine;
 
-public class Voice : MonoBehaviour
+public class VoiceAudio : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] shoutClips;
     [SerializeField]
     private AudioClip[] deadClips;
+    [SerializeField]
+    private AudioClip[] hurtClips;
     private AudioSource audioSource;
     private void Awake()
     {
@@ -13,14 +15,14 @@ public class Voice : MonoBehaviour
     }
     private void Dead()
     {
-        audioSource.PlayOneShot(GetRandomClip(deadClips));
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(deadClips));
     }
     private void Shout()
     {
-        audioSource.PlayOneShot(GetRandomClip(shoutClips));
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(shoutClips));
     }
-    private AudioClip GetRandomClip(AudioClip[] audioClips)
+    private void Hurt()
     {
-        return audioClips[Random.Range(0, audioClips.Length)];
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(hurtClips));
     }
 }

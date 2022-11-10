@@ -523,6 +523,8 @@ GameObject:
   - component: {fileID: 3309643857437753908}
   - component: {fileID: 2349608340953833408}
   - component: {fileID: 6929347381753313284}
+  - component: {fileID: 1629515223417485601}
+  - component: {fileID: 1740086069235059224}
   m_Layer: 0
   m_Name: Titan
   m_TagString: Untagged
@@ -538,7 +540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4961132997724091937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -588,8 +590,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 5
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -624,7 +626,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -639,7 +641,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -731,6 +733,9 @@ MonoBehaviour:
   deadClips:
   - {fileID: 8300000, guid: 1d1d7a100a444dd4cb6497d4361b892b, type: 3}
   - {fileID: 8300000, guid: a40772278a39d8f4386133e04c4cefd4, type: 3}
+  hurtClips:
+  - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}
+  - {fileID: 8300000, guid: e27f50f725600624f88427a841fd9596, type: 3}
 --- !u!114 &6929347381753313284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +751,36 @@ MonoBehaviour:
   WeaponColliders:
   - {fileID: 3910265387221081674}
   - {fileID: 3082154750352878342}
+--- !u!54 &1629515223417485601
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091937}
+  serializedVersion: 2
+  m_Mass: 0.1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!136 &1740086069235059224
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091937}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.9735763
+  m_Height: 2.5934978
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2063932, z: 0.026423693}
 --- !u!1 &4961132997724091939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1496,7 @@ SphereCollider:
   m_GameObject: {fileID: 4961132997724092013}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.47059223
   m_Center: {x: 0.1661281, y: -0.093619406, z: -0.07374281}
@@ -1523,7 +1558,7 @@ SphereCollider:
   m_GameObject: {fileID: 4961132997724092015}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5707419
   m_Center: {x: -0.19408818, y: 0.095542885, z: 0.12149044}

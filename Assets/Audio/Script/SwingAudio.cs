@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FistSwing : MonoBehaviour
+public class SwingAudio : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] fistSwingClips;
@@ -11,10 +11,6 @@ public class FistSwing : MonoBehaviour
     }
     private void Swing()
     {
-        audioSource.PlayOneShot(GetRandomClip(fistSwingClips));
-    }
-    private AudioClip GetRandomClip(AudioClip[] audioClips)
-    {
-        return audioClips[Random.Range(0, audioClips.Length)];
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(fistSwingClips));
     }
 }

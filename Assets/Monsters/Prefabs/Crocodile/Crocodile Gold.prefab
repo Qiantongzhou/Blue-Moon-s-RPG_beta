@@ -712,8 +712,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7844184235427028557}
   - component: {fileID: 7844184235434595813}
-  - component: {fileID: -9029019379940534815}
   - component: {fileID: -8011009962181705116}
+  - component: {fileID: -9029019379940534815}
+  - component: {fileID: -3394043265265414236}
+  - component: {fileID: -9165754174915079485}
+  - component: {fileID: -547939514044843410}
   m_Layer: 0
   m_Name: Crocodile Gold
   m_TagString: Untagged
@@ -759,40 +762,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-9029019379940534815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7844184235427288801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f78fffa1c1de494a8ee5e58e279fe6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stepClips:
-  - {fileID: 8300000, guid: 5461cae585b64f64089805f0d313bc84, type: 3}
-  - {fileID: 8300000, guid: 2b3fc7e56f2686b48b9445e48c7db2c9, type: 3}
-  - {fileID: 8300000, guid: 87d51f07abec0584d805bbe3708a7c71, type: 3}
-  - {fileID: 8300000, guid: 9f96c8d3fef6ab440bdc9bd4ad3d08fe, type: 3}
-  - {fileID: 8300000, guid: 61abfb7bb17151f458862ef823ac0932, type: 3}
-  - {fileID: 8300000, guid: 2e14b3cc9c6906b42885675f3572d4b3, type: 3}
-  - {fileID: 8300000, guid: 846819fd62ca22b478d33e537cd61c8c, type: 3}
-  - {fileID: 8300000, guid: 6eee7f295d5ff8b4f934dec7f44eaf97, type: 3}
-  - {fileID: 8300000, guid: 9b1f6289334342841afe6a5a8349e7ec, type: 3}
-  - {fileID: 8300000, guid: afeb90013e6764449ae1616f47705ff7, type: 3}
-  runStepClips:
-  - {fileID: 8300000, guid: 44737e645aa918043b3d8cab5d1511bc, type: 3}
-  - {fileID: 8300000, guid: 302595b93370c52408825d7fb07d09be, type: 3}
-  - {fileID: 8300000, guid: 2bb076cd89fe2a148a76da2a45c910e4, type: 3}
-  - {fileID: 8300000, guid: 0b8aed54efbbfa946af2f31d3d92f9cd, type: 3}
-  - {fileID: 8300000, guid: 16627ace4424d91498eb01bb4028a449, type: 3}
-  - {fileID: 8300000, guid: 32d4132b6bada6b48ac1474c5b84a1f5, type: 3}
-  - {fileID: 8300000, guid: 6bd33082282efa240ae4942ba4e11422, type: 3}
-  - {fileID: 8300000, guid: b91418e7e651a5741a14cd31af0f5ba8, type: 3}
-  - {fileID: 8300000, guid: 41ba7c338f630f2489bd0273b0573616, type: 3}
-  - {fileID: 8300000, guid: a5d1dce4bff0e0a458049ab99fef06c4, type: 3}
 --- !u!82 &-8011009962181705116
 AudioSource:
   m_ObjectHideFlags: 0
@@ -813,8 +782,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 5
+  MaxDistance: 100
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -849,7 +818,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -864,7 +833,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -889,6 +858,94 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-9029019379940534815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844184235427288801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78fffa1c1de494a8ee5e58e279fe6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepClips:
+  - {fileID: 8300000, guid: 5461cae585b64f64089805f0d313bc84, type: 3}
+  - {fileID: 8300000, guid: 2b3fc7e56f2686b48b9445e48c7db2c9, type: 3}
+  - {fileID: 8300000, guid: 87d51f07abec0584d805bbe3708a7c71, type: 3}
+  - {fileID: 8300000, guid: 9f96c8d3fef6ab440bdc9bd4ad3d08fe, type: 3}
+  - {fileID: 8300000, guid: 61abfb7bb17151f458862ef823ac0932, type: 3}
+  - {fileID: 8300000, guid: 2e14b3cc9c6906b42885675f3572d4b3, type: 3}
+  - {fileID: 8300000, guid: 846819fd62ca22b478d33e537cd61c8c, type: 3}
+  - {fileID: 8300000, guid: 6eee7f295d5ff8b4f934dec7f44eaf97, type: 3}
+  - {fileID: 8300000, guid: 9b1f6289334342841afe6a5a8349e7ec, type: 3}
+  - {fileID: 8300000, guid: afeb90013e6764449ae1616f47705ff7, type: 3}
+  runStepClips:
+  - {fileID: 8300000, guid: 44737e645aa918043b3d8cab5d1511bc, type: 3}
+  - {fileID: 8300000, guid: 302595b93370c52408825d7fb07d09be, type: 3}
+  - {fileID: 8300000, guid: 2bb076cd89fe2a148a76da2a45c910e4, type: 3}
+  - {fileID: 8300000, guid: 0b8aed54efbbfa946af2f31d3d92f9cd, type: 3}
+  - {fileID: 8300000, guid: 16627ace4424d91498eb01bb4028a449, type: 3}
+  - {fileID: 8300000, guid: 32d4132b6bada6b48ac1474c5b84a1f5, type: 3}
+  - {fileID: 8300000, guid: 6bd33082282efa240ae4942ba4e11422, type: 3}
+  - {fileID: 8300000, guid: b91418e7e651a5741a14cd31af0f5ba8, type: 3}
+  - {fileID: 8300000, guid: 41ba7c338f630f2489bd0273b0573616, type: 3}
+  - {fileID: 8300000, guid: a5d1dce4bff0e0a458049ab99fef06c4, type: 3}
+--- !u!114 &-3394043265265414236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844184235427288801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1994f8c5310c3649999aeaf486d4ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponColliders:
+  - {fileID: 2705160406823987676, guid: 92ca0390271b4f54c9b5f8de2e714e25, type: 3}
+  - {fileID: 7962480951096212144, guid: 92ca0390271b4f54c9b5f8de2e714e25, type: 3}
+  - {fileID: 6695451092170594355, guid: 92ca0390271b4f54c9b5f8de2e714e25, type: 3}
+--- !u!114 &-9165754174915079485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844184235427288801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313cfcca8e394564db735936b89ddf95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoutClips:
+  - {fileID: 8300000, guid: b1f5b803b076a3345af44673ad59af31, type: 3}
+  - {fileID: 8300000, guid: 45e74223cc22bcd449af0a17d4cd9c27, type: 3}
+  deadClips:
+  - {fileID: 8300000, guid: 8b92e318fbedb1645b76497c2b958fcc, type: 3}
+  hurtClips:
+  - {fileID: 8300000, guid: 804060a6134c444478707906af48750f, type: 3}
+  - {fileID: 8300000, guid: c8ae907ffbbe89e43be1f8a25411409b, type: 3}
+--- !u!114 &-547939514044843410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844184235427288801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5bd3a6bd7e92e41ab35b95d9590cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biteClips:
+  - {fileID: 8300000, guid: 74198389e177d0948b63ca9a3fb22801, type: 3}
+  - {fileID: 8300000, guid: e5ecc98ff40556543b77c8c2aa090822, type: 3}
+  - {fileID: 8300000, guid: 1e3312d22540aa14597a1fb4739f2782, type: 3}
+  - {fileID: 8300000, guid: d0f166575306db84091dc03fce0eff69, type: 3}
+  - {fileID: 8300000, guid: 58a5d36d6b134014ea5623d9802082e2, type: 3}
 --- !u!1 &7844184235427289217
 GameObject:
   m_ObjectHideFlags: 0

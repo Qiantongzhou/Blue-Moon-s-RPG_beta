@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FootStep : MonoBehaviour
+public class FootStepAudio : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] stepClips;
@@ -13,14 +13,10 @@ public class FootStep : MonoBehaviour
     }
     private void Step()
     {
-        audioSource.PlayOneShot(GetRandomClip(stepClips));
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(stepClips));
     }
     private void RunStep()
     {
-        audioSource.PlayOneShot(GetRandomClip(runStepClips));
-    }
-    private AudioClip GetRandomClip(AudioClip[] audioClips)
-    {
-        return audioClips[Random.Range(0, audioClips.Length)];
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(runStepClips));
     }
 }
