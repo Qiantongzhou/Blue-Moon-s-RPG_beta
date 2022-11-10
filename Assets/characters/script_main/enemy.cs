@@ -1,23 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class enemy : MonoBehaviour
 {
     public GameObject target;
+    public Canvas[] healthbar;
+    Canvas bar;
     public float range;
     public float stoprange;
     public float speed;
      Animator anim;
     public float health;
+    float currenthealth;
     bool die;
     void Start()
     {
+        currenthealth = health;
         anim = GetComponent<Animator>();
         die = false;
         target = GameObject.FindWithTag("Player");
+        if (transform.tag == "Boss")
+        {
 
+            bar = Instantiate(healthbar[0],transform);
+            bar.GetComponentInChildren<Slider>().value = currenthealth / health;
+        }
     }
 
     // Update is called once per frame
@@ -52,11 +62,15 @@ public class enemy : MonoBehaviour
         }
 
     }
+    private void FixedUpdate()
+    {
+        bar.GetComponentInChildren<Slider>().value = currenthealth / health;
+    }
     public void takedamage(int amount)
     {
-        health-=amount;
+        currenthealth-=amount;
         anim.SetBool("Hurt", true);
-        if(health <= 0)
+        if(currenthealth <= 0)
         {
             die = true;
             dead();
@@ -66,5 +80,12 @@ public class enemy : MonoBehaviour
     public void dead()
     {
         anim.SetBool("Dead", true);
+        Destroy(gameObject, 4);
+        
+        
+    }
+    private void OnDestroy()
+    {
+       // Destroy(GameObject.Find("healthdisplayboss(Clone)"));
     }
 }

@@ -2014,7 +2014,7 @@ GameObject:
   - component: {fileID: 8412190716832965453}
   m_Layer: 0
   m_Name: Fat Dragon Red
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2082,6 +2082,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  healthbar:
+  - {fileID: 7284015875802477034, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
   range: 100
   stoprange: 4
   speed: 1

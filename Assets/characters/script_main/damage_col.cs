@@ -24,7 +24,7 @@ public class damage_col : MonoBehaviour
     {
         enemy x=GetComponent<enemy>();
         x.takedamage(dam);
-        Updatetext(dam);
+       
     }
     public void takedamage(int dam)
     {
