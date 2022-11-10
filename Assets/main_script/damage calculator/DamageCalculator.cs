@@ -11,9 +11,14 @@ public class DamageCalculator
 
     //damage modifiers
     public static short enemyCount;
+    //percentage stronger, product of current;
     public static float multiPerEnemy;
+
+
     public static short eliteCount;
     public static float multiPerElite;
+
+
     public static short maxEnemyCount;
     //public static BossType bossType;
     public static float conditionCounter;

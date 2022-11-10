@@ -1220,7 +1220,21 @@ MonoBehaviour:
   cam: {fileID: 0}
   firepoint: {fileID: 2995172685997597525}
   vfx:
+  - {fileID: 1564468091806366, guid: f1dc4df701f37324c98ea16f41770afc, type: 3}
+  - {fileID: 1595252117517162, guid: e7776336bc56a9b4caa1c90ea92ff765, type: 3}
+  - {fileID: 1841414879310842, guid: 6d6dffb689c5c164e9bef8f626ffd74e, type: 3}
+  - {fileID: 1658112780640456, guid: 5ae5c6fb282fd3c44bf0c2083393e142, type: 3}
+  - {fileID: 1453648102191072, guid: 6e39ca2f8efb71e48923599f48461c26, type: 3}
+  - {fileID: 1979403604311268, guid: bc0b77b5d64c11e48b0a22fadb7489ce, type: 3}
+  - {fileID: 1564468091806366, guid: 489b3a2ec3e7cf949925d1b34247d1a9, type: 3}
+  - {fileID: 1019054629656254, guid: 0dd71cf1c4378844fae81b273f0ba817, type: 3}
+  - {fileID: 1855960816831566, guid: 243070df32ba7ac45a49cb799d050a50, type: 3}
+  - {fileID: 1990380580032880, guid: 46b312e00ed9c1f459ea9f0e55bfac77, type: 3}
+  - {fileID: 1636010081862624, guid: 1eb97977c28d92945935ad5ca57aa800, type: 3}
+  - {fileID: 1985767573034186, guid: 7e5debf0606b3254faa6bca9a70b6713, type: 3}
   - {fileID: 1747738237969746, guid: eb5112a0c4d3eac489f517fa0886c058, type: 3}
+  - {fileID: 1978937533168522, guid: 31528da7a30e88f4bbf380cf9c9042d7, type: 3}
+  - {fileID: 1658112780640456, guid: a4ecf9bba65b0b84286159aa10fc4bc2, type: 3}
   aplayer: {fileID: 2689093599750263714}
 --- !u!114 &2689093599750263714
 MonoBehaviour:

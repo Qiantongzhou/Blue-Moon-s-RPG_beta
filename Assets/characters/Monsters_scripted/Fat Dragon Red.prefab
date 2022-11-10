@@ -2088,6 +2088,8 @@ MonoBehaviour:
   stoprange: 4
   speed: 1
   health: 100
+  attackdamage: 30
+  healthregen: 0
 --- !u!114 &5230745402984653031
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,17 +14,26 @@ public class damage_col : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "playersattack")
+        if (collision.collider.tag == "playersattack"&&transform.tag=="Boss")
         {
             takedamageboss(npc.aplayer.attackdamage);
         }
-        
+        if (collision.collider.tag == "playersattack" && transform.tag == "creep")
+        {
+            takedamagecreep(npc.aplayer.attackdamage);
+        }
     }
     public void takedamageboss(int dam)
     {
         enemy x=GetComponent<enemy>();
         x.takedamage(dam);
-       
+
+    }
+    public void takedamagecreep(int dam)
+    {
+        enemy x = GetComponent<enemy>();
+        x.takedamage(dam);
+        Updatetext(dam);
     }
     public void takedamage(int dam)
     {
@@ -41,7 +50,7 @@ public class damage_col : MonoBehaviour
     {
         
         GameObject text=Instantiate(textshowprefed, transform.position + offset, Quaternion.identity,transform);
-      text.transform.transform.localScale =new Vector3(0.1f,0.1f,0.1f);
+        print(text.transform.ToString());
         Destroy(text, 1);
     }
 

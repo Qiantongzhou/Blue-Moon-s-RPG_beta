@@ -37,7 +37,7 @@ public class meleattackauto : MonoBehaviour
                 if (Mathf.FloorToInt(anims.GetCurrentAnimatorStateInfo(1).normalizedTime * 10 % 10) == 5 && !attacked)
                 {
                    
-                    dam.takedamage(10);
+                    dam.takedamage(Mathf.FloorToInt(enemy.attackdamage));
                     attacked = true;
                 }
 

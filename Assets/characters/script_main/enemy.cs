@@ -16,9 +16,15 @@ public class enemy : MonoBehaviour
      Animator anim;
     public float health;
     float currenthealth;
+    public float attackdamage;
+    public float healthregen;
     bool die;
+    float timecaculate;
     void Start()
     {
+        
+        health = health * DamageCalculator.multiPerEnemy;
+        attackdamage = attackdamage * DamageCalculator.multiPerEnemy;
         currenthealth = health;
         anim = GetComponent<Animator>();
         die = false;
@@ -65,11 +71,26 @@ public class enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        bar.GetComponentInChildren<Slider>().value = currenthealth / health;
-        TMP_Text[] x=bar.GetComponentsInChildren<TMP_Text>();
-        x[0].text =currenthealth.ToString() + "/" + health.ToString();
-        x[1].text = transform.name;
-
+        if (bar != null)
+        {
+            bar.GetComponentInChildren<Slider>().value = currenthealth / health;
+            TMP_Text[] x = bar.GetComponentsInChildren<TMP_Text>();
+            x[0].text = currenthealth.ToString() + "/" + health.ToString();
+            x[1].text = transform.name;
+        }
+        healthregenpersec();
+    }
+    private void healthregenpersec()
+    {
+        if (currenthealth < health)
+        {
+            timecaculate += Time.deltaTime;
+            if (timecaculate > 1.0f)
+            {
+                currenthealth = currenthealth + healthregen;
+                timecaculate = 0.0f;
+            }
+        }
     }
     public void takedamage(int amount)
     {
@@ -80,6 +101,7 @@ public class enemy : MonoBehaviour
         }
         if(currenthealth <= 0)
         {
+            currenthealth = 0;
             die = true;
             dead();
         }

@@ -145,6 +145,12 @@ public class character : MonoBehaviour
         TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
             x[1].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
 
+
+      
+    }
+    public void setprojectile(int num)
+    {
+        effect = vfx[num];
     }
 
     private void updateanimator()
@@ -164,6 +170,7 @@ public class character : MonoBehaviour
         }
         if (aplayer.getcurrenthealth() <= 0)
         {
+            
             die();
         }
     }

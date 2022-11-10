@@ -12,6 +12,9 @@ public class GameEngine : MonoBehaviour
         unity_diceng.NPC_GEN = All_NPC;
         unity_diceng.NPC_POS= NPC_POS;
 
+
+        DamageCalculator.multiPerEnemy = 1.0f;
+        DamageCalculator.multiPerElite = 1.0f;
     }
 
     // Update is called once per frame

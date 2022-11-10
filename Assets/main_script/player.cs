@@ -32,7 +32,7 @@ public class player : MonoBehaviour
     public int turnrate;
 
     gamesaving gamesaving;
-    
+    float timecaculate;
     void Start()
     {
          currenthealth=healthpoint;
@@ -44,10 +44,30 @@ public class player : MonoBehaviour
     {
         
     }
+    private void FixedUpdate()
+    {
+        healthregenpersec();
+    }
+    private void healthregenpersec()
+    {
+        if (currenthealth < healthpoint)
+        {
+            timecaculate += Time.deltaTime;
+            if (timecaculate > 1.0f)
+            {
+                currenthealth = currenthealth + healthregen;
+                timecaculate = 0.0f;
+            }
+        }
+    }
     public void takedamage(int dam)
     {
         print("playertakedamage: " + dam);
         currenthealth-=dam;
+        if(currenthealth < 0)
+        {
+            currenthealth = 0;
+        }
     }
     public int getcurrenthealth()
     {
