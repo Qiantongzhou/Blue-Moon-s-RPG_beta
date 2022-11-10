@@ -41,10 +41,11 @@ public class DamageCalculator
 
     //damage functions    need GameTag Class
     //simple damage
+
     public static float TakeDamage(GameTag[] attacker, GameTag[] taker, float baseDamage)
     {
         float result = baseDamage;
-        result *= attackerAnalyser(attacker) ;
+        result *= attackerAnalyser(attacker);
         foreach (GameTag tag in taker)
         {
 

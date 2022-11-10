@@ -34,7 +34,6 @@ public class SkillManager : MonoBehaviour
                 }
         }
         
-
     }
 
     private void Update()

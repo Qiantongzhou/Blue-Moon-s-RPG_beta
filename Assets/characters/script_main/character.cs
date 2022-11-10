@@ -102,7 +102,7 @@ public class character : MonoBehaviour
                 else
                 {
                    
-                    multipler = 2;
+                    multipler = 3;
                 }
             }
             else

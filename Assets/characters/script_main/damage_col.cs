@@ -41,7 +41,7 @@ public class damage_col : MonoBehaviour
     {
         
         GameObject text=Instantiate(textshowprefed, transform.position + offset, Quaternion.identity,transform);
-      
+      text.transform.transform.localScale =new Vector3(0.1f,0.1f,0.1f);
         Destroy(text, 1);
     }
 
