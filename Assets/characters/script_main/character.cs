@@ -1,8 +1,8 @@
 
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class character : MonoBehaviour
 {
@@ -28,12 +28,14 @@ public class character : MonoBehaviour
     [SerializeField]
     public player aplayer;
 
-  
+    Canvas canvas;
+    
 
     void Start()
     {
         animator = GetComponent<Animator>();
         effect = vfx[0];
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -135,6 +137,15 @@ public class character : MonoBehaviour
         updateanimator();
 
     }
+    private void FixedUpdate()
+    {
+        float value = (float)aplayer.getcurrenthealth() / aplayer.healthpoint;
+        
+        canvas.GetComponentInChildren<Slider>().value = value;
+        TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
+            x[1].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
+
+    }
 
     private void updateanimator()
     {
@@ -146,8 +157,11 @@ public class character : MonoBehaviour
     }
     public void takedamage(int amount)
     {
-        aplayer.takedamage(amount);
-        animator.SetBool("hurt", true);
+        if (aplayer.getcurrenthealth() > 0)
+        {
+            aplayer.takedamage(amount);
+            animator.SetBool("hurt", true);
+        }
         if (aplayer.getcurrenthealth() <= 0)
         {
             die();
@@ -156,5 +170,6 @@ public class character : MonoBehaviour
     public void die()
     {
         animator.SetBool("dead", true);
+        Time.timeScale = 0.1f;
     }
 }

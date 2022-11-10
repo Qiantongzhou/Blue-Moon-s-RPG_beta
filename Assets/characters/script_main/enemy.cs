@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
@@ -65,11 +66,18 @@ public class enemy : MonoBehaviour
     private void FixedUpdate()
     {
         bar.GetComponentInChildren<Slider>().value = currenthealth / health;
+        TMP_Text[] x=bar.GetComponentsInChildren<TMP_Text>();
+        x[0].text =currenthealth.ToString() + "/" + health.ToString();
+        x[1].text = transform.name;
+
     }
     public void takedamage(int amount)
     {
-        currenthealth-=amount;
-        anim.SetBool("Hurt", true);
+        if (currenthealth > 0)
+        {
+            currenthealth -= amount;
+            anim.SetBool("Hurt", true);
+        }
         if(currenthealth <= 0)
         {
             die = true;
