@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   healthbar:
-  - {fileID: 7284015875802477034, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
+  - {fileID: 856966392633466792, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
   range: 100
   stoprange: 4
   speed: 1
