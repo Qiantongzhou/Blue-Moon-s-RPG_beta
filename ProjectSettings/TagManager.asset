@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - playersattack
   - Boss
   - creep
+  - playersattack
   layers:
   - Default
   - TransparentFX
@@ -14,13 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
   - Player
   - Enemy
-=======
-  - players
-  - 
->>>>>>> main
   - 
   - 
   - 

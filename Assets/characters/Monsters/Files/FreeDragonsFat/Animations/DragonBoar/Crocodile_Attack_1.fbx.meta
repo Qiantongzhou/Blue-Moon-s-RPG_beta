@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5ed8bfc54cd19cb408dd65f40bbb2ea6
+guid: 3fd80404506c6734282c368b3d3b36f0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -326,7 +326,28 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.43534246
+        functionName: WeaponBegin
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.48066923
+        functionName: Bite
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.49486917
+        functionName: WeaponEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

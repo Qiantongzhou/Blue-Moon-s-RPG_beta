@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ed8106b2c71d6e4284deb5fb76dca57
+guid: b4c53a0d61354f943a98448f95b52c30
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -326,7 +326,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.19794126
+        functionName: Hurt
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

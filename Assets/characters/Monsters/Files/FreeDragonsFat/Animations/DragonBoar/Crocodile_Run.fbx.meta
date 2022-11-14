@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0b08113f1c2a6e847994611bdba51c32
+guid: 5f9b47d1228458148ac9b6e86d151862
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
@@ -320,7 +320,21 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.161618
+        functionName: RunStep
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.65241015
+        functionName: RunStep
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1
