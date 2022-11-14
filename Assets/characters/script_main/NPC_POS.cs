@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class NPC_POS : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+    public GameObject[] NPC;
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (DamageCalculator.eliteCount > 0)
+        {
+            if (Random.Range(0, 100) > 90)
+            {
+                Instantiate(NPC[0], transform.position, Quaternion.identity);
+            }
+        }
+
+    }
+}

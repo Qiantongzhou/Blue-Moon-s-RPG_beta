@@ -1,40 +1,76 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     public int healthpoint;
+    private int currenthealth;
+
     public int healthregen;
+
     public int magicpoint;
+    private int currentmagicpoint;
+
+
     public int damageblock;
 
     public int attackdamage;
+
+    public int critdamage;
+    public int critchance;
+
     public int magicdamage;
+
+
     public int attackrange;
     public int attackspeed;
 
+    public int movespeed;
+    public int turnrate;
+
     gamesaving gamesaving;
-    sheshouanime x;
+    float timecaculate;
     void Start()
     {
-        healthpoint = 100;
+         currenthealth=healthpoint;
 
-        healthregen = 100;
-        magicpoint = 100;
-        damageblock = 100;
-        attackdamage = 100;
-        damageblock = 100;
-        attackspeed = 1;
-        magicdamage = 100;
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void FixedUpdate()
+    {
+        healthregenpersec();
+    }
+    private void healthregenpersec()
+    {
+        if (currenthealth < healthpoint)
+        {
+            timecaculate += Time.deltaTime;
+            if (timecaculate > 1.0f)
+            {
+                currenthealth = currenthealth + healthregen;
+                timecaculate = 0.0f;
+            }
+        }
+    }
+    public void takedamage(int dam)
+    {
+        print("playertakedamage: " + dam);
+        currenthealth-=dam;
+        if(currenthealth < 0)
+        {
+            currenthealth = 0;
+        }
+    }
+    public int getcurrenthealth()
+    {
+        return currenthealth;
     }
 }

@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: e3d1fd1cae4fad14aa6f2dc806900fb7
+timeCreated: 1446822696
+licenseType: Store
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder:
+    Fabric.FabricManager: -500
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    WindowsStoreApps:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
