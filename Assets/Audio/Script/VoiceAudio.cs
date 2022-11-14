@@ -9,6 +9,7 @@ public class VoiceAudio : MonoBehaviour
     [SerializeField]
     private AudioClip[] hurtClips;
     private AudioSource audioSource;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
