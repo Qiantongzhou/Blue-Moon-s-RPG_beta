@@ -37,6 +37,7 @@ public class TitanController : MonoBehaviour
         actionMode = ActionMode.Rest;
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
