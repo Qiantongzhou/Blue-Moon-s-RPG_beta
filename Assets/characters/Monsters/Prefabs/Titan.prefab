@@ -772,16 +772,18 @@ MonoBehaviour:
     m_Bits: 64
   AttackRange: 2
   AttackInterval: 1.5
+  ShoutInterval: 10
   PatrolRange: 10
   PatrolSpeed: 1.5
   PatrolTime: 3
   RestTime: 3
-  SpotRange: 10
-  SpotAngle: 30
+  SpotRange: 30
+  SpotAngle: 45
   PursuitSpeed: 3.5
   SearchRange: 50
   SearchTime: 15
   SearchSpeed: 3
+  Shoutwave: {fileID: 4709039827678442006, guid: 9ab5083dbdd1fac4fa0a9257f1f7d8ea, type: 3}
 --- !u!114 &4068658461620208629
 MonoBehaviour:
   m_ObjectHideFlags: 0

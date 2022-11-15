@@ -824,6 +824,7 @@ MonoBehaviour:
     m_Bits: 128
   AttackRange: 2
   AttackInterval: 1.5
+  ShoutInterval: 10
   PatrolRange: 10
   PatrolSpeed: 1.5
   PatrolTime: 3
@@ -834,6 +835,7 @@ MonoBehaviour:
   SearchRange: 50
   SearchTime: 15
   SearchSpeed: 3
+  Shoutwave: {fileID: 4709039827678442006, guid: 9ab5083dbdd1fac4fa0a9257f1f7d8ea, type: 3}
 --- !u!114 &6832606764821806175
 MonoBehaviour:
   m_ObjectHideFlags: 0

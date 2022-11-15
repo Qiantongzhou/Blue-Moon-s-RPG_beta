@@ -16,15 +16,26 @@ public class TitanController : MonoBehaviour
     private LayerMask EnemyMask;
     [SerializeField]
     private float AttackRange, AttackInterval,
+        ShoutInterval,
         PatrolRange, PatrolSpeed, PatrolTime,
         RestTime,
         SpotRange, SpotAngle,
         PursuitSpeed,
         SearchRange, SearchTime, SearchSpeed;
+    [SerializeField]
+    private GameObject Shoutwave;
 
-    private readonly string Movement = "Movement", Attack1 = "Attack 1", Attack2 = "Attack 2";
+    private readonly string Movement = "Movement",
+        Attack1 = "Attack 1",
+        Attack2 = "Attack 2",
+        Shout1 = "Shout 1",
+        Shout2 = "Shout 2";
 
-    private float nextAttack = 0f, restTimeFinishAt = 0f, patrolTimeFinishAt = 0f, searchTimeFinishedAt = 0f;
+    private float nextAttack = 0f,
+        nextShout = 0f,
+        restTimeFinishAt = 0f,
+        patrolTimeFinishAt = 0f,
+        searchTimeFinishedAt = 0f;
 
     private NavMeshAgent agent;
     private Animator myAnimator;
@@ -37,7 +48,7 @@ public class TitanController : MonoBehaviour
         actionMode = ActionMode.Rest;
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
-        Target = GameObject.FindGameObjectWithTag("Player").transform;
+        //Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
@@ -56,26 +67,39 @@ public class TitanController : MonoBehaviour
     }
     private void Attack()
     {
+        myAnimator.ResetTrigger(Shout1);
+        myAnimator.ResetTrigger(Shout2);
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + AttackInterval;
-            if (Vector3.Distance(transform.position, agent.destination) <= AttackRange)
+            switch (Random.Range(0, 2))
             {
-                switch (Random.Range(0, 2))
-                {
-                    case 0:
-                        myAnimator.SetTrigger(Attack1);
-                        break;
-                    case 1:
-                        myAnimator.SetTrigger(Attack2);
-                        break;
-                }
+                case 0:
+                    myAnimator.SetTrigger(Attack1);
+                    break;
+                case 1:
+                    myAnimator.SetTrigger(Attack2);
+                    break;
             }
-            else
+        }
+    }
+    private void Shout()
+    {
+        myAnimator.ResetTrigger(Attack1);
+        myAnimator.ResetTrigger(Attack2);
+        if (Time.time >= nextShout)
+        {
+            nextShout = Time.time + ShoutInterval;
+            switch (Random.Range(0, 2))
             {
-                myAnimator.ResetTrigger(Attack1);
-                myAnimator.ResetTrigger(Attack2);
+                case 0:
+                    myAnimator.SetTrigger(Shout1);
+                    break;
+                case 1:
+                    myAnimator.SetTrigger(Shout2);
+                    break;
             }
+            Instantiate(Shoutwave, transform.position, transform.rotation);
         }
     }
     private void Patrol()
@@ -163,7 +187,14 @@ public class TitanController : MonoBehaviour
                         return;
                     }
                     Pursuit();
-                    Attack();
+                    if (Vector3.Distance(Target.position, transform.position) <= AttackRange)
+                    {
+                        Attack();
+                    }
+                    else
+                    {
+                        Shout();
+                    }
                     break;
                 case ActionMode.Rest:
                     if (IsEnemyWithinSpotingDistance()
