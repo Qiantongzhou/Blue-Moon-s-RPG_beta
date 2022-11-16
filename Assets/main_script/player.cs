@@ -36,7 +36,7 @@ public class player : MonoBehaviour
     void Start()
     {
          currenthealth=healthpoint;
-
+         currentmagicpoint=magicpoint;
     }
 
     // Update is called once per frame
@@ -72,5 +72,9 @@ public class player : MonoBehaviour
     public int getcurrenthealth()
     {
         return currenthealth;
+    }
+    public int getcurrentmagic()
+    {
+        return currentmagicpoint;
     }
 }
