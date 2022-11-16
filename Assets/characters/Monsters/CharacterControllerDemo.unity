@@ -6667,6 +6667,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Titan
       objectReference: {fileID: 0}
+    - target: {fileID: 4961132997724091937, guid: eacb965109268754c9bd7b0e8e7d999d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4961132997724580353, guid: eacb965109268754c9bd7b0e8e7d999d, type: 3}
       propertyPath: m_RootOrder
       value: 2

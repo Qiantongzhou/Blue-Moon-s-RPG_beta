@@ -29,7 +29,6 @@ public class ParticleDamageDealer : MonoBehaviour
     {
         List<ParticleSystem.Particle> enteringParticles = new List<ParticleSystem.Particle>();
         int numOfParticleEntering = myParticleSystem.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enteringParticles, out ParticleSystem.ColliderData colliderData);
-        Debug.Log(numOfParticleEntering);
         // If particle system's trigger is not set with exactly 1 collider.
         if (myParticleSystem.trigger.colliderCount != 1)
         {
