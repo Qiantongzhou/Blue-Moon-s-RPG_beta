@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damageAmount, Vector3 direction)
     {
-        Debug.Log("TakeDamage");
+        Debug.Log("TakeDamage " + damageAmount +" Health Remain " + CurrentHealthPoint);
         CurrentHealthPoint -= damageAmount;
         myAnimator.SetTrigger(Hurt);
         OnHurt?.Invoke(this.gameObject, direction);

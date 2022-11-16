@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1647573212144765135}
   - component: {fileID: 1647573212144765133}
   - component: {fileID: 1647573212144765134}
+  - component: {fileID: 7966547646464975670}
   m_Layer: 0
   m_Name: FireBallEmitter
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1647573212144765128}
-  m_LocalRotation: {x: 0.39018503, y: -0, z: -0, w: 0.9207365}
+  m_LocalRotation: {x: 0.3901848, y: 0, z: 0, w: 0.9207366}
   m_LocalPosition: {x: 0, y: 10, z: 19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -608,7 +609,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.01
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3811,13 +3812,13 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
-    colliderQueryMode: 0
+    colliderQueryMode: 1
     radiusScale: 1
     primitives: []
   SubModule:
@@ -4866,3 +4867,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7966547646464975670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647573212144765128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f89f82100f0b94fba57e387ec80afa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  DamageAmout: 1
