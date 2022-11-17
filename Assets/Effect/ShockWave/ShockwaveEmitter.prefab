@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExpendingSpeed: 0.5
   LifeTime: 5
-  Force: 0.2
+  Force: 0
   IsLinear: 1
   EnemyMask:
     serializedVersion: 2

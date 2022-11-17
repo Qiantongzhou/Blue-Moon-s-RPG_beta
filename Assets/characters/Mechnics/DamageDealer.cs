@@ -16,6 +16,8 @@ public class DamageDealer : MonoBehaviour
     {
         if (EnemyMask == (EnemyMask | (1 << other.gameObject.layer)))
         {
+            Debug.Log("My name " + this.gameObject.name);
+            Debug.Log("Other name " + other.name);
             hitAudio.Hit();
             if (other.GetComponent<Health>() != null)
             {

@@ -38,4 +38,8 @@ public class Health : MonoBehaviour
         myAnimator.SetTrigger(Dead);
         IsAlive = false;
     }
+    public float HealthPoint()
+    {
+        return CurrentHealthPoint;
+    }
 }
