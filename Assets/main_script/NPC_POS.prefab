@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPC:
   - {fileID: 5583044021022047900, guid: d5749669e84ba524f92b83ae19e02e5b, type: 3}
+  - {fileID: 7942276307982841271, guid: 83d6dacff5fcaf0409688f584a5e64df, type: 3}
