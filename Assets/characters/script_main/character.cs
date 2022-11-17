@@ -140,12 +140,17 @@ public class character : MonoBehaviour
     private void FixedUpdate()
     {
         float value = (float)aplayer.getcurrenthealth() / aplayer.healthpoint;
-        
-        canvas.GetComponentInChildren<Slider>().value = value;
+        float magic = (float)aplayer.getcurrentmagic() / aplayer.magicpoint;
+
+        Slider[] y = canvas.GetComponentsInChildren<Slider>();
+        y[0].value = value;
+        y[1].value = magic;
         TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
-            x[1].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
-
-
+         x[1].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
+        x[2].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
+        x[3].text = aplayer.attackdamage.ToString();
+        x[4].text=aplayer.critdamage.ToString();
+        x[5].text=aplayer.damageblock.ToString();
       
     }
     public void setprojectile(int num)
@@ -178,5 +183,9 @@ public class character : MonoBehaviour
     {
         animator.SetBool("dead", true);
         Time.timeScale = 0.1f;
+    }
+    public bool isrunning()
+    {
+        return running;
     }
 }
