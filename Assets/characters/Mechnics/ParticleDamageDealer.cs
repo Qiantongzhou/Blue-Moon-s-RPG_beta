@@ -38,7 +38,7 @@ public class ParticleDamageDealer : MonoBehaviour
 
         Collider opponentCollider = (Collider)myParticleSystem.trigger.GetCollider(0);
         GameObject opponent = opponentCollider.gameObject;
-        Health opponentHealth = opponent.GetComponent<Health>();
+        DamageReceiver damageReceiver = opponent.GetComponent<DamageReceiver>();
 
         for (int i = 0; i < numOfParticleEntering; i++)
         {
@@ -52,7 +52,7 @@ public class ParticleDamageDealer : MonoBehaviour
             {
                 Vector3 direction = transform.position - opponent.transform.position;
                 Vector3 direction2D = new Vector3(direction.x, 0f, direction.z);
-                opponentHealth.TakeDamage(DamageAmout, direction2D);
+                damageReceiver.ReceiveDamage(DamageAmout, direction2D);
             }
         }
     }

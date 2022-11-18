@@ -3,11 +3,10 @@ using UnityEngine;
 public class VoiceAudio : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip[] shoutClips;
-    [SerializeField]
-    private AudioClip[] deadClips;
-    [SerializeField]
-    private AudioClip[] hurtClips;
+    private AudioClip[] shoutClips,
+        deadClips,
+        hurtClips,
+        screamClips;
     private AudioSource audioSource;
 
     private void Awake()
@@ -25,5 +24,9 @@ public class VoiceAudio : MonoBehaviour
     private void Hurt()
     {
         audioSource.PlayOneShot(AudioManager.GetRandomClip(hurtClips));
+    }
+    private void Scream()
+    {
+        audioSource.PlayOneShot(AudioManager.GetRandomClip(screamClips));
     }
 }

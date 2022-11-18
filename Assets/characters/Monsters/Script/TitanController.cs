@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
-public class TitanController :MonoBehaviour, IEnemyController
+public class TitanController : MonoBehaviour
 {
     private enum ActionMode
     {
@@ -23,7 +22,8 @@ public class TitanController :MonoBehaviour, IEnemyController
         RestTime,
         SpotRange, SpotAngle,
         PursuitSpeed,
-        SearchRange, SearchTime, SearchSpeed;
+        SearchRange, SearchTime, SearchSpeed,
+        AngularSpeed;
     [SerializeField]
     private GameObject Shoutwave;
 
@@ -155,10 +155,16 @@ public class TitanController :MonoBehaviour, IEnemyController
     {
         return Time.time >= searchTimeFinishedAt;
     }
-
     private void UpdateMovementAnimation()
     {
         myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / PursuitSpeed);
+    }
+    private void FaceTarget()
+    {
+        Vector3 lookPos = Target.position - transform.position;
+        lookPos.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed);
     }
     private void Update()
     {
@@ -191,13 +197,8 @@ public class TitanController :MonoBehaviour, IEnemyController
                     }
                     Pursuit();
                     if (Vector3.Distance(Target.position, transform.position) <= AttackRange)
-                    {
-                        Attack();
-                    }
-                    else
-                    {
-                        Shout();
-                    }
+                    { FaceTarget(); Attack(); }
+                    else { Shout(); }
                     break;
                 case ActionMode.Rest:
                     if (IsEnemyWithinSpotingDistance()

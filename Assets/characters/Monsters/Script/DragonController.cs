@@ -24,7 +24,7 @@ public class DragonController : MonoBehaviour
     [SerializeField]
     private LayerMask EnemyMask;
     [SerializeField]
-    private float MeleeAttackRange, RangeAttackRange, AttackInterval,
+    private float MeleeAttackRange, RangeAttackRange, MeleeAttackInterval, RangeAttackInterval,
         ShoutInterval,
         PatrolRange, PatrolSpeed, PatrolTime,
         RestTime,
@@ -34,7 +34,8 @@ public class DragonController : MonoBehaviour
         SearchRange, SearchTime, SearchSpeed,
         AirSpeedFactor, AirAccelerationFactor, AirTime,
         HealthPointThreshold,
-        AngularSpeed;
+        AngularSpeed,
+        MeleeStopDistance, RangeStopDistance;
     [SerializeField]
     private GameObject Shoutwave;
 
@@ -70,10 +71,7 @@ public class DragonController : MonoBehaviour
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
     {
-        if (myHealth.HealthPoint() < HealthPointThreshold)
-        {
-            Land();
-        }
+        if (!IsHealthy()) { Land(); }
         if (actionMode != ActionMode.Aggressive)
         {
             searchTimeFinishedAt = Time.time + SearchTime;
@@ -100,12 +98,12 @@ public class DragonController : MonoBehaviour
             case MovementMode.Ground:
                 agent.acceleration = BaseAcceleration;
                 agent.speed = PursuitSpeed;
-                agent.stoppingDistance = MeleeAttackRange;
+                agent.stoppingDistance = MeleeStopDistance;
                 break;
             case MovementMode.Air:
                 agent.acceleration = BaseAcceleration * AirAccelerationFactor;
                 agent.speed = PursuitSpeed * AirSpeedFactor;
-                agent.stoppingDistance = RangeAttackRange;
+                agent.stoppingDistance = RangeStopDistance;
                 airTimeFinishedAt = Time.time + AirTime;
                 break;
         }
@@ -116,6 +114,7 @@ public class DragonController : MonoBehaviour
         myAnimator.ResetTrigger(ScreamAnimationName);
         if (Time.time >= nextAttack)
         {
+            nextAttack = Time.time + MeleeAttackInterval;
             myAnimator.SetTrigger(Attack1AnimationName);
         }
     }
@@ -124,6 +123,7 @@ public class DragonController : MonoBehaviour
         myAnimator.ResetTrigger(ScreamAnimationName);
         if (Time.time >= nextAttack)
         {
+            nextAttack = Time.time + RangeAttackInterval;
             myAnimator.SetTrigger(Attack2AnimationName);
         }
     }
@@ -219,6 +219,18 @@ public class DragonController : MonoBehaviour
     {
         return Time.time >= airTimeFinishedAt;
     }
+    private bool IsHealthy()
+    {
+        return myHealth.HealthPoint() >= HealthPointThreshold;
+    }
+    private bool IsGroundMode()
+    {
+        return movementMode == MovementMode.Ground;
+    }
+    private bool IsAirMode()
+    {
+        return movementMode == MovementMode.Air;
+    }
     private void UpdateMovementAnimation()
     {
         switch (movementMode)
@@ -244,11 +256,12 @@ public class DragonController : MonoBehaviour
         {
             Debug.Log(movementMode + " " + actionMode);
             Debug.Log(agent.speed + " " + agent.acceleration + " " + agent.stoppingDistance);
+            Debug.Log(Vector3.Distance(Target.position, transform.position));
 
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            myHealth.TakeDamage(10, Target.position - transform.position);
+            myHealth.HealthChange(-10, Target.position - transform.position);
         }
         bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
         Debug.DrawLine(transform.position, hit.point, Color.red);
@@ -263,7 +276,7 @@ public class DragonController : MonoBehaviour
                         && IsEnemyInSight())
                     {
                         actionMode = ActionMode.Aggressive;
-                        if (myHealth.HealthPoint() >= HealthPointThreshold && movementMode == MovementMode.Ground)
+                        if (IsHealthy() && IsGroundMode())
                         { TakeOff(); }
                         return;
                     }
@@ -276,10 +289,16 @@ public class DragonController : MonoBehaviour
                     {
                         case MovementMode.Ground:
                             if (Vector3.Distance(Target.position, transform.position) <= MeleeAttackRange) { FaceTarget(); MeleeAttack(); }
-                            else { Scream(); }
+                            else
+                            {
+                                Scream();
+                                if (Vector3.Distance(Target.position, transform.position) > RangeAttackRange && IsHealthy()) { TakeOff(); }
+                            }
                             break;
                         case MovementMode.Air:
-                            if (Vector3.Distance(Target.position, transform.position) <= RangeAttackRange) { FaceTarget(); RangeAttack(); }
+                            if (Vector3.Distance(Target.position, transform.position) <= MeleeAttackRange)
+                            { Land(); }
+                            else if (Vector3.Distance(Target.position, transform.position) <= RangeAttackRange) { FaceTarget(); RangeAttack(); }
                             else { Scream(); }
                             break;
                     }
@@ -290,11 +309,11 @@ public class DragonController : MonoBehaviour
                         && IsEnemyInSight())
                     {
                         actionMode = ActionMode.Aggressive;
-                        if (myHealth.HealthPoint() >= HealthPointThreshold && movementMode == MovementMode.Ground)
+                        if (IsHealthy() && IsGroundMode())
                         { TakeOff(); }
                         return;
                     }
-                    if (IsAirTimeFinished() && movementMode == MovementMode.Air)
+                    if (IsAirTimeFinished() && IsAirMode())
                     { Land(); }
                     if (IsRestTimeFinished()) { Patrol(); }
                     break;
@@ -304,7 +323,7 @@ public class DragonController : MonoBehaviour
                         && IsEnemyInSight())
                     {
                         actionMode = ActionMode.Aggressive;
-                        if (myHealth.HealthPoint() >= HealthPointThreshold && movementMode == MovementMode.Ground)
+                        if (IsHealthy() && IsGroundMode())
                         { TakeOff(); }
                         return;
                     }
