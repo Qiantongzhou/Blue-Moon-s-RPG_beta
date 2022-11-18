@@ -15,6 +15,7 @@ public class GameEngine : MonoBehaviour
 
         DamageCalculator.multiPerEnemy = 1.0f;
         DamageCalculator.multiPerElite = 1.0f;
+        DamageCalculator.maxcreatureCount = 30;
     }
 
     // Update is called once per frame

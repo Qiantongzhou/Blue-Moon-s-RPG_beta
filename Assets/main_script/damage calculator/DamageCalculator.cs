@@ -14,6 +14,8 @@ public class DamageCalculator
     //percentage stronger, product of current;
     public static float multiPerEnemy;
 
+    public static int currentcreatureCount;
+    public static int maxcreatureCount;
 
     public static short eliteCount;
     public static float multiPerElite;
