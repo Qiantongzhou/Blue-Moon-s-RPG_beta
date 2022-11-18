@@ -20,10 +20,10 @@ public class Health : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damageAmount, Vector3 direction)
+    public void HealthChange(float damageAmount, Vector3 direction)
     {
-        Debug.Log("TakeDamage");
-        CurrentHealthPoint -= damageAmount;
+        Debug.Log("HealthChange " + damageAmount +" Health Remain " + CurrentHealthPoint);
+        CurrentHealthPoint += damageAmount;
         myAnimator.SetTrigger(Hurt);
         OnHurt?.Invoke(this.gameObject, direction);
         if (CurrentHealthPoint <= 0)
@@ -35,7 +35,12 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
+        myAnimator.SetFloat("Movement", 0);
         myAnimator.SetTrigger(Dead);
         IsAlive = false;
+    }
+    public float HealthPoint()
+    {
+        return CurrentHealthPoint;
     }
 }
