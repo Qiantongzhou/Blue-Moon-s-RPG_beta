@@ -2975,11 +2975,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8957657143422568067}
   - component: {fileID: 8957657143430233215}
-  - component: {fileID: 2041279058902959450}
-  - component: {fileID: 2041279058902959453}
   - component: {fileID: 2041279058902959452}
   - component: {fileID: 8957657143430233214}
   - component: {fileID: -4111490241796865880}
+  - component: {fileID: -9028261320772446490}
   m_Layer: 0
   m_Name: Arachnid
   m_TagString: creep
@@ -3024,39 +3023,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2041279058902959450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957657143422974037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43fd77c15fa33c47a0c196c59529734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2041279058902959453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957657143422974037}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efe0753b21703d418fbc90d29171712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  healthbar:
-  - {fileID: 7284015875802477034, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
-  range: 100
-  stoprange: 2
-  speed: 2
-  health: 40
-  attackdamage: 10
-  healthregen: 0
 --- !u!114 &2041279058902959452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3100,6 +3066,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-9028261320772446490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957657143422974037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9d8175e445c0547becbf48a5f05675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 0000000005000000
+  creatureTags: 3
 --- !u!1 &8957657143422975203
 GameObject:
   m_ObjectHideFlags: 0

@@ -330,8 +330,7 @@ GameObject:
   - component: {fileID: 3945410082560715956}
   - component: {fileID: 3945410082569732870}
   - component: {fileID: 8221767230391012903}
-  - component: {fileID: 8221767230391012888}
-  - component: {fileID: 8221767230391012889}
+  - component: {fileID: 4231207362998548216}
   m_Layer: 0
   m_Name: Titan
   m_TagString: Untagged
@@ -391,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textshowprefed: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
---- !u!114 &8221767230391012888
+--- !u!114 &4231207362998548216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,28 +399,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3945410082560356500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43fd77c15fa33c47a0c196c59529734, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f9d8175e445c0547becbf48a5f05675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8221767230391012889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3945410082560356500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efe0753b21703d418fbc90d29171712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  healthbar:
-  - {fileID: 7284015875802477034, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
-  range: 100
-  stoprange: 3
-  speed: 1
-  health: 500
+  tags: 0000000005000000
+  creatureTags: 2
 --- !u!1 &3945410082560356502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1632,6 +1614,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  DamageAmount: 0
 --- !u!1 &3945410082560356570
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,6 +1677,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  DamageAmount: 0
 --- !u!1 &3945410082560356572
 GameObject:
   m_ObjectHideFlags: 0
