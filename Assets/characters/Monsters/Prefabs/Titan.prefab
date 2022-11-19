@@ -71,6 +71,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961132997724580453}
+  - component: {fileID: 158330034253951124}
+  - component: {fileID: 5600692513218669749}
+  - component: {fileID: 4996125269465016171}
   m_Layer: 7
   m_Name: Root_M
   m_TagString: Untagged
@@ -96,6 +99,49 @@ Transform:
   m_Father: {fileID: 4961132997724580353}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -1.5910599, y: -119.47456, z: -116.16422}
+--- !u!54 &158330034253951124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091909}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.5
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
+--- !u!136 &5600692513218669749
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2.82
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4996125269465016171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cdbe19c44c288442824dff219d1a4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myHealth: {fileID: 4068658461620208629}
 --- !u!1 &4961132997724091911
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,8 +571,6 @@ GameObject:
   - component: {fileID: 6929347381753313284}
   - component: {fileID: 5254217606463040334}
   - component: {fileID: 4068658461620208629}
-  - component: {fileID: 1629515223417485601}
-  - component: {fileID: 1740086069235059224}
   - component: {fileID: 817924433790711252}
   m_Layer: 7
   m_Name: Titan
@@ -731,14 +775,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shoutClips:
-  - {fileID: 8300000, guid: 45804ff3068abc3419c24f5076737efb, type: 3}
-  - {fileID: 8300000, guid: 659ca7542f3b9864dac6b19e0744a47f, type: 3}
+  - {fileID: 8300000, guid: bd68bed4f9e960e42aac4bc561843b06, type: 3}
+  - {fileID: 8300000, guid: 6e5e3fca3acc9584c8c951a7931607f9, type: 3}
   deadClips:
   - {fileID: 8300000, guid: 1d1d7a100a444dd4cb6497d4361b892b, type: 3}
   - {fileID: 8300000, guid: a40772278a39d8f4386133e04c4cefd4, type: 3}
   hurtClips:
-  - {fileID: 8300000, guid: 119a78ae6bd6e3043b1b1cec83b5f90d, type: 3}
-  - {fileID: 8300000, guid: e27f50f725600624f88427a841fd9596, type: 3}
+  - {fileID: 8300000, guid: a577c2325268be54488591a486be171a, type: 3}
+  - {fileID: 8300000, guid: 8e4851963e3ebde4b948020b48d7cd78, type: 3}
+  screamClips: []
 --- !u!114 &6929347381753313284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,12 +822,13 @@ MonoBehaviour:
   PatrolSpeed: 1.5
   PatrolTime: 3
   RestTime: 3
-  SpotRange: 30
-  SpotAngle: 45
+  SpotRange: 50
+  SpotAngle: 50
   PursuitSpeed: 3.5
   SearchRange: 50
   SearchTime: 15
   SearchSpeed: 3
+  AngularSpeed: 0.05
   Shoutwave: {fileID: 4709039827678442006, guid: 9ab5083dbdd1fac4fa0a9257f1f7d8ea, type: 3}
 --- !u!114 &4068658461620208629
 MonoBehaviour:
@@ -796,39 +842,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2a324f57e37954d95113767dd547d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoint: 50
-  SpawnHealthPoint: 50
+  MaxHealthPoint: 1000
+  SpawnHealthPoint: 1000
   IsAlive: 1
---- !u!54 &1629515223417485601
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4961132997724091937}
-  serializedVersion: 2
-  m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.5
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
---- !u!136 &1740086069235059224
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4961132997724091937}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.9735763
-  m_Height: 2.5934978
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.2063932, z: 0.026423693}
 --- !u!195 &817924433790711252
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1570,7 +1586,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.47059223
+  m_Radius: 0.57
   m_Center: {x: 0.1661281, y: -0.093619406, z: -0.07374281}
 --- !u!114 &6544297957955183196
 MonoBehaviour:

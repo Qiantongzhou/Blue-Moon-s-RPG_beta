@@ -16,17 +16,20 @@ public class DamageDealer : MonoBehaviour
     {
         if (EnemyMask == (EnemyMask | (1 << other.gameObject.layer)))
         {
+            Debug.Log("My name " + this.gameObject.name);
+            Debug.Log("Other name " + other.name);
             hitAudio.Hit();
-            if (other.GetComponent<Health>() != null)
+            if (other.GetComponent<DamageReceiver>() != null)
             {
                 Vector3 direction = transform.position - other.gameObject.transform.position;
                 Vector3 direction2D = new Vector3(direction.x, 0f, direction.z);
-                DealDamage(other.GetComponent<Health>(), Vector3.Normalize(direction2D));
+
+                DealDamage(other.GetComponent<DamageReceiver>(), Vector3.Normalize(direction2D));
             }
         }
     }
-    private void DealDamage(Health health, Vector3 direction)
+    private void DealDamage(DamageReceiver damageReceiver, Vector3 direction)
     {
-        health.TakeDamage(DamageAmount, direction);
+        damageReceiver.ReceiveDamage(DamageAmount, direction);
     }
 }
