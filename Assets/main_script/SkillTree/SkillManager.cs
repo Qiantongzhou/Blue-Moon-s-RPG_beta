@@ -10,30 +10,30 @@ public class SkillManager : MonoBehaviour
 
     private void Awake()
     {
-        for(int i = 0; i < skills.Length; i++)
+        /*for(int i = 0; i < skills.Length; i++)
         {
             if (skills[0].GetKinds() == Skills.kinds.skillEnhancement)
             {
                 activeSkills[i] = (EnhancementSkill) skills[i];
                 skillAmount++;
             }
-        }
+        }*/
 
     }
 
     private void Start()
     {
-        foreach(Skills skill in skills)
+        /*foreach(Skills skill in skills)
         {
             if (skill.GetKinds() == Skills.kinds.attribute)
                 {
-            /*foreach(Attribute in skills[0].attributeList)
-            {
-                the Action to add attributes to player
-            }*/
+                    *//*foreach(Attribute in skills[0].attributeList)
+                        {
+                             the Action to add attributes to player
+                        }*//*
                 }
-        }
-        
+        }*/
+
     }
 
     private void Update()
@@ -92,6 +92,18 @@ public class SkillManager : MonoBehaviour
             if (Input.GetKeyDown(activeSkills[7].GetkeyBind()))
             {
                 activeSkills[7].DoAction();
+            }
+        }
+    }
+
+    public void updateSkill()
+    {
+        for (int i = 0; i < skills.Length; i++)
+        {
+            if (skills[0].GetKinds() == Skills.kinds.skillEnhancement)
+            {
+                activeSkills[i] = (EnhancementSkill)skills[i];
+                skillAmount++;
             }
         }
     }

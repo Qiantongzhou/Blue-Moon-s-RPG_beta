@@ -9,7 +9,7 @@ public class menuprefab : MonoBehaviour
     bool open;
 
     Animator anims;
-    public void instantcanvas()
+    public void ShowCanvas()
     {
         if (open == false)
         {
