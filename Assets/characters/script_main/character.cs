@@ -65,7 +65,7 @@ public class character : MonoBehaviour
         {
             movelock = false;
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&!GobalEvent.Pause_player_mouse_input)
         {
             attacking = true;
          
@@ -146,11 +146,11 @@ public class character : MonoBehaviour
         y[0].value = value;
         y[1].value = magic;
         TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
-         x[1].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
-        x[2].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
-        x[3].text = aplayer.attackdamage.ToString();
-        x[4].text=aplayer.critdamage.ToString();
-        x[5].text=aplayer.damageblock.ToString();
+         x[0].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
+        x[1].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
+        x[2].text = aplayer.attackdamage.ToString();
+        x[3].text=aplayer.critdamage.ToString();
+        x[4].text=aplayer.damageblock.ToString();
       
     }
     public void setprojectile(int num)

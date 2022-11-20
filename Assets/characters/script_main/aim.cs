@@ -28,7 +28,7 @@ public class aim : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0)&&!GobalEvent.Pause_player_mouse_input)
         {
             cam1.SetActive(false);
             cam2.SetActive(true);
