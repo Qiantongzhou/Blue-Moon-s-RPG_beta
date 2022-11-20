@@ -15,7 +15,7 @@ public class menuprefab : MonoBehaviour
         {
             stopinput();
             temp = Instantiate(canvas, GameObject.Find("Canvas").transform);
-            temp.transform.SetAsFirstSibling();
+            temp.transform.SetAsLastSibling();
             open = true;
             
         }
@@ -28,6 +28,8 @@ public class menuprefab : MonoBehaviour
         }
         anims = temp.GetComponent<Animator>();
     }
+
+
     public void stopinput()
     {
         GobalEvent.Pause_player_mouse_input = true;
