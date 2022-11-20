@@ -21,7 +21,7 @@ public class meleattackauto : MonoBehaviour
     {
         dam = enemy.target.GetComponent<damage_col>();
         anims = GetComponent<Animator>();
-        if (Mathf.Abs(transform.position.x - enemy.target.transform.position.x) < enemy.stoprange && Mathf.Abs(transform.position.z - enemy.target.transform.position.z) < enemy.stoprange)
+        if (Mathf.Abs(transform.position.x - enemy.target.transform.position.x) < enemy.stopRange && Mathf.Abs(transform.position.z - enemy.target.transform.position.z) < enemy.stopRange)
         {
             anims.SetBool("Attack 1", true);
 
@@ -37,7 +37,7 @@ public class meleattackauto : MonoBehaviour
                 if (Mathf.FloorToInt(anims.GetCurrentAnimatorStateInfo(1).normalizedTime * 10 % 10) == 5 && !attacked)
                 {
                    
-                    dam.takedamage(Mathf.FloorToInt(enemy.attackdamage));
+                    dam.takedamage(Mathf.FloorToInt(enemy.attackDamage));
                     attacked = true;
                 }
 

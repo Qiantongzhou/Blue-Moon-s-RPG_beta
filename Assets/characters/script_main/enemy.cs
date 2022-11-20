@@ -8,23 +8,26 @@ using static UnityEngine.GraphicsBuffer;
 public class enemy : MonoBehaviour
 {
     public GameObject target;
-    public Canvas[] healthbar;
+    public Canvas[] healthbar = new Canvas[3];
     Canvas bar;
+    Animator anim;
+
     public float range;
-    public float stoprange;
+    public float stopRange;
     public float speed;
-     Animator anim;
     public float health;
+    public float attackDamage;
+    public float healthRegen;
+
     float currenthealth;
-    public float attackdamage;
-    public float healthregen;
     bool die;
     float timecaculate;
-    void Start()
+    void Awake()
     {
-        
+        GetComponent<TagEntity>().UpdateAttr();
+        healthbar[0] = ((GameObject) Resources.Load("healthdisplayboss")).GetComponent<Canvas>(); 
         health = health * DamageCalculator.multiPerEnemy;
-        attackdamage = attackdamage * DamageCalculator.multiPerEnemy;
+        attackDamage = attackDamage * DamageCalculator.multiPerEnemy;
         currenthealth = health;
         anim = GetComponent<Animator>();
         die = false;
@@ -42,7 +45,7 @@ public class enemy : MonoBehaviour
     {
         if (target != null && !die)
         {
-            if (Mathf.Abs(transform.position.x - target.transform.position.x) < range && (Mathf.Abs(transform.position.x - target.transform.position.x) > stoprange || Mathf.Abs(transform.position.z - target.transform.position.z) > stoprange))
+            if (Mathf.Abs(transform.position.x - target.transform.position.x) < range && (Mathf.Abs(transform.position.x - target.transform.position.x) > stopRange || Mathf.Abs(transform.position.z - target.transform.position.z) > stopRange))
             {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
                 // Determine which direction to rotate towards
@@ -87,7 +90,7 @@ public class enemy : MonoBehaviour
             timecaculate += Time.deltaTime;
             if (timecaculate > 1.0f)
             {
-                currenthealth = currenthealth + healthregen;
+                currenthealth = currenthealth + healthRegen;
                 timecaculate = 0.0f;
             }
         }
@@ -113,6 +116,16 @@ public class enemy : MonoBehaviour
         Destroy(gameObject, 4);
         
         
+    }
+
+    public void InitializeAttr(float range, float stopRange, float speed, float health, float attackDamage, float healthRegen)
+    {
+        this.range = range;
+        this.stopRange = stopRange;
+        this.speed = speed;
+        this.health = health;
+        this.attackDamage = attackDamage;
+        this.healthRegen = healthRegen;
     }
     private void OnDestroy()
     {

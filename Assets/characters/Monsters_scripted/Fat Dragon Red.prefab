@@ -2008,10 +2008,9 @@ GameObject:
   - component: {fileID: 5583044021022047874}
   - component: {fileID: 5583044021022047901}
   - component: {fileID: 5230745402984653030}
-  - component: {fileID: 5230745402984653029}
   - component: {fileID: 5230745402984653031}
-  - component: {fileID: 5230745402984652824}
   - component: {fileID: 8412190716832965453}
+  - component: {fileID: -4769398302833271032}
   m_Layer: 0
   m_Name: Fat Dragon Red
   m_TagString: Boss
@@ -2069,27 +2068,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6, y: 4, z: 7}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!114 &5230745402984653029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5583044021022047900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4efe0753b21703d418fbc90d29171712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  healthbar:
-  - {fileID: 856966392633466792, guid: 92bbf20e28a097848a71285e110b1abd, type: 3}
-  range: 100
-  stoprange: 4
-  speed: 1
-  health: 100
-  attackdamage: 30
-  healthregen: 0
 --- !u!114 &5230745402984653031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2104,18 +2082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textshowprefed: {fileID: 5579572903247597706, guid: f89e9a4d46f50f54fbd9f6fe59f55291, type: 3}
   offset: {x: 0, y: 2, z: 0}
---- !u!114 &5230745402984652824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5583044021022047900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d43fd77c15fa33c47a0c196c59529734, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &8412190716832965453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2132,6 +2098,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4769398302833271032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583044021022047900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9d8175e445c0547becbf48a5f05675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags: 0000000005000000
+  creatureTags: 0
 --- !u!1 &5583044021051226678
 GameObject:
   m_ObjectHideFlags: 0
