@@ -14,15 +14,22 @@ public class menuprefab : MonoBehaviour
         if (open == false)
         {
             stopinput();
-            temp = Instantiate(canvas, GameObject.Find("Canvas").transform);
-            temp.transform.SetAsLastSibling();
+            if (temp != null)
+            {
+                anims.SetBool("open", true);
+            }
+            else
+            {
+                temp = Instantiate(canvas, GameObject.Find("Canvas").transform);
+                temp.transform.SetAsLastSibling();
+            }
             open = true;
             
         }
         else
         {
             anims.SetBool("close", true);
-            Destroy(temp,1);
+            
             open = false;
             unstopinput();
         }
