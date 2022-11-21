@@ -4833,6 +4833,8 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 0}
   hit: {fileID: 1096352044232144, guid: 6e4b9c1925f0d3f4d8446e551a2e20d3, type: 3}
   flash: {fileID: 1069073989498846, guid: 7658ae01d0a0655468898c47617f4de6, type: 3}
+  lunch: {fileID: 8300000, guid: e1bf43756aff8164eaba49f2bb6d0b68, type: 3}
+  destory: {fileID: 8300000, guid: 263b98c14455715428f31c04511c6a0c, type: 3}
   Detached: []
 --- !u!199 &199180086395833270
 ParticleSystemRenderer:
