@@ -1,7 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEngine.Rendering.DebugUI;
 
 public class player : MonoBehaviour
 {
@@ -31,21 +36,31 @@ public class player : MonoBehaviour
     public int movespeed;
     public int turnrate;
 
+    int gems;
+    int gold;
+
     gamesaving gamesaving;
     float timecaculate;
     void Start()
     {
+        gamesaving=GameObject.Find("gamesaving").GetComponent<gamesaving>();
          currenthealth=healthpoint;
          currentmagicpoint=magicpoint;
+        gold = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+       
+        TMP_Text[] x = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
+        x[3].text = gems.ToString();
+        x[4].text = gold.ToString();
     }
     private void FixedUpdate()
     {
+        gems = int.Parse(gamesaving.getGameSavingGems());
         healthregenpersec();
     }
     private void healthregenpersec()

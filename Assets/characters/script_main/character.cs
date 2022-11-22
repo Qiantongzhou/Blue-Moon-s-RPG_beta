@@ -148,9 +148,9 @@ public class character : MonoBehaviour
         TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
          x[0].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
         x[1].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
-        x[2].text = aplayer.attackdamage.ToString();
-        x[3].text=aplayer.critdamage.ToString();
-        x[4].text=aplayer.damageblock.ToString();
+        x[5].text = aplayer.attackdamage.ToString();
+        x[6].text=aplayer.critdamage.ToString();
+        x[7].text=aplayer.damageblock.ToString();
       
     }
     public void setprojectile(int num)
