@@ -85,6 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 754468586575981050}
+  - component: {fileID: -3634373859920902954}
   m_Layer: 5
   m_Name: indicator
   m_TagString: Untagged
@@ -115,6 +116,19 @@ RectTransform:
   m_AnchoredPosition: {x: 322, y: 66}
   m_SizeDelta: {x: 919, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-3634373859920902954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754468586575981053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b6c9e6d5e37a84cac698b75d46bbec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopprefab: {fileID: 4047813309379854299, guid: ce1e5c4814d57184c9521f24e1a200c9, type: 3}
 --- !u!1 &754468586752431805
 GameObject:
   m_ObjectHideFlags: 0
