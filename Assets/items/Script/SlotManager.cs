@@ -16,10 +16,7 @@ public class SlotManager : MonoBehaviour
     public void attachSkill(int slot, Skills skill)
     {
         skillManager.skills[slot] = skill;
-        if (skill.GetKinds() != Skills.kinds.empty)
-        {
-            skillManager.updateSkill();
-        }
+        skillManager.updateSkill();
     }
 
 }

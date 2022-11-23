@@ -102,10 +102,13 @@ public class SkillManager : MonoBehaviour
     {
         for (int i = 0; i < skills.Length; i++)
         {
-            if (skills[i].GetKinds() == Skills.kinds.skillEnhancement)
+            if (skills[i] != null)
             {
-                activeSkills[i] = (EnhancementSkill)skills[i];
-                skillAmount++;
+                if (skills[i].GetKinds() == Skills.kinds.skillEnhancement)
+                {
+                    activeSkills[i] = (EnhancementSkill)skills[i];
+                    skillAmount++;
+                }
             }
         }
     }
