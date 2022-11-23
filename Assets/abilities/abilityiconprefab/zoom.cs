@@ -6,18 +6,26 @@ public class zoom : EnhancementSkill
 {
     // Start is called before the first frame update
     public int slot;
+    public AudioClip clip;
+    public AudioSource source;
     public override string Name => "Zoom";
 
     public override string Description => "Player forward 2 unit";
 
     public override void DoAction()
-    {
-        GameObject.FindGameObjectWithTag("Player").transform.GetComponent<Rigidbody>().AddForce(Vector3.forward*3,ForceMode.Impulse);
+    {if (clip != null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.clip = clip;
+            source.volume = 0.2f;
+            source.Play();
+        }
+        GameObject.FindGameObjectWithTag("Player").transform.GetComponent<Rigidbody>().AddForce(GameObject.FindGameObjectWithTag("Player").transform.forward *100,ForceMode.Impulse);
     }
 
     public override KeyCode GetkeyBind()
     {
-        return KeyCode.Keypad1;
+        return KeyCode.Alpha1;
     }
 
     public override int GetSlots()
