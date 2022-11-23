@@ -58,7 +58,7 @@ public class enemy : MonoBehaviour
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
                 // Draw a ray pointing at our target in
-                Debug.DrawRay(transform.position, newDirection, Color.red);
+                Debug.DrawRay(transform.position, target.transform.position, Color.red);
 
                 // Calculate a rotation a step closer to the target and applies rotation to this object
                 transform.rotation = Quaternion.LookRotation(newDirection);

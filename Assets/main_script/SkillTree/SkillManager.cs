@@ -42,6 +42,7 @@ public class SkillManager : MonoBehaviour
         {
             if (Input.GetKeyDown(activeSkills[0].GetkeyBind()))
             {
+                print("skill 1 active");
                 activeSkills[0].DoAction();
             }
         }
@@ -49,6 +50,7 @@ public class SkillManager : MonoBehaviour
         {
             if (Input.GetKeyDown(activeSkills[1].GetkeyBind()))
             {
+                
                 activeSkills[1].DoAction();
             }
         }
