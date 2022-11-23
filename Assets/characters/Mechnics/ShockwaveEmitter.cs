@@ -45,7 +45,7 @@ public class ShockwaveEmitter : MonoBehaviour
     {
         if (EnemyMask == (EnemyMask | (1 << other.gameObject.layer)))
         {
-            if (other.GetComponent<Rigidbody>() is not null)
+            if (other.GetComponent<Rigidbody>() != null)
             {
                 Rigidbody otherRigidbody = other.GetComponent<Rigidbody>();
                 otherRigidbody.AddExplosionForce(Force, transform.position, transform.lossyScale.x, 0f, ForceMode.Impulse);
