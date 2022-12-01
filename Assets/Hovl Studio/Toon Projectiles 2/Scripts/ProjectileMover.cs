@@ -11,6 +11,9 @@ public class ProjectileMover : MonoBehaviour
     public GameObject hit;
     public GameObject flash;
     private Rigidbody rb;
+    public AudioClip lunch;
+    public AudioClip destory;
+    private AudioSource temp;
     public GameObject[] Detached;
 
     void Start()
@@ -21,6 +24,12 @@ public class ProjectileMover : MonoBehaviour
             var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
             var flashPs = flashInstance.GetComponent<ParticleSystem>();
+            if (lunch != null)
+            {
+                temp = gameObject.AddComponent<AudioSource>();
+                temp.clip = lunch;
+                temp.Play();
+            }
             if (flashPs != null)
             {
                 Destroy(flashInstance, flashPs.main.duration);
@@ -46,6 +55,7 @@ public class ProjectileMover : MonoBehaviour
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter(Collision collision)
     {
+        
         //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
@@ -56,7 +66,15 @@ public class ProjectileMover : MonoBehaviour
 
         if (hit != null)
         {
+           
             var hitInstance = Instantiate(hit, pos, rot);
+            if (destory != null)
+            {
+
+                AudioSource x=hitInstance.AddComponent<AudioSource>();
+                x.clip = destory;
+                x.Play();
+            }
             if (UseFirePointRotation) { hitInstance.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
             else if (rotationOffset != Vector3.zero) { hitInstance.transform.rotation = Quaternion.Euler(rotationOffset); }
             else { hitInstance.transform.LookAt(contact.point + contact.normal); }

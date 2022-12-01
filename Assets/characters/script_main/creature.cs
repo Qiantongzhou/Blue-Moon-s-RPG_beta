@@ -47,7 +47,7 @@ public class creature : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, newdir, singleStep, 0.0f);
 
             // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, newdir, Color.red);
+            Debug.DrawRay(transform.position, newdir, Color.green);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -68,7 +68,7 @@ public class creature : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
             // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, targetDirection, Color.red);
+            Debug.DrawRay(transform.position, targetDirection, Color.green);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -90,7 +90,7 @@ public class creature : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
             // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, targetDirection, Color.red);
+            Debug.DrawRay(transform.position, targetDirection, Color.green);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -112,7 +112,7 @@ public class creature : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
             // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, targetDirection, Color.red);
+            Debug.DrawRay(transform.position, targetDirection, Color.green);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
@@ -134,7 +134,7 @@ public class creature : MonoBehaviour
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
 
             // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, targetDirection, Color.red);
+            Debug.DrawRay(transform.position, targetDirection, Color.green);
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
