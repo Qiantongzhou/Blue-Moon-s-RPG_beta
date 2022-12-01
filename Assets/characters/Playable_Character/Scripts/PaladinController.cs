@@ -1,11 +1,11 @@
 using UnityEngine;
 
+
 public class PaladinController : MonoBehaviour
 {
     [SerializeField]
-    private float StandingMovementAcceleration, StandingMovementDeceleration,
-        CrouchingMovementAcceleration, CrouchingMovementDeceleration,
-        JumpForce;
+    private float JumpForce;
+
     private const string animatorParameter_MovementForward = "Movement Forward",
         animatorParameter_MovementRightward = "Movement Right",
         animatorParameter_LightAttack_1 = "Light Attack 1",
@@ -23,7 +23,11 @@ public class PaladinController : MonoBehaviour
         animatorParameter_Unblock = "Unblock",
         animatorParameter_PowerUp = "Power Up",
         animatorParameter_CastWithSword = "Cast With Sword",
-        animatorParameter_CastWithShield = "Cast With Shield";
+        animatorParameter_CastWithShield = "Cast With Shield",
+        animatorParameter_DodgeForward = "Dodge Forward",
+        animatorParameter_DodgeBackward = "Dodge Backward",
+        animatorParameter_DodgeLeft = "Dodge Left",
+        animatorParameter_DodgeRight = "Dodge Right";
 
 
     private float currentForwardSpeed = 0,
@@ -37,52 +41,23 @@ public class PaladinController : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
+        myRigidbody.centerOfMass = Vector3.zero;
+
         StandUp();
-    }
-    private void Start()
-    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Get Movement Inputs
-        float forwardMovement = Input.GetAxis("Vertical");
-        float rightwardMovement = Input.GetAxis("Horizontal");
-        //Debug.Log(forwardMovement);
-        /*if (Mathf.Approximately(forwardMovement, 0))
-        {
-            // Character not moving forward nor backward
-            Decelerate(ref currentForwardSpeed, currentMovementDeceleration);
-        }
-        else
-        {
-            // Character is moving forward or backward
-            Accelerate(ref currentForwardSpeed, forwardMovement > 0 ? currentMovementAcceleration : -currentMovementAcceleration);
-        }
-        if (Mathf.Approximately(rightwardMovement, 0))
-        {
-            // Character not moving left nor right
-            Decelerate(ref currentRightwardSpeed, currentMovementDeceleration);
-        }
-        else
-        {
-            // Character is moving left or right
-            Accelerate(ref currentRightwardSpeed, rightwardMovement > 0 ? currentMovementAcceleration : -currentMovementAcceleration);
-        }*/
-        currentForwardSpeed = forwardMovement;
-        currentRightwardSpeed = rightwardMovement;
-        UpdateMovement();
+        currentForwardSpeed = Input.GetAxis("Vertical") / Time.timeScale;
+        currentRightwardSpeed = Input.GetAxis("Horizontal") / Time.timeScale;
 
-        // Borrowed code to handle character rotation
-        //Get the Screen positions of the object
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
-        //Get the Screen position of the mouse
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        //Get the angle between the points
-        float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-        //Ta Daaa
-        transform.rotation = Quaternion.Euler(new Vector3(0f, -3 * angle, 0f));
+        UpdateMovement();
+        float mouseX = Input.GetAxis("Mouse X");
+        transform.Rotate(transform.up, mouseX);
 
         if (Input.GetButtonDown("Fire1")) { LightAttack(); }
         if (Input.GetButtonDown("Fire2")) { SwingAttack(); }
@@ -101,23 +76,28 @@ public class PaladinController : MonoBehaviour
             if (isStanding) { CrouchDown(); }
             else { StandUp(); }
         }
+        if (Input.GetButtonDown("Dodge")) { Dodge(); }
+    }
+    private void Dodge()
+    {
+        ResetActionLayerTrigger();
+        if (isBlocking) { return; }
+        if (!isStanding) { return; }
+        if (Mathf.Approximately(currentForwardSpeed, 0) && Mathf.Approximately(currentRightwardSpeed, 0))
+        { return; }
 
-    }
-    private void Decelerate(ref float currentSpeed, float deceleration, float zero = 0f)
-    {
-        if (currentSpeed > zero)
-        { currentSpeed = currentSpeed - deceleration > zero ? currentSpeed - deceleration : zero; }
-        else if (currentSpeed < zero)
-        { currentSpeed = currentSpeed + deceleration < zero ? currentSpeed + deceleration : zero; }
-    }
-    private void Accelerate(ref float currentSpeed, float acceleration, float lowerBound = -1f, float upperBound = 1f)
-    {
-        if (currentSpeed + acceleration > upperBound)
-        { currentSpeed = upperBound; }
-        else if (currentSpeed + acceleration < lowerBound)
-        { currentSpeed = lowerBound; }
+        if (Mathf.Abs(currentForwardSpeed) > Mathf.Abs(currentRightwardSpeed))
+        {
+            // Dodge Forward or Backward
+            if (currentForwardSpeed > 0) { myAnimator.SetTrigger(animatorParameter_DodgeForward); }
+            else { myAnimator.SetTrigger(animatorParameter_DodgeBackward); }
+        }
         else
-        { currentSpeed += acceleration; }
+        {
+            // Dodge Left or Right
+            if (currentRightwardSpeed > 0) { myAnimator.SetTrigger(animatorParameter_DodgeRight); }
+            else { myAnimator.SetTrigger(animatorParameter_DodgeLeft); }
+        }
     }
     private void StandUp()
     {
@@ -131,6 +111,7 @@ public class PaladinController : MonoBehaviour
     }
     private void LightAttack()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
         if (isStanding)
         {
@@ -148,87 +129,73 @@ public class PaladinController : MonoBehaviour
             }
         }
         else
-        {
-            myAnimator.SetTrigger(animatorParameter_LightAttack_1);
-        }
+        { myAnimator.SetTrigger(animatorParameter_LightAttack_1); }
     }
     private void SwingAttack()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
+        if (!isStanding) { return; }
+        switch (Random.Range(0, 3))
         {
-            switch (Random.Range(0, 3))
-            {
-                case 0:
-                    myAnimator.SetTrigger(animatorParameter_HighSwing);
-                    break;
-                case 1:
-                    myAnimator.SetTrigger(animatorParameter_LowSwing);
-                    break;
-                case 2:
-                    myAnimator.SetTrigger(animatorParameter_LightAttackSmallJumpAttack);
-                    break;
-            }
+            case 0:
+                myAnimator.SetTrigger(animatorParameter_HighSwing);
+                break;
+            case 1:
+                myAnimator.SetTrigger(animatorParameter_LowSwing);
+                break;
+            case 2:
+                myAnimator.SetTrigger(animatorParameter_LightAttackSmallJumpAttack);
+                break;
         }
     }
     private void JumpAttack()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
+        if (!isStanding) { return; }
+        switch (Random.Range(0, 2))
         {
-            switch (Random.Range(0, 2))
-            {
-                case 0:
-                    myAnimator.SetTrigger(animatorParameter_SmallJumpAttack);
-                    break;
-                case 1:
-                    myAnimator.SetTrigger(animatorParameter_JumpAttack);
-                    break;
-            }
+            case 0:
+                myAnimator.SetTrigger(animatorParameter_SmallJumpAttack);
+                break;
+            case 1:
+                myAnimator.SetTrigger(animatorParameter_JumpAttack);
+                break;
         }
     }
     private void Jump()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
-        {
-            if (currentForwardSpeed > 0.9 && Mathf.Abs(currentRightwardSpeed) < 0.2)
-            {
-                myAnimator.SetTrigger(animatorParameter_JumpForward);
-            }
-            else
-            {
-                myAnimator.SetTrigger(animatorParameter_JumpUpward);
-            }
-            Vector3 force = (transform.right * currentRightwardSpeed + transform.up + transform.forward * currentForwardSpeed).normalized * JumpForce;
-            Debug.Log("Force " + force);
-            myRigidbody.AddForce(force, ForceMode.Impulse);
-
-        }
+        if (!isStanding) { return; }
+        if (currentForwardSpeed > 0.9 && Mathf.Abs(currentRightwardSpeed) < 0.2)
+        { myAnimator.SetTrigger(animatorParameter_JumpForward); }
+        else
+        { myAnimator.SetTrigger(animatorParameter_JumpUpward); }
+        Vector3 force = (transform.right * currentRightwardSpeed + transform.up + transform.forward * currentForwardSpeed).normalized * JumpForce;
+        myRigidbody.AddForce(force, ForceMode.Impulse);
     }
     private void PowerUp()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
-        {
-            myAnimator.SetTrigger(animatorParameter_PowerUp);
-        }
+        if (!isStanding) { return; }
+        myAnimator.SetTrigger(animatorParameter_PowerUp);
     }
     private void CastWithSword()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
-        {
-            myAnimator.SetTrigger(animatorParameter_CastWithSword);
-        }
+        if (!isStanding) { return; }
+        myAnimator.SetTrigger(animatorParameter_CastWithSword);
     }
     private void CastWithShield()
     {
+        ResetActionLayerTrigger();
         if (isBlocking) { return; }
-        if (isStanding)
-        {
-            myAnimator.SetTrigger(animatorParameter_CastWithShield);
-        }
+        if (!isStanding) { return; }
+        myAnimator.SetTrigger(animatorParameter_CastWithShield);
     }
     private void Block()
     {
@@ -245,8 +212,26 @@ public class PaladinController : MonoBehaviour
         myAnimator.SetFloat(animatorParameter_MovementForward, currentForwardSpeed);
         myAnimator.SetFloat(animatorParameter_MovementRightward, currentRightwardSpeed);
     }
-    private float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
+    private void ResetActionLayerTrigger()
     {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        myAnimator.ResetTrigger(animatorParameter_LightAttack_1);
+        myAnimator.ResetTrigger(animatorParameter_LightAttack_2);
+        myAnimator.ResetTrigger(animatorParameter_HighSwing);
+        myAnimator.ResetTrigger(animatorParameter_LowSwing);
+        myAnimator.ResetTrigger(animatorParameter_LightAttackSmallJumpAttack);
+        myAnimator.ResetTrigger(animatorParameter_KickForward);
+        myAnimator.ResetTrigger(animatorParameter_SmallJumpAttack);
+        myAnimator.ResetTrigger(animatorParameter_JumpAttack);
+        myAnimator.ResetTrigger(animatorParameter_JumpForward);
+        myAnimator.ResetTrigger(animatorParameter_JumpUpward);
+        myAnimator.ResetTrigger(animatorParameter_Block);
+        myAnimator.ResetTrigger(animatorParameter_Unblock);
+        myAnimator.ResetTrigger(animatorParameter_PowerUp);
+        myAnimator.ResetTrigger(animatorParameter_CastWithSword);
+        myAnimator.ResetTrigger(animatorParameter_CastWithShield);
+        myAnimator.ResetTrigger(animatorParameter_DodgeForward);
+        myAnimator.ResetTrigger(animatorParameter_DodgeBackward);
+        myAnimator.ResetTrigger(animatorParameter_DodgeLeft);
+        myAnimator.ResetTrigger(animatorParameter_DodgeRight);
     }
 }

@@ -252,22 +252,9 @@ public class DragonController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log(movementMode + " " + actionMode);
-            Debug.Log(agent.speed + " " + agent.acceleration + " " + agent.stoppingDistance);
-            Debug.Log(Vector3.Distance(Target.position, transform.position));
-
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            myHealth.HealthChange(-10, Target.position - transform.position);
-        }
         bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
-        Debug.DrawLine(transform.position, hit.point, Color.red);
         if (myHealth.IsAlive)
         {
-            Debug.DrawRay(transform.position, transform.forward * 10, Color.yellow);
             switch (actionMode)
             {
                 case ActionMode.Patrol:

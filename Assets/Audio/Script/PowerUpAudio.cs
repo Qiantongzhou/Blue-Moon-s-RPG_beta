@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CastAudio : MonoBehaviour
+public class PowerUpAudio : MonoBehaviour
 {
     [SerializeField]
     private AudioClip[] castClips;
@@ -9,7 +9,7 @@ public class CastAudio : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
-    private void Bite()
+    private void Power()
     {
         audioSource.PlayOneShot(AudioManager.GetRandomClip(castClips));
     }

@@ -7,11 +7,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Refraction_Material
-  m_Shader: {fileID: -6465566751694194690, guid: 2102ee3294706ff4096cdc6d8c3c4f12, type: 3}
+  m_Name: Shader Graphs_LightningBall_Shader
+  m_Shader: {fileID: -6465566751694194690, guid: c177dd40239e86e43935e535f9f153fa, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_InvalidKeywords:
+  - _ALPHATEST_ON
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -34,16 +35,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
-    - _IOR: 0.6
+    - _AlphaClip: 0.75
+    - _IOR: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _VoronoiScale: 7
-    - _VoronoiSpeed: 2
+    - _VoronoiScale: 100
+    - _VoronoiSpeed: 20
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.90943396, g: 1, b: 0.23018867, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &837470521583271937
+--- !u!114 &1708654856174853105
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

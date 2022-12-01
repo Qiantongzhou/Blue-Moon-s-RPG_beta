@@ -21,10 +21,8 @@ public class ParticleDamageDealer : MonoBehaviour
         for (int i = 0; i < numOfParticleEntering; i++)
         {
             ParticleSystem.Particle particle = enteringParticles[i];
-            Debug.Log(colliderData.GetColliderCount(i));
             for (int j = 0; j < colliderData.GetColliderCount(i); j++)
             {
-                Debug.Log(colliderData.GetCollider(i, j).name);
                 GameObject opponent = colliderData.GetCollider(i, j).gameObject;
                 DamageReceiver damageReceiver = opponent.GetComponent<DamageReceiver>();
                 Vector3 direction = transform.position - opponent.transform.position;

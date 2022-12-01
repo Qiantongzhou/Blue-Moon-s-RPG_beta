@@ -31,7 +31,6 @@ internal class PhysicFootStepAudio : MonoBehaviour
             {
                 Step();
                 isFootOnAir = false;
-                Debug.Log("+HIT " + raycastHit.collider.name);
             }
         }
         else
