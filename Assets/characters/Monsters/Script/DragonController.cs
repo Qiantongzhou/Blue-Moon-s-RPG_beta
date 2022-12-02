@@ -36,8 +36,6 @@ public class DragonController : MonoBehaviour
         HealthPointThreshold,
         AngularSpeed,
         MeleeStopDistance, RangeStopDistance;
-    [SerializeField]
-    private GameObject Shoutwave;
 
     protected const string MovementAnimationName = "Movement",
         Attack1AnimationName = "Attack 1",
@@ -66,7 +64,10 @@ public class DragonController : MonoBehaviour
         movementMode = MovementMode.Ground;
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
-        //Target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    private void Start()
+    {
+        Target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
@@ -135,7 +136,6 @@ public class DragonController : MonoBehaviour
         {
             nextScream = Time.time + ShoutInterval;
             myAnimator.SetTrigger(ScreamAnimationName);
-            Instantiate(Shoutwave, transform.position, transform.rotation);
         }
     }
     private void Patrol()
@@ -248,7 +248,7 @@ public class DragonController : MonoBehaviour
         Vector3 lookPos = Target.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed * Time.deltaTime);
     }
     private void Update()
     {

@@ -24,8 +24,6 @@ public class TitanController : MonoBehaviour
         PursuitSpeed,
         SearchRange, SearchTime, SearchSpeed,
         AngularSpeed;
-    [SerializeField]
-    private GameObject Shoutwave;
 
     protected const string MovementAnimationName = "Movement",
         Attack1AnimationName = "Attack 1",
@@ -50,7 +48,10 @@ public class TitanController : MonoBehaviour
         Rest();
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
-        //Target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    private void Start()
+    {
+        Target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
@@ -104,7 +105,6 @@ public class TitanController : MonoBehaviour
                     myAnimator.SetTrigger(Shout2AnimationName);
                     break;
             }
-            Instantiate(Shoutwave, transform.position, transform.rotation);
         }
     }
     private void Patrol()

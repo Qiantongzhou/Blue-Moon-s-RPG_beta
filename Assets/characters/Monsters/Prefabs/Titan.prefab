@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 5254217606463040334}
   - component: {fileID: 4068658461620208629}
   - component: {fileID: 817924433790711252}
+  - component: {fileID: 869844996}
   m_Layer: 7
   m_Name: Titan
   m_TagString: Untagged
@@ -812,8 +813,7 @@ MonoBehaviour:
   SearchRange: 50
   SearchTime: 10
   SearchSpeed: 2
-  AngularSpeed: 0.05
-  Shoutwave: {fileID: 4709039827678442006, guid: 9ab5083dbdd1fac4fa0a9257f1f7d8ea, type: 3}
+  AngularSpeed: 1
 --- !u!114 &4068658461620208629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,6 +851,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &869844996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961132997724091937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ea9f80e189d1b4a9fb2a938d51ce9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShockwavePrefab: {fileID: 4709039827678442006, guid: 9ab5083dbdd1fac4fa0a9257f1f7d8ea, type: 3}
 --- !u!1 &4961132997724091939
 GameObject:
   m_ObjectHideFlags: 0

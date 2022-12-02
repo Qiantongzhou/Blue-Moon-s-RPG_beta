@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class meleattackauto : MonoBehaviour
@@ -12,8 +9,8 @@ public class meleattackauto : MonoBehaviour
     void Start()
     {
         enemy = transform.GetComponent<enemy>();
-         
-        
+
+
     }
 
     // Update is called once per frame
@@ -27,7 +24,7 @@ public class meleattackauto : MonoBehaviour
 
             if (anims.GetCurrentAnimatorStateInfo(1).IsName("Attack 1"))
             {
-                
+
                 if (Mathf.FloorToInt(anims.GetCurrentAnimatorStateInfo(1).normalizedTime * 10 % 10) == 6)
                 {
 
@@ -36,7 +33,7 @@ public class meleattackauto : MonoBehaviour
 
                 if (Mathf.FloorToInt(anims.GetCurrentAnimatorStateInfo(1).normalizedTime * 10 % 10) == 5 && !attacked)
                 {
-                   
+
                     dam.takedamage(Mathf.FloorToInt(enemy.attackDamage));
                     attacked = true;
                 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class creature : MonoBehaviour
@@ -23,14 +21,14 @@ public class creature : MonoBehaviour
         currenthealth = health;
         anims = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player");
-        die= false;
+        die = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        if (direction == Vector3.zero&&!die)
+
+        if (direction == Vector3.zero && !die)
         {
             direction = new Vector3(Random.Range(100, -100), 2, Random.Range(100, -100));
         }
@@ -39,7 +37,7 @@ public class creature : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, direction, speed * Time.deltaTime);
             // Determine which direction to rotate towards
 
-            Vector3 newdir =transform.position - direction ;
+            Vector3 newdir = transform.position - direction;
             // The step size is equal to speed times frame time.s
             float singleStep = speed * Time.deltaTime;
 
@@ -51,13 +49,14 @@ public class creature : MonoBehaviour
 
             // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
-            int time =Mathf.FloorToInt( counttime += Time.deltaTime);
+            int time = Mathf.FloorToInt(counttime += Time.deltaTime);
             anims.SetInteger("walking", time);
-        }else
-   
+        }
+        else
+
         if (anims.GetCurrentAnimatorStateInfo(1).IsName("run") && !die)
         {
-            transform.position = Vector3.MoveTowards(transform.position,target.transform.position, -5*speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, -5 * speed * Time.deltaTime);
             // Determine which direction to rotate towards
             Vector3 targetDirection = target.transform.position - transform.position;
 
@@ -159,7 +158,7 @@ public class creature : MonoBehaviour
     }
     public void takedamage(int amount)
     {
-        
+
         if (currenthealth > 0)
         {
             currenthealth -= amount;

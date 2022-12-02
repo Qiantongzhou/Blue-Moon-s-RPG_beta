@@ -14,11 +14,11 @@ public class SpitParticleInitiator : MonoBehaviour
         }
         else
         {
-            Players.OnPlayerChange += Player_OnPlayerChange;
+            Players.OnAddingPlayerDamageReceiver += Player_OnAddingPlayerDamageReceiver;
         }
     }
 
-    private void Player_OnPlayerChange(object sender, GameObject e)
+    private void Player_OnAddingPlayerDamageReceiver(object sender, GameObject e)
     {
         myParticleSystem.trigger.AddCollider(e.GetComponent<Collider>());
     }

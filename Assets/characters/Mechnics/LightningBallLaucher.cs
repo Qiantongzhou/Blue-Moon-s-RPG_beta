@@ -20,7 +20,7 @@ public class LightningBallLaucher : MonoBehaviour
         }
         else
         {
-            Players.OnPlayerChange += Player_OnPlayerChange;
+            Players.OnAddingPlayerDamageReceiver += Player_OnPlayerChange;
         }
     }
 

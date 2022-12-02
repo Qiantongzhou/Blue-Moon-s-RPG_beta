@@ -5,7 +5,7 @@ public class DamageReceiver : MonoBehaviour, IDamageReceiver
     private Health myHealth;
     [SerializeField]
     private bool IsMonster;
-    private void Awake()
+    private void Start()
     {
         if (IsMonster)
         {

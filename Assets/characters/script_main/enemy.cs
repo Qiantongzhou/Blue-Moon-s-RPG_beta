@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class enemy : MonoBehaviour
 {
@@ -25,7 +22,7 @@ public class enemy : MonoBehaviour
     void Awake()
     {
         GetComponent<TagEntity>().UpdateAttr();
-        healthbar[0] = ((GameObject) Resources.Load("healthdisplayboss")).GetComponent<Canvas>(); 
+        healthbar[0] = ((GameObject)Resources.Load("healthdisplayboss")).GetComponent<Canvas>();
         health = health * DamageCalculator.multiPerEnemy;
         attackDamage = attackDamage * DamageCalculator.multiPerEnemy;
         currenthealth = health;
@@ -35,7 +32,7 @@ public class enemy : MonoBehaviour
         if (transform.tag == "Boss")
         {
 
-            bar = Instantiate(healthbar[0],transform);
+            bar = Instantiate(healthbar[0], transform);
             bar.GetComponentInChildren<Slider>().value = currenthealth / health;
         }
     }
@@ -62,7 +59,7 @@ public class enemy : MonoBehaviour
 
                 // Calculate a rotation a step closer to the target and applies rotation to this object
                 transform.rotation = Quaternion.LookRotation(newDirection);
-                anim.SetFloat("Movement",1);
+                anim.SetFloat("Movement", 1);
             }
             else
             {
@@ -102,7 +99,7 @@ public class enemy : MonoBehaviour
             currenthealth -= amount;
             anim.SetBool("Hurt", true);
         }
-        if(currenthealth <= 0)
+        if (currenthealth <= 0)
         {
             currenthealth = 0;
             die = true;
@@ -114,8 +111,8 @@ public class enemy : MonoBehaviour
     {
         anim.SetBool("Dead", true);
         Destroy(gameObject, 4);
-        
-        
+
+
     }
 
     public void InitializeAttr(float range, float stopRange, float speed, float health, float attackDamage, float healthRegen)
@@ -129,6 +126,6 @@ public class enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
-       // Destroy(GameObject.Find("healthdisplayboss(Clone)"));
+        // Destroy(GameObject.Find("healthdisplayboss(Clone)"));
     }
 }
