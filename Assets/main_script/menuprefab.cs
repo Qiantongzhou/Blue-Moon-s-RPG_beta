@@ -24,12 +24,12 @@ public class menuprefab : MonoBehaviour
                 temp.transform.SetAsLastSibling();
             }
             open = true;
-            
+
         }
         else
         {
             anims.SetBool("close", true);
-            
+
             open = false;
             unstopinput();
         }
@@ -41,7 +41,7 @@ public class menuprefab : MonoBehaviour
     {
         GobalEvent.Pause_player_mouse_input = true;
     }
-   public void unstopinput()
+    public void unstopinput()
     {
         if (!open)
         {

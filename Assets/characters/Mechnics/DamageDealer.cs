@@ -7,28 +7,41 @@ public class DamageDealer : MonoBehaviour
     private float DamageAmount;
 
     private HitAudio hitAudio;
-
+    private Collider myCollider;
     private void Awake()
     {
         hitAudio = GetComponent<HitAudio>();
+        myCollider = GetComponent<Collider>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (EnemyMask == (EnemyMask | (1 << other.gameObject.layer)))
         {
-            Debug.Log("My name " + this.gameObject.name);
-            Debug.Log("Other name " + other.name);
-            hitAudio.Hit();
-            if (other.GetComponent<DamageReceiver>() != null)
+            Shield shield = other.GetComponent<Shield>();
+            if (shield is not null)
             {
+                // Other is a shield
+                // Disable Self
+                myCollider.enabled = false;
+                // Call other's blocked
+                ShieldController shieldController = shield.BelongTo.GetComponent<ShieldController>();
+                shieldController.BlockHit();
+                shield.PlayBlockHitAudio();
+            }
+            else
+            {
+                IDamageReceiver receiver = other.GetComponent<IDamageReceiver>();
+                if (receiver is null) { return; }
+                if (receiver is DamageReceiver) { hitAudio.Hit(); }
+                else { myCollider.enabled = false; }
                 Vector3 direction = transform.position - other.gameObject.transform.position;
                 Vector3 direction2D = new Vector3(direction.x, 0f, direction.z);
 
-                DealDamage(other.GetComponent<DamageReceiver>(), Vector3.Normalize(direction2D));
+                DealDamage(receiver, Vector3.Normalize(direction2D));
             }
         }
     }
-    private void DealDamage(DamageReceiver damageReceiver, Vector3 direction)
+    private void DealDamage(IDamageReceiver damageReceiver, Vector3 direction)
     {
         damageReceiver.ReceiveDamage(DamageAmount, direction);
     }

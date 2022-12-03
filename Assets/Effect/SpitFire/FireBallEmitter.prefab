@@ -51,7 +51,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4879,7 +4879,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f89f82100f0b94fba57e387ec80afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyMask:
-    serializedVersion: 2
-    m_Bits: 64
   DamageAmout: 1

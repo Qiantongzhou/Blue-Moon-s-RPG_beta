@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class cameraminimap : MonoBehaviour
@@ -13,24 +10,21 @@ public class cameraminimap : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
-        if (player.GetComponent<character>().isrunning())
+        if (player.GetComponent<character>() is not null)
         {
-            targetsize = 40;
+            if (player.GetComponent<character>().isrunning())
+            { targetsize = 40; }
+            else
+            { targetsize = 20; }
         }
-        else
+
+        if (transform.GetComponent<Camera>().orthographicSize > targetsize + 0.5)
         {
-            targetsize = 20;
+            transform.GetComponent<Camera>().orthographicSize -= targetsize * Time.deltaTime;
         }
-        
-        if(transform.GetComponent<Camera>().orthographicSize> targetsize+0.5)
+        else if (transform.GetComponent<Camera>().orthographicSize < targetsize - 0.5)
         {
-            transform.GetComponent<Camera>().orthographicSize -= targetsize*Time.deltaTime;
+            transform.GetComponent<Camera>().orthographicSize += targetsize * Time.deltaTime;
         }
-        else if(transform.GetComponent<Camera>().orthographicSize< targetsize-0.5)
-        {
-            transform.GetComponent<Camera>().orthographicSize += targetsize*Time.deltaTime;
-        }
-       
     }
 }
