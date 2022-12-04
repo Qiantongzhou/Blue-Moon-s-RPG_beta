@@ -20,6 +20,8 @@ public class DamageCalculator
     public static short eliteCount;
     public static float multiPerElite;
 
+    public static int currentwave;
+
 
     public static short maxEnemyCount;
     //public static BossType bossType;

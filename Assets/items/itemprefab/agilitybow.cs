@@ -35,7 +35,7 @@ public class agilitybow : EnhancementSkill
             if(count > 5)
             {
                 print("player attack bounse ennd");
-                GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamage -= 20;
+                GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamagebonus -= 20;
                 startcount=false;
                 count=0;
             }
