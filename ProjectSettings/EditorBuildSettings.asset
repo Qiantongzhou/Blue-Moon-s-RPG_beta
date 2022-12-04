@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Terrain/TerrainForest.unity
+    guid: 6ec013c7e7ccbf34eb0f06295c593033
+  - enabled: 1
+    path: Assets/Terrain/TerrainVillage.unity
+    guid: 5ae0274178017634f9794f418efebbe9
   m_configObjects: {}
