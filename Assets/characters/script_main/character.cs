@@ -35,7 +35,8 @@ public class character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         effect = vfx[0];
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        
+        Players.SetCurrentPlayer(gameObject);
     }
 
     // Update is called once per frame
@@ -137,22 +138,7 @@ public class character : MonoBehaviour
         updateanimator();
 
     }
-    private void FixedUpdate()
-    {
-        float value = (float)aplayer.getcurrenthealth() / aplayer.healthpoint;
-        float magic = (float)aplayer.getcurrentmagic() / aplayer.magicpoint;
 
-        Slider[] y = canvas.GetComponentsInChildren<Slider>();
-        y[0].value = value;
-        y[1].value = magic;
-        TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
-         x[0].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
-        x[1].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
-        x[5].text = aplayer.attackdamage.ToString();
-        x[6].text=aplayer.critdamage.ToString();
-        x[7].text=aplayer.damageblock.ToString();
-      
-    }
     public void setprojectile(int num)
     {
         effect = vfx[num];

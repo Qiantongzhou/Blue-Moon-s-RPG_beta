@@ -16,6 +16,9 @@ public class ProjectileMover : MonoBehaviour
     private AudioSource temp;
     public GameObject[] Detached;
 
+    public int damage;
+    public bool iscritic;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();

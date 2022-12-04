@@ -23,7 +23,7 @@ public class agilitybow : EnhancementSkill
                 source.Play();
             }
             print("player attack +20");
-            GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamage += 20;
+            GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamagebonus += 20;
             startcount = true;
         }
     }

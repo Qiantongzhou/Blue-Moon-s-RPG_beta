@@ -23,6 +23,7 @@ public class player : MonoBehaviour
     public int damageblock;
 
     public int attackdamage;
+    public int attackdamagebonus;
 
     public int critdamage;
     public int critchance;
@@ -40,11 +41,13 @@ public class player : MonoBehaviour
     int gold;
 
     gamesaving gamesaving;
+    Canvas canvas;
     float timecaculate;
     void Start()
     {
         gamesaving=GameObject.Find("gamesaving").GetComponent<gamesaving>();
-         currenthealth=healthpoint;
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        currenthealth =healthpoint;
          currentmagicpoint=magicpoint;
         gold = 0;
     }
@@ -54,9 +57,34 @@ public class player : MonoBehaviour
     {
         
        
-        TMP_Text[] x = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
-        x[3].text = gems.ToString();
-        x[4].text = gold.ToString();
+        TMP_Text[] j = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
+        j[3].text = gems.ToString();
+        j[4].text = gold.ToString();
+
+
+        float value = (float)getcurrenthealth() /healthpoint;
+        float magic = (float)getcurrentmagic() / magicpoint;
+
+        Slider[] y = canvas.GetComponentsInChildren<Slider>();
+        y[0].value = value;
+        y[1].value = magic;
+        TMP_Text[] x= canvas.GetComponentsInChildren<TMP_Text>();
+        x[0].text = getcurrenthealth() + "/" + healthpoint;
+        x[1].text = getcurrentmagic() + "/" + magicpoint;
+        if (attackdamagebonus > 0)
+        {
+            x[5].text = attackdamage.ToString() + "<color=green>+" + attackdamagebonus.ToString() + "</color>";
+        }
+        if (attackdamagebonus < 0)
+        {
+            x[5].text = attackdamage.ToString() + "<color=red>+" + attackdamagebonus.ToString() + "</color>";
+        }
+        if (attackdamagebonus == 0)
+        {
+            x[5].text = attackdamage.ToString();
+        }
+        x[6].text = critdamage.ToString();
+        x[7].text = damageblock.ToString();
     }
     private void FixedUpdate()
     {
