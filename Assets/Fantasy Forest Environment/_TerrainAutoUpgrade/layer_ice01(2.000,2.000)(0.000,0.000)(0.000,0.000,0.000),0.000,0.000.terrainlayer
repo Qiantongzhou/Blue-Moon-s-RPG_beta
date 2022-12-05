@@ -8,14 +8,14 @@ TerrainLayer:
   m_PrefabAsset: {fileID: 0}
   m_Name: layer_ice01(2.000,2.000)(0.000,0.000)(0.000,0.000,0.000),0.000,0.000
   m_DiffuseTexture: {fileID: 2800000, guid: a691561e3bb458541ad5c5f7db75c9cc, type: 3}
-  m_NormalMapTexture: {fileID: 0}
-  m_MaskMapTexture: {fileID: 0}
+  m_NormalMapTexture: {fileID: 2800000, guid: c3657f76b3f38c74d81e54ee216a0c44, type: 3}
+  m_MaskMapTexture: {fileID: 2800000, guid: 4801a89c25242ec4fa53d84955a520d4, type: 3}
   m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
   m_Smoothness: 0
-  m_NormalScale: 1
+  m_NormalScale: 0
   m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}
   m_MaskMapRemapMin: {x: 0, y: 0, z: 0, w: 0}
