@@ -14,15 +14,15 @@ public class damage_col : MonoBehaviour
     {
         if (collision.collider.tag == "playersattack" && transform.tag == "Boss")
         {
-            takedamageboss(npc.aplayer.attackdamage);
+            takedamageboss(npc.aplayer.attr.attackdamage);
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creep")
         {
-            takedamagecreep(npc.aplayer.attackdamage);
+            takedamagecreep(npc.aplayer.attr.attackdamage);
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creature")
         {
-            takedamagecreature(npc.aplayer.attackdamage);
+            takedamagecreature(npc.aplayer.attr.attackdamage);
         }
     }
     public void takedamageboss(int dam)

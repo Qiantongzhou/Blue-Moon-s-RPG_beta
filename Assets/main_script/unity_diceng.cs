@@ -63,19 +63,19 @@ public class unity_diceng : MonoBehaviour
     static void addattack()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.attackdamage += 10;
+        x.aplayer.attr.attackdamage += 10;
     }
     [MenuItem("BlueMoon_test/cheat/player_add_health_10")]
     static void addhealth()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.healthpoint += 10;
+        x.aplayer.attr.healthpoint += 10;
     }
     [MenuItem("BlueMoon_test/cheat/player_add_health_regen_2")]
     static void addhealthregen()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.healthregen += 2;
+        x.aplayer.attr.healthregen += 2;
     }
 
 
@@ -84,25 +84,25 @@ public class unity_diceng : MonoBehaviour
     static void addattack100()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.attackdamage += 100;
+        x.aplayer.attr.attackdamage += 100;
     }
     [MenuItem("BlueMoon_test/cheat/player_add_health_100")]
     static void addhealth100()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.healthpoint += 100;
+        x.aplayer.attr.healthpoint += 100;
     }
     [MenuItem("BlueMoon_test/cheat/player_add_health_regen_20")]
     static void addhealthregen20()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.healthregen += 20;
+        x.aplayer.attr.healthregen += 20;
     }
     [MenuItem("BlueMoon_test/cheat/player_add_attackspeed")]
     static void addattackspeed()
     {
         character x = GameObject.FindWithTag("Player").GetComponent<character>();
-        x.aplayer.attackspeed+=1;
+        x.aplayer.attr.attackspeed +=1;
     }
     [MenuItem("BlueMoon_test/enemylvlup1")]
     static void enemymultiper()

@@ -10,31 +10,35 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class player : MonoBehaviour
 {
-    
-    public int healthpoint;
+
+
+
+    public Attributes attr;
+
+
+
+
+
     private int currenthealth;
 
-    public int healthregen;
-
-    public int magicpoint;
     private int currentmagicpoint;
 
 
-    public int damageblock;
+    public int damageblock { get; set; }
 
-    public int attackdamage;
-    public int attackdamagebonus;
+    public int attackdamage { get; set; }
+    public int attackdamagebonus { get; set; }
 
-    public int critdamage;
-    public int critchance;
+    public int critdamage { get; set; }
+    public int critchance { get; set; }
 
-    public int magicdamage;
+    public int magicdamage { get; set; }
 
 
-    public int attackrange;
-    public int attackspeed;
+    public int attackrange { get; set; }
+    public int attackspeed { get; set; }
 
-    public int movespeed;
+    public int movespeed { set; get; }
     public int turnrate;
 
     int gems;
@@ -45,10 +49,11 @@ public class player : MonoBehaviour
     float timecaculate;
     void Start()
     {
-        gamesaving=GameObject.Find("gamesaving").GetComponent<gamesaving>();
+        gamesaving = GameObject.Find("gamesaving").GetComponent<gamesaving>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        currenthealth =healthpoint;
-         currentmagicpoint=magicpoint;
+        attr = GetComponent<Attributes>();
+        currenthealth = attr.healthpoint;
+        currentmagicpoint = attr.magicpoint;
         gold = 0;
     }
 
@@ -62,29 +67,29 @@ public class player : MonoBehaviour
         j[4].text = gold.ToString();
 
 
-        float value = (float)getcurrenthealth() /healthpoint;
-        float magic = (float)getcurrentmagic() / magicpoint;
+        float value = (float)getcurrenthealth() / attr.healthpoint;
+        float magic = (float)getcurrentmagic() /  attr.magicpoint;
 
         Slider[] y = canvas.GetComponentsInChildren<Slider>();
         y[0].value = value;
         y[1].value = magic;
         TMP_Text[] x= canvas.GetComponentsInChildren<TMP_Text>();
-        x[0].text = getcurrenthealth() + "/" + healthpoint;
-        x[1].text = getcurrentmagic() + "/" + magicpoint;
-        if (attackdamagebonus > 0)
+        x[0].text = getcurrenthealth() + "/" + attr.healthpoint;
+        x[1].text = getcurrentmagic() + "/" + attr.magicpoint;
+        if (attr.attackdamagebonus > 0)
         {
-            x[5].text = attackdamage.ToString() + "<color=green>+" + attackdamagebonus.ToString() + "</color>";
+            x[5].text = attr.attackdamage.ToString() + "<color=green>+" + attr.attackdamagebonus.ToString() + "</color>";
         }
-        if (attackdamagebonus < 0)
+        if (attr.attackdamagebonus < 0)
         {
-            x[5].text = attackdamage.ToString() + "<color=red>+" + attackdamagebonus.ToString() + "</color>";
+            x[5].text = attr.attackdamage.ToString() + "<color=red>+" + attr.attackdamagebonus.ToString() + "</color>";
         }
-        if (attackdamagebonus == 0)
+        if (attr.attackdamagebonus == 0)
         {
-            x[5].text = attackdamage.ToString();
+            x[5].text = attr.attackdamage.ToString();
         }
-        x[6].text = critdamage.ToString();
-        x[7].text = damageblock.ToString();
+        x[6].text = attr.critdamage.ToString();
+        x[7].text = attr.damageblock.ToString();
     }
     private void FixedUpdate()
     {
@@ -93,12 +98,12 @@ public class player : MonoBehaviour
     }
     private void healthregenpersec()
     {
-        if (currenthealth < healthpoint)
+        if (currenthealth < attr.healthpoint)
         {
             timecaculate += Time.deltaTime;
             if (timecaculate > 1.0f)
             {
-                currenthealth = currenthealth + healthregen;
+                currenthealth = currenthealth + attr.healthregen;
                 timecaculate = 0.0f;
             }
         }
@@ -119,5 +124,20 @@ public class player : MonoBehaviour
     public int getcurrentmagic()
     {
         return currentmagicpoint;
+    }
+
+    public Attributes GetAttributes()
+    {
+        return attr;
+    }
+
+    public void SetAttributes(Attributes newAttr)
+    {
+        attr = newAttr;
+    }
+
+    public void IncreaseAttributes(Attributes newAttr)
+    {
+        attr += newAttr;
     }
 }

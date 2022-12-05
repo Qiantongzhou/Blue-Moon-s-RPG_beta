@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    public Attributes BaseAttr;
+    public Attributes TempAttr;
     public Skills[] skills = new Skills[8];
     private EnhancementSkill[] activeSkills = new EnhancementSkill[8];
+    private player player;
     private int skillAmount=0;
 
     private void Awake()
@@ -33,7 +36,10 @@ public class SkillManager : MonoBehaviour
                         }*//*
                 }
         }*/
-
+        player = GetComponent<player>();
+        BaseAttr = GetComponent<Attributes>();
+        TempAttr = gameObject.AddComponent<Attributes>();
+        
     }
 
     private void Update()
@@ -100,16 +106,36 @@ public class SkillManager : MonoBehaviour
 
     public void updateSkill()
     {
+
+        bool attrChanged =false;
+        player.SetAttributes(BaseAttr);
         for (int i = 0; i < skills.Length; i++)
         {
             if (skills[i] != null)
             {
+                
                 if (skills[i].GetKinds() == Skills.kinds.skillEnhancement)
                 {
                     activeSkills[i] = (EnhancementSkill)skills[i];
                     skillAmount++;
                 }
+
+                if (skills[i].GetKinds()== Skills.kinds.attribute)
+                {
+                    TempAttr += ((AttributeSkill)skills[i]).attributeList;
+                    if (!attrChanged)
+                    {
+                        attrChanged = true;
+                    }
+                }
+
             }
+        }
+        if (attrChanged)
+        {
+            player.IncreaseAttributes(TempAttr);
+            Destroy(TempAttr);
+            TempAttr = gameObject.AddComponent<Attributes>();
         }
     }
 }

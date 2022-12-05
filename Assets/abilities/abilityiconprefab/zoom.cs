@@ -22,14 +22,4 @@ public class zoom : EnhancementSkill
         }
         GameObject.FindGameObjectWithTag("Player").transform.GetComponent<Rigidbody>().AddForce(GameObject.FindGameObjectWithTag("Player").transform.forward *100,ForceMode.Impulse);
     }
-
-    public override KeyCode GetkeyBind()
-    {
-        return KeyCode.Alpha1;
-    }
-
-    public override int GetSlots()
-    {
-        return slot;
-    }
 }

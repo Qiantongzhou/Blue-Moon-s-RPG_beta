@@ -70,7 +70,7 @@ public class character : MonoBehaviour
         {
             attacking = true;
          
-            animator.SetFloat("attackspeed", aplayer.attackspeed);
+            animator.SetFloat("attackspeed", aplayer.attr.attackspeed);
 
 
         }
@@ -96,7 +96,7 @@ public class character : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 running = true;
-                int temp = aplayer.movespeed;
+                int temp = aplayer.attr.movespeed;
                 if (temp > 10)
                 {
                    
@@ -112,12 +112,12 @@ public class character : MonoBehaviour
             {
                 running = false;
             }
-            if (aplayer.movespeed > 3)
+            if (aplayer.attr.movespeed > 3)
             {
                 running = true;
             }
           
-            transform.Translate(direction * aplayer.movespeed * multipler* Time.deltaTime);
+            transform.Translate(direction * aplayer.attr.movespeed * multipler* Time.deltaTime);
             transform.RotateAround(gameObject.transform.position, Vector3.up, horizontal * aplayer.turnrate * Time.deltaTime);
             walking = true;
 

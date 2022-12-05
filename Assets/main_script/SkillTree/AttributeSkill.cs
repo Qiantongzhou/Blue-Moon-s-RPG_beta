@@ -7,7 +7,8 @@ public abstract class AttributeSkill : Skills
     private const kinds att = kinds.attribute;
     
 
-    //abstract public Attribute[] attributeList {get;}
+    abstract public Attributes attributeList {get;}
+
 
     override public kinds GetKinds()
     {
