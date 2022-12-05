@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+
+
 
 public class camerafollow : MonoBehaviour
 {

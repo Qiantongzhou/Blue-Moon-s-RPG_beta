@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 using static UnityEngine.Rendering.DebugUI;
 
 public class player : MonoBehaviour
