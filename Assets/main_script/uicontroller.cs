@@ -21,18 +21,19 @@ public class uicontroller : MonoBehaviour
     void Start()
     {
         gameEngine = GameObject.Find("GameEngine").GetComponent<GameEngine>();
-        waveinterval = gameEngine.timebetweenwaves;
 
+        waveinterval = gameEngine.firstwavetime;
         wavetimenow = waveinterval;
         timer=Instantiate(wavetimer,transform);
         timer.transform.SetAsLastSibling();
         timer.gameObject.SetActive(false);
-
+        
 
         wave = Instantiate(wavedisplay,transform);
         wave.transform.SetAsLastSibling();
-        wave.gameObject.SetActive(false);
+        
         wave.transform.AddComponent<AudioSource>().clip=Clip;
+        wave.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,12 +41,13 @@ public class uicontroller : MonoBehaviour
     {
         if (gameEngine.startwave)
         {
+            
             timer.SetActive(true);
             currenttime +=Time.deltaTime;
             wavetimenow-=Time.deltaTime;
             if(wavetimenow <= 0)
             {
-                wavetimenow = waveinterval;
+               
                 StartCoroutine(displaywave());
             }
             timer.GetComponent<Slider>().value = (waveinterval - wavetimenow) / waveinterval;
@@ -57,6 +59,8 @@ public class uicontroller : MonoBehaviour
 
     IEnumerator displaywave()
     {
+        waveinterval = gameEngine.timebetweenwaves;
+        wavetimenow = waveinterval;
         wave.transform.GetChild(4).GetComponent<TMP_Text>().text ="WAVE: " +(DamageCalculator.currentwave+1).ToString();
         wave.transform.GetComponent<AudioSource>().Play();
         wave.gameObject.SetActive(true);

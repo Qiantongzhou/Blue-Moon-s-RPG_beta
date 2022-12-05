@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EquipmentInventorys : MonoBehaviour
+public class EquipmentInventorys : MonoBehaviour, IDropHandler
 {
     EmptyEquipment empty;
     private void Awake()
@@ -17,6 +17,7 @@ public class EquipmentInventorys : MonoBehaviour
     }
     public void OnDrop(PointerEventData eventData)
     {
+        
         if (transform.childCount == 0)
         {
             eventData.pointerDrag.GetComponent<inventory>().parentimg = transform;

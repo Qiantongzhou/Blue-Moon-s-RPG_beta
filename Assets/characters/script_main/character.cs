@@ -57,6 +57,9 @@ public class character : MonoBehaviour
                 GameObject vfx;
                 vfx = Instantiate(effect, firepoint.transform.position, Quaternion.identity);
                 vfx.tag = "playersattack";
+                bool iscrit=false;
+                vfx.GetComponent<ProjectileMover>().damage = DamageCalculator.outputdamage(aplayer.attr, out iscrit);
+                vfx.GetComponent<ProjectileMover>().iscritic = iscrit;
                 vfx.transform.localRotation = gameObject.transform.rotation;
                 fired = true;
             }
@@ -97,7 +100,7 @@ public class character : MonoBehaviour
             {
                 running = true;
                 int temp = aplayer.attr.movespeed;
-                if (temp > 10)
+                if (temp > 3)
                 {
                    
                     multipler = 1;
@@ -125,6 +128,12 @@ public class character : MonoBehaviour
         else
         {
             walking = false;
+            running = false;
+            if (aplayer.attr.movespeed > 10)
+            {
+                aplayer.attr.movespeed = 10;
+            }
+            
         }
         if (vertical < 0.0f)
         {

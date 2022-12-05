@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
+
 
 public class DamageCalculator
 {
@@ -197,7 +200,24 @@ public class DamageCalculator
 
 
     //taker calculation
-
+    public static int outputdamage(Attributes attribute, out bool iscrit)
+    {
+        float damage = 0;
+        if (UnityEngine.Random.Range(100, 0) <= attribute.critchance)
+        {
+            iscrit = true;
+            float crit = (float)attribute.critdamage / 100;
+            
+            damage = (attribute.attackdamage + attribute.attackdamagebonus)*crit;
+        }
+        else
+        {
+            damage = (attribute.attackdamage + attribute.attackdamagebonus);
+            iscrit = false;
+            
+        }
+        return Mathf.FloorToInt(damage);
+    }
 
 
 

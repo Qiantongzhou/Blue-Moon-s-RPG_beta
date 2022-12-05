@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -247.2525, y: 0, z: -248.14746, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5315,11 +5315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8065971196686907126, guid: 32238e9f43372d14590b35af17116395, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.01
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8065971196686907126, guid: 32238e9f43372d14590b35af17116395, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 95
+      value: 71.61
       objectReference: {fileID: 0}
     - target: {fileID: 8065971196686907126, guid: 32238e9f43372d14590b35af17116395, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9351,6 +9351,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -75.172455
       objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: critchance
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: critdamage
+      value: 130000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: attackspeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: healthpoint
+      value: 100000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: attackdamage
+      value: 1241
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: attackdamagebonus
+      value: 1567
+      objectReference: {fileID: 0}
     - target: {fileID: 2178559456612160798, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
@@ -12224,6 +12248,14 @@ PrefabInstance:
     - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
       propertyPath: enmeytospwan
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
+      propertyPath: Enemymultiper
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
+      propertyPath: firstwavetime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
       propertyPath: timebetweenwaves

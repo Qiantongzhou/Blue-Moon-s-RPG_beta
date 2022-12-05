@@ -9,17 +9,19 @@ public class GameEngine : MonoBehaviour
     public GameObject[] NPC_POS;
     public GameObject[] ENEMY_POS;
     public bool startwave=false;
+    public float firstwavetime;
     public float timebetweenwaves;
     public int enmeytospwan;
     public int currentenemy;
+    public int Enemymultiper;
     void Start()
     {
         unity_diceng.NPC_GEN = All_NPC;
         unity_diceng.NPC_POS= NPC_POS;
 
 
-        DamageCalculator.multiPerEnemy = 1.0f;
-        DamageCalculator.multiPerElite = 1.0f;
+        DamageCalculator.multiPerEnemy = Enemymultiper;
+        DamageCalculator.multiPerElite = Enemymultiper;
         DamageCalculator.maxcreatureCount = 30;
         DamageCalculator.currentwave = 0;
     }
@@ -35,7 +37,7 @@ public class GameEngine : MonoBehaviour
     IEnumerator startfirstwave()
     {
         startwave = true;
-    yield return new WaitForSeconds(timebetweenwaves);
+    yield return new WaitForSeconds(firstwavetime);
         DamageCalculator.currentwave++;
         print("wave"+DamageCalculator.currentwave);
         StartCoroutine(enmeyspawn());
