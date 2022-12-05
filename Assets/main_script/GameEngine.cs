@@ -7,6 +7,7 @@ public class GameEngine : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] All_NPC;
     public GameObject[] NPC_POS;
+    public GameObject[] ENEMY_POS;
     public bool startwave=false;
     public float timebetweenwaves;
     public int enmeytospwan;
@@ -62,6 +63,7 @@ public class GameEngine : MonoBehaviour
         if (currentenemy != enmeytospwan)
         {
            currentenemy++;
+            Instantiate(All_NPC[1], ENEMY_POS[0].transform.position, Quaternion.identity);
            StartCoroutine(enmeyspawn());
         }
         else
