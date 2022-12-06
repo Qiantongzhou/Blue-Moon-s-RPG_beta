@@ -35,7 +35,8 @@ public class character : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         effect = vfx[0];
-        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+        
+        Players.SetCurrentPlayer(gameObject);
     }
 
     // Update is called once per frame
@@ -56,6 +57,9 @@ public class character : MonoBehaviour
                 GameObject vfx;
                 vfx = Instantiate(effect, firepoint.transform.position, Quaternion.identity);
                 vfx.tag = "playersattack";
+                bool iscrit=false;
+                vfx.GetComponent<ProjectileMover>().damage = DamageCalculator.outputdamage(aplayer.ResultAttr(), out iscrit);
+                vfx.GetComponent<ProjectileMover>().iscritic = iscrit;
                 vfx.transform.localRotation = gameObject.transform.rotation;
                 fired = true;
             }
@@ -69,7 +73,7 @@ public class character : MonoBehaviour
         {
             attacking = true;
          
-            animator.SetFloat("attackspeed", aplayer.attackspeed);
+            animator.SetFloat("attackspeed", aplayer.ResultAttr().attackspeed);
 
 
         }
@@ -95,8 +99,8 @@ public class character : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 running = true;
-                int temp = aplayer.movespeed;
-                if (temp > 10)
+                int temp = aplayer.ResultAttr().movespeed;
+                if (temp > 3)
                 {
                    
                     multipler = 1;
@@ -111,12 +115,12 @@ public class character : MonoBehaviour
             {
                 running = false;
             }
-            if (aplayer.movespeed > 3)
+            if (aplayer.ResultAttr().movespeed > 3)
             {
                 running = true;
             }
           
-            transform.Translate(direction * aplayer.movespeed * multipler* Time.deltaTime);
+            transform.Translate(direction * aplayer.ResultAttr().movespeed * multipler* Time.deltaTime);
             transform.RotateAround(gameObject.transform.position, Vector3.up, horizontal * aplayer.turnrate * Time.deltaTime);
             walking = true;
 
@@ -124,6 +128,12 @@ public class character : MonoBehaviour
         else
         {
             walking = false;
+            running = false;
+            if (aplayer.ResultAttr().movespeed > 10)
+            {
+                aplayer.ResultAttr().movespeed = 10;
+            }
+            
         }
         if (vertical < 0.0f)
         {
@@ -137,22 +147,7 @@ public class character : MonoBehaviour
         updateanimator();
 
     }
-    private void FixedUpdate()
-    {
-        float value = (float)aplayer.getcurrenthealth() / aplayer.healthpoint;
-        float magic = (float)aplayer.getcurrentmagic() / aplayer.magicpoint;
 
-        Slider[] y = canvas.GetComponentsInChildren<Slider>();
-        y[0].value = value;
-        y[1].value = magic;
-        TMP_Text[] x = canvas.GetComponentsInChildren<TMP_Text>();
-         x[0].text= aplayer.getcurrenthealth() + "/" + aplayer.healthpoint;
-        x[1].text = aplayer.getcurrentmagic() + "/" + aplayer.magicpoint;
-        x[5].text = aplayer.attackdamage.ToString();
-        x[6].text=aplayer.critdamage.ToString();
-        x[7].text=aplayer.damageblock.ToString();
-      
-    }
     public void setprojectile(int num)
     {
         effect = vfx[num];

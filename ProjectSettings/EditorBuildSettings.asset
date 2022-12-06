@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/loadscreen_oct.unity
-    guid: e58bc894a96f10240b65860a67392508
-  - enabled: 1
     path: Assets/Scenes/loadscreen_march.unity
     guid: 3bfb89cf1cb674049a2e48e98ee68e71
+  - enabled: 1
+    path: Assets/Scenes/loadscreen_oct.unity
+    guid: e58bc894a96f10240b65860a67392508
   - enabled: 1
     path: Assets/Scenes/loadscreen_january.unity
     guid: f5975ada4a30cf5438540e5ae555882d
   - enabled: 1
-    path: Assets/Scenes/level1.unity
+    path: Assets/Scenes/archergame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Terrain/TerrainForest.unity
@@ -24,6 +24,6 @@ EditorBuildSettings:
     path: Assets/Terrain/TerrainVillage.unity
     guid: 5ae0274178017634f9794f418efebbe9
   - enabled: 1
-    path: Assets/Terrain/TerrainWinter.unity
-    guid: 7f0fdf07b0019d841984248ef1caafc6
+    path: Assets/Scenes/paladingame.unity
+    guid: 7afb1313868fd2248bf94283f2a22120
   m_configObjects: {}

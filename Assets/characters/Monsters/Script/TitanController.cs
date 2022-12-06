@@ -24,8 +24,6 @@ public class TitanController : MonoBehaviour
         PursuitSpeed,
         SearchRange, SearchTime, SearchSpeed,
         AngularSpeed;
-    [SerializeField]
-    private GameObject Shoutwave;
 
     protected const string MovementAnimationName = "Movement",
         Attack1AnimationName = "Attack 1",
@@ -47,17 +45,23 @@ public class TitanController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         myAnimator = GetComponent<Animator>();
-        actionMode = ActionMode.Rest;
+        Rest();
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
-        //Target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+    private void Start()
+    {
+        Target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
     {
+        if (actionMode == ActionMode.Search)
+        {
+            return;
+        }
         if (actionMode != ActionMode.Aggressive)
         {
-            searchTimeFinishedAt = Time.time + SearchTime;
             actionMode = ActionMode.Search;
             Search(direction);
         }
@@ -101,7 +105,6 @@ public class TitanController : MonoBehaviour
                     myAnimator.SetTrigger(Shout2AnimationName);
                     break;
             }
-            Instantiate(Shoutwave, transform.position, transform.rotation);
         }
     }
     private void Patrol()
@@ -120,6 +123,9 @@ public class TitanController : MonoBehaviour
     {
         agent.speed = SearchSpeed;
         agent.destination = transform.position + (direction * SearchRange);
+        searchTimeFinishedAt = Time.time + SearchTime;
+        /*Debug.DrawRay(agent.destination, Vector3.up * 100, Color.green, 3600);
+        Debug.DrawRay(transform.position, (direction * SearchRange), Color.red, 5);*/
     }
     private bool IsEnemyWithinSpotingDistance()
     {
@@ -134,14 +140,9 @@ public class TitanController : MonoBehaviour
         bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
         Debug.DrawLine(transform.position, hit.point, Color.red);
         if (isHit)
-        {
-            Debug.Log(hit.transform.gameObject.name);
-            return EnemyMask == (EnemyMask | (1 << hit.transform.gameObject.layer));
-        }
+        { return EnemyMask == (EnemyMask | (1 << hit.transform.gameObject.layer)); }
         else
-        {
-            return false;
-        }
+        { return false; }
     }
     private bool IsPatrolTimeFinished()
     {
@@ -164,7 +165,7 @@ public class TitanController : MonoBehaviour
         Vector3 lookPos = Target.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed * Time.deltaTime);
     }
     private void Update()
     {
@@ -235,8 +236,6 @@ public class TitanController : MonoBehaviour
 
         }
         else
-        {
-            agent.destination = transform.position;
-        }
+        { agent.destination = transform.position; }
     }
 }

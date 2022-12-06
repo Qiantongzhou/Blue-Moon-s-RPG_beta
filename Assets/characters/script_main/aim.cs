@@ -1,12 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class aim : MonoBehaviour
 {
@@ -22,13 +15,13 @@ public class aim : MonoBehaviour
 
     void Start()
     {
-     
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0)&&!GobalEvent.Pause_player_mouse_input)
+        if (Input.GetMouseButton(0) && !GobalEvent.Pause_player_mouse_input)
         {
             cam1.SetActive(false);
             cam2.SetActive(true);
@@ -56,7 +49,7 @@ public class aim : MonoBehaviour
     {
         direction = y - x.transform.position;
         rotation = Quaternion.LookRotation(direction);
-        
+
         x.transform.localRotation = Quaternion.Lerp(x.transform.rotation, rotation, Time.deltaTime);
     }
 

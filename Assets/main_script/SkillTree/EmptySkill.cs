@@ -19,10 +19,4 @@ public class EmptySkill : Skills
     {
         return kinds.empty;
     }
-
-    public override int GetSlots()
-    {
-        return slot;
-    }
-
 }

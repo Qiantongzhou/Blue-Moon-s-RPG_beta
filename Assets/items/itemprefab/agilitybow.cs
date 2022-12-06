@@ -23,7 +23,7 @@ public class agilitybow : EnhancementSkill
                 source.Play();
             }
             print("player attack +20");
-            GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamage += 20;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<player>().skillAttr.attackdamagebonus += 20;
             startcount = true;
         }
     }
@@ -35,19 +35,10 @@ public class agilitybow : EnhancementSkill
             if(count > 5)
             {
                 print("player attack bounse ennd");
-                GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<player>().attackdamage -= 20;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<player>().skillAttr.attackdamagebonus -= 20;
                 startcount=false;
                 count=0;
             }
         }
-    }
-    public override KeyCode GetkeyBind()
-    {
-        return KeyCode.Alpha2;
-    }
-
-    public override int GetSlots()
-    {
-        return 0;
     }
 }

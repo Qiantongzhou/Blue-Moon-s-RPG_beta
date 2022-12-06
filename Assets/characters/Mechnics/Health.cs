@@ -22,8 +22,8 @@ public class Health : MonoBehaviour
 
     public void HealthChange(float damageAmount, Vector3 direction)
     {
-        Debug.Log("HealthChange " + damageAmount +" Health Remain " + CurrentHealthPoint);
         CurrentHealthPoint += damageAmount;
+
         myAnimator.SetTrigger(Hurt);
         OnHurt?.Invoke(this.gameObject, direction);
         if (CurrentHealthPoint <= 0)

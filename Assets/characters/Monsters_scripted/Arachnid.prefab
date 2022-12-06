@@ -3036,6 +3036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textshowprefed: {fileID: 5579572903247597706, guid: f5d644b0b6c05d34abf3b63f0cba3d79, type: 3}
+  textcritprefab: {fileID: 5579572903247597706, guid: ac855fef48071a544bc01bea3b736b23, type: 3}
+  crit: {fileID: 8300000, guid: 20fbbeb1eece3524aba92e6c239f6144, type: 3}
   offset: {x: 0, y: 2, z: 0}
 --- !u!65 &8957657143430233214
 BoxCollider:
@@ -3064,7 +3066,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &-9028261320772446490
 MonoBehaviour:

@@ -12,7 +12,6 @@ public class HitAudio : MonoBehaviour
 
     public void Hit()
     {
-        Debug.Log("Hit " + this.gameObject.name);
         audioSource.PlayOneShot(AudioManager.GetRandomClip(hitClips));
     }
 }
