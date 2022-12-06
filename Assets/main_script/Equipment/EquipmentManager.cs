@@ -28,9 +28,13 @@ public class EquipmentManager : MonoBehaviour
         {
             if (equipments[i] != null)
             {
-                if (equipments[i].GetKinds() == Equipment.kind.normal)
+                if (equipments[i].GetKinds() != Equipment.kind.empty)
                 {
                     TempAttr += (equipments[i]).attributeList;
+                    if (equipments[i].GetKinds()==Equipment.kind.effect)
+                    {
+                        ((EffectEquipment)equipments[i]).reloading();
+                    }
                     if (!attrChanged)
                     {
                         attrChanged = true;

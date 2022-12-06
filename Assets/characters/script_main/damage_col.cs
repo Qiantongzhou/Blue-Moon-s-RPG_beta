@@ -24,7 +24,7 @@ public class damage_col : MonoBehaviour
     {
         if (collision.collider.tag == "playersattack" && transform.tag == "Boss")
         {
-            takedamageboss(npc.aplayer.ResultAttr().attackdamage);
+            takedamageboss(npc.aplayer.ResultAttr.attackdamage);
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creep")
         {
@@ -32,7 +32,7 @@ public class damage_col : MonoBehaviour
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creature")
         {
-            takedamagecreature(npc.aplayer.ResultAttr().attackdamage);
+            takedamagecreature(npc.aplayer.ResultAttr.attackdamage);
         }
     }
     public void takedamageboss(int dam)

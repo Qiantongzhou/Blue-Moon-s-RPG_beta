@@ -17,6 +17,7 @@ public class player : MonoBehaviour
 
     public Attributes equipAttr;
     public Attributes skillAttr;
+    public Attributes ResultAttr;
 
 
     private int currenthealth;
@@ -42,7 +43,7 @@ public class player : MonoBehaviour
     public int turnrate;
 
     int gems;
-    int gold;
+    float gold;
 
     gamesaving gamesaving;
     Canvas canvas;
@@ -54,52 +55,54 @@ public class player : MonoBehaviour
         attr = GetComponent<Attributes>();
         equipAttr = gameObject.AddComponent<Attributes>();
         skillAttr = gameObject.AddComponent<Attributes>();
-        currenthealth = ResultAttr().healthpoint;
-        currentmagicpoint = ResultAttr().magicpoint;
-        gold = 0;
-    }
+        ResultAttr = gameObject.AddComponent<Attributes>();
 
-    public Attributes ResultAttr()
-    {
-        Attributes temp;
-        temp = attr + equipAttr;
-        temp += skillAttr;
-        return temp;
+        ResultAttr += attr;
+        ResultAttr += equipAttr;
+        ResultAttr += skillAttr;
+
+
+        currenthealth = ResultAttr.healthpoint;
+        currentmagicpoint = ResultAttr.magicpoint;
+        gold = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-       
+        ResultAttr.SetZero();
+        ResultAttr += attr; 
+        ResultAttr += equipAttr;
+        ResultAttr += skillAttr;
+
         TMP_Text[] j = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
         j[3].text = gems.ToString();
         j[4].text = gold.ToString();
 
 
-        float value = (float)getcurrenthealth() / ResultAttr().healthpoint;
-        float magic = (float)getcurrentmagic() / ResultAttr().magicpoint;
+        float value = (float)getcurrenthealth() / ResultAttr.healthpoint;
+        float magic = (float)getcurrentmagic() / ResultAttr.magicpoint;
 
         Slider[] y = canvas.GetComponentsInChildren<Slider>();
         y[0].value = value;
         y[1].value = magic;
         TMP_Text[] x= canvas.GetComponentsInChildren<TMP_Text>();
-        x[0].text = getcurrenthealth() + "/" + ResultAttr().healthpoint;
-        x[1].text = getcurrentmagic() + "/" + ResultAttr().magicpoint;
-        if (ResultAttr().attackdamagebonus > 0)
+        x[0].text = getcurrenthealth() + "/" + ResultAttr.healthpoint;
+        x[1].text = getcurrentmagic() + "/" + ResultAttr.magicpoint;
+        if (ResultAttr.attackdamagebonus > 0)
         {
-            x[5].text = ResultAttr().attackdamage.ToString() + "<color=green>+" + ResultAttr().attackdamagebonus.ToString() + "</color>";
+            x[5].text = ResultAttr.attackdamage.ToString() + "<color=green>+" + ResultAttr.attackdamagebonus.ToString() + "</color>";
         }
-        if (ResultAttr().attackdamagebonus < 0)
+        if (ResultAttr.attackdamagebonus < 0)
         {
-            x[5].text = ResultAttr().attackdamage.ToString() + "<color=red>+" + ResultAttr().attackdamagebonus.ToString() + "</color>";
+            x[5].text = ResultAttr.attackdamage.ToString() + "<color=red>+" + ResultAttr.attackdamagebonus.ToString() + "</color>";
         }
-        if (ResultAttr().attackdamagebonus == 0)
+        if (ResultAttr.attackdamagebonus == 0)
         {
-            x[5].text = ResultAttr().attackdamage.ToString();
+            x[5].text = ResultAttr.attackdamage.ToString();
         }
-        x[6].text = ResultAttr().critdamage.ToString();
-        x[7].text = ResultAttr().damageblock.ToString();
+        x[6].text = ResultAttr.critdamage.ToString();
+        x[7].text = ResultAttr.damageblock.ToString();
     }
     private void FixedUpdate()
     {
@@ -108,12 +111,12 @@ public class player : MonoBehaviour
     }
     private void healthregenpersec()
     {
-        if (currenthealth < ResultAttr().healthpoint)
+        if (currenthealth < ResultAttr.healthpoint)
         {
             timecaculate += Time.deltaTime;
             if (timecaculate > 1.0f)
             {
-                currenthealth = currenthealth + ResultAttr().healthregen;
+                currenthealth = currenthealth + ResultAttr.healthregen;
                 timecaculate = 0.0f;
             }
         }
@@ -160,6 +163,13 @@ public class player : MonoBehaviour
     {
         equipAttr = newAttr;
     }
+
+
+    public void GiveMoney(float amount)
+    {
+        gold += amount;
+    }
+
 
     /*public void IncreaseAttributes(Attributes newAttr)
     {

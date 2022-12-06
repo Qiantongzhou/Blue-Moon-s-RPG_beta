@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fcc2734c56f795d4ca927a6be1cfdb14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ff65cf482278f5f41a41a4168f6a1d74, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -162,10 +162,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6575545987593663133}
   - component: {fileID: 6575545987593663135}
-  - component: {fileID: 5436318609265430487}
-  - component: {fileID: 1161823715681973280}
+  - component: {fileID: 3975849323408745664}
+  - component: {fileID: 1135824838039378333}
   m_Layer: 5
-  m_Name: magic armor
+  m_Name: mages hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentimg: {fileID: 0}
---- !u!114 &5436318609265430487
+--- !u!114 &3975849323408745664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,11 +215,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6575545987593663132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1e5d6e7473416644bca59f6ef5e9017, type: 3}
+  m_Script: {fileID: 11500000, guid: 176f2d646277fb7449061605839afc7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  convertedHealth: 0
---- !u!114 &1161823715681973280
+--- !u!114 &1135824838039378333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,11 +233,11 @@ MonoBehaviour:
   healthpoint: 0
   healthregen: 0
   magicpoint: 1000
-  damageblock: 15
+  damageblock: 0
   attackdamage: 0
   attackdamagebonus: 0
   critdamage: 0
-  critchance: 0
+  critchance: 15
   magicdamage: 0
   attackrange: 0
   attackspeed: 0
