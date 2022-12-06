@@ -10,7 +10,6 @@ public class SceneEnter : MonoBehaviour
     {
         if (PlayerPrefs.GetString("LastExitName") == lastExitName)
         {
-            Debug.Log("Enter");
             PlayerTransfer.instance.transform.position = transform.position;
             PlayerTransfer.instance.transform.eulerAngles = transform.eulerAngles;
         }

@@ -7,6 +7,10 @@ TagManager:
   - Boss
   - creep
   - playersattack
+  - Item
+  - Door
+  - creature
+  - SnowBall
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - Player
   - Enemy
   - BackGround
-  - 
+  - SnowBall
   - 
   - 
   - 
