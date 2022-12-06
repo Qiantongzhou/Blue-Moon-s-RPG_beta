@@ -5,7 +5,8 @@ using static Skills;
 
 public abstract class Equipment : MonoBehaviour
 {
-    public enum kind { empty, normal};
+    protected bool equipped=false;
+    public enum kind { empty, normal, effect};
 
     abstract public Attributes attributeList { get; }
     abstract public string Name { get; }
