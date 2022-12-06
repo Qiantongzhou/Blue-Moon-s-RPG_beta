@@ -84,7 +84,7 @@ public class character : MonoBehaviour
         // MOVE
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
+        
         if (movelock)
         {
             horizontal = 0;
@@ -182,5 +182,17 @@ public class character : MonoBehaviour
     public bool isrunning()
     {
         return running;
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }
