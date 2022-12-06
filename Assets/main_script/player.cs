@@ -43,7 +43,7 @@ public class player : MonoBehaviour
     public int turnrate;
 
     int gems;
-    int gold;
+    float gold;
 
     gamesaving gamesaving;
     Canvas canvas;
@@ -163,6 +163,13 @@ public class player : MonoBehaviour
     {
         equipAttr = newAttr;
     }
+
+
+    public void GiveMoney(float amount)
+    {
+        gold += amount;
+    }
+
 
     /*public void IncreaseAttributes(Attributes newAttr)
     {
