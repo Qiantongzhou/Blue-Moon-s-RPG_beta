@@ -7,6 +7,10 @@ TagManager:
   - Boss
   - creep
   - playersattack
+  - Item
+  - Door
+  - creature
+  - defensetarget
   layers:
   - Default
   - TransparentFX

@@ -15,12 +15,17 @@ public class ProjectileMover : MonoBehaviour
     public AudioClip destory;
     private AudioSource temp;
     public GameObject[] Detached;
+    public SphereCollider aoe;
 
     public int damage;
     public bool iscritic;
+    public float radius;
+    public float piece;
 
     void Start()
     {
+        aoe=GetComponent<SphereCollider>();
+        aoe.radius += radius;
         rb = GetComponent<Rigidbody>();
         if (flash != null)
         {
@@ -58,7 +63,10 @@ public class ProjectileMover : MonoBehaviour
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.collider.tag == "Player")
+        {
+            return;
+        }
         //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints.FreezeAll;
         speed = 0;
@@ -100,6 +108,6 @@ public class ProjectileMover : MonoBehaviour
                 detachedPrefab.transform.parent = null;
             }
         }
-        Destroy(gameObject);
+        Destroy(gameObject,piece);
     }
 }

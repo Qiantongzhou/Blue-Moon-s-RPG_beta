@@ -53,7 +53,14 @@ public class uicontroller : MonoBehaviour
             timer.GetComponent<Slider>().value = (waveinterval - wavetimenow) / waveinterval;
             timer.transform.GetChild(3).GetComponent<TMP_Text>().text =Mathf.FloorToInt(wavetimenow).ToString();
         }
-        
+        if (gamestatistics.isunderattack == true)
+        {
+            transform.Find("townhealth").gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.Find("townhealth").gameObject.SetActive(false);
+        }
         
     }
 

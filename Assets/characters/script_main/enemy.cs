@@ -28,7 +28,7 @@ public class enemy : MonoBehaviour
         currenthealth = health;
         anim = GetComponent<Animator>();
         die = false;
-        target = GameObject.FindWithTag("Player");
+       
         if (transform.tag == "Boss")
         {
 
@@ -40,6 +40,14 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+        {
+            target = GameObject.FindWithTag("defensetarget");
+        }
+        if (target == null)
+        {
+            target = GameObject.FindWithTag("Player");
+        }
         if (target != null && !die)
         {
             if (Mathf.Abs(transform.position.x - target.transform.position.x) < range && (Mathf.Abs(transform.position.x - target.transform.position.x) > stopRange || Mathf.Abs(transform.position.z - target.transform.position.z) > stopRange))
@@ -68,6 +76,13 @@ public class enemy : MonoBehaviour
             }
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.tag == "Player"|| collision.collider.tag=="playersattack")
+        {
+            target = GameObject.FindWithTag("Player");
+        }
     }
     private void FixedUpdate()
     {
