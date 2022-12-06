@@ -13,7 +13,7 @@ public class EquipmentManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         player = GetComponent<player>();
         TempAttr = player.equipAttr;
