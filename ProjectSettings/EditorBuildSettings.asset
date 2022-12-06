@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/paladingame.unity
     guid: 7afb1313868fd2248bf94283f2a22120
+  - enabled: 1
+    path: Assets/Terrain/TerrainWinter.unity
+    guid: 7f0fdf07b0019d841984248ef1caafc6
   m_configObjects: {}

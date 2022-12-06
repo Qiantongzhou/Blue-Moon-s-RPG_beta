@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     float turnVelocity;
 
 
-    // Update is called once per frame
     void Update()
     {
         MovePlayer();

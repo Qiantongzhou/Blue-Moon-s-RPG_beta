@@ -29340,6 +29340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attr: {fileID: 6899346034264849571}
+  equipAttr: {fileID: 0}
+  skillAttr: {fileID: 0}
   turnrate: 0
 --- !u!114 &6899346034264849573
 MonoBehaviour:
