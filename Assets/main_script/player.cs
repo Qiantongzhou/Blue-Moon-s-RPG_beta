@@ -19,9 +19,6 @@ public class player : MonoBehaviour
     public Attributes skillAttr;
 
 
-
-
-
     private int currenthealth;
 
     private int currentmagicpoint;
