@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    public Attributes BaseAttr;
     public Attributes TempAttr;
     public Equipment[] equipments = new Equipment[8];
     private player player;
@@ -17,15 +16,14 @@ public class EquipmentManager : MonoBehaviour
     void Start()
     {
         player = GetComponent<player>();
-        BaseAttr = GetComponent<Attributes>();
-        TempAttr = gameObject.AddComponent<Attributes>();
+        TempAttr = player.equipAttr;
     }
 
     public void updateEquipment()
     {
 
         bool attrChanged = false;
-        player.SetAttributes(BaseAttr);
+        TempAttr.SetZero();
         for (int i = 0; i < equipments.Length; i++)
         {
             if (equipments[i] != null)
@@ -43,10 +41,7 @@ public class EquipmentManager : MonoBehaviour
         }
         if (attrChanged)
         {
-            TempAttr += BaseAttr;
-            player.IncreaseAttributes(TempAttr);
-            Destroy(TempAttr);
-            TempAttr = gameObject.AddComponent<Attributes>();
+            player.SetEquipAttributes(TempAttr);
         }
     }
 

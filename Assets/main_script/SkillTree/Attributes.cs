@@ -5,6 +5,18 @@ using UnityEngine;
 
 public class Attributes : MonoBehaviour
 {
+    public enum AttributeName { healthpoint
+                                , healthregen
+                                , magicpoint
+                                , damageblock
+                                , attackdamage
+                                , attackdamagebonus
+                                , critdamage
+                                , critchance
+                                , magicdamage
+                                , attackrange
+                                , attackspeed
+                                , movespeed}
 
     public int healthpoint;
 
@@ -46,5 +58,61 @@ public class Attributes : MonoBehaviour
 
         return attr;
     }
-    
+
+    public void SetZero()
+    {
+        healthpoint = 0;
+        healthregen = 0;
+        magicpoint = 0;
+        damageblock = 0;
+        attackdamage = 0;
+        critdamage = 0;
+        critchance = 0;
+        attackdamagebonus = 0;
+        magicdamage = 0;
+        movespeed = 0;
+        attackrange = 0;
+        attackspeed = 0;
+    }
+
+
+    public void changeAttribute(AttributeName name, int value)
+    {
+        switch (name)
+        {
+            case AttributeName.healthpoint:
+                healthpoint += value;
+                break;
+            case AttributeName.healthregen:
+                healthregen += value;
+                break;
+            case AttributeName.magicpoint:
+                magicpoint += value;
+                break;
+            case AttributeName.damageblock:
+                damageblock += value;
+                break;
+            case AttributeName.attackdamage:
+                attackdamage += value;
+                break;
+            case AttributeName.attackdamagebonus:
+                attackdamagebonus += value;
+                break;
+            case AttributeName.critdamage:
+                critdamage += value;
+                break;
+            case AttributeName.attackrange:
+                attackrange += value;
+                break;
+            case AttributeName.critchance:
+                critchance += value;
+                break;  
+            case AttributeName.magicdamage:
+                magicdamage += value;
+                break;
+            case AttributeName.movespeed:
+                movespeed += value;
+                break;  
+        }
+    }
 }

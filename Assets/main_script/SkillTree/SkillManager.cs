@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    public Attributes BaseAttr;
     public Attributes TempAttr;
     public Skills[] skills = new Skills[8];
     private EnhancementSkill[] activeSkills = new EnhancementSkill[8];
@@ -37,8 +36,7 @@ public class SkillManager : MonoBehaviour
                 }
         }*/
         player = GetComponent<player>();
-        BaseAttr = GetComponent<Attributes>();
-        TempAttr = gameObject.AddComponent<Attributes>();
+        TempAttr = player.skillAttr;
         
     }
 
@@ -108,7 +106,7 @@ public class SkillManager : MonoBehaviour
     {
 
         bool attrChanged =false;
-        player.SetAttributes(BaseAttr);
+        TempAttr.SetZero();
         for (int i = 0; i < skills.Length; i++)
         {
             if (skills[i] != null)
@@ -133,9 +131,7 @@ public class SkillManager : MonoBehaviour
         }
         if (attrChanged)
         {
-            player.IncreaseAttributes(TempAttr);
-            Destroy(TempAttr);
-            TempAttr = gameObject.AddComponent<Attributes>();
+            player.SetSkillAttributes(TempAttr);
         }
     }
 }

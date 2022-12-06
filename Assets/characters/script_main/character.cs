@@ -58,7 +58,7 @@ public class character : MonoBehaviour
                 vfx = Instantiate(effect, firepoint.transform.position, Quaternion.identity);
                 vfx.tag = "playersattack";
                 bool iscrit=false;
-                vfx.GetComponent<ProjectileMover>().damage = DamageCalculator.outputdamage(aplayer.attr, out iscrit);
+                vfx.GetComponent<ProjectileMover>().damage = DamageCalculator.outputdamage(aplayer.ResultAttr(), out iscrit);
                 vfx.GetComponent<ProjectileMover>().iscritic = iscrit;
                 vfx.transform.localRotation = gameObject.transform.rotation;
                 fired = true;
@@ -73,7 +73,7 @@ public class character : MonoBehaviour
         {
             attacking = true;
          
-            animator.SetFloat("attackspeed", aplayer.attr.attackspeed);
+            animator.SetFloat("attackspeed", aplayer.ResultAttr().attackspeed);
 
 
         }
@@ -99,7 +99,7 @@ public class character : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 running = true;
-                int temp = aplayer.attr.movespeed;
+                int temp = aplayer.ResultAttr().movespeed;
                 if (temp > 3)
                 {
                    
@@ -115,12 +115,12 @@ public class character : MonoBehaviour
             {
                 running = false;
             }
-            if (aplayer.attr.movespeed > 3)
+            if (aplayer.ResultAttr().movespeed > 3)
             {
                 running = true;
             }
           
-            transform.Translate(direction * aplayer.attr.movespeed * multipler* Time.deltaTime);
+            transform.Translate(direction * aplayer.ResultAttr().movespeed * multipler* Time.deltaTime);
             transform.RotateAround(gameObject.transform.position, Vector3.up, horizontal * aplayer.turnrate * Time.deltaTime);
             walking = true;
 
@@ -129,9 +129,9 @@ public class character : MonoBehaviour
         {
             walking = false;
             running = false;
-            if (aplayer.attr.movespeed > 10)
+            if (aplayer.ResultAttr().movespeed > 10)
             {
-                aplayer.attr.movespeed = 10;
+                aplayer.ResultAttr().movespeed = 10;
             }
             
         }

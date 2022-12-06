@@ -15,6 +15,9 @@ public class player : MonoBehaviour
 
     public Attributes attr;
 
+    public Attributes equipAttr;
+    public Attributes skillAttr;
+
 
 
 
@@ -52,9 +55,19 @@ public class player : MonoBehaviour
         gamesaving = GameObject.Find("gamesaving").GetComponent<gamesaving>();
         canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         attr = GetComponent<Attributes>();
-        currenthealth = attr.healthpoint;
-        currentmagicpoint = attr.magicpoint;
+        equipAttr = gameObject.AddComponent<Attributes>();
+        skillAttr = gameObject.AddComponent<Attributes>();
+        currenthealth = ResultAttr().healthpoint;
+        currentmagicpoint = ResultAttr().magicpoint;
         gold = 0;
+    }
+
+    public Attributes ResultAttr()
+    {
+        Attributes temp;
+        temp = attr + equipAttr;
+        temp += skillAttr;
+        return temp;
     }
 
     // Update is called once per frame
@@ -67,29 +80,29 @@ public class player : MonoBehaviour
         j[4].text = gold.ToString();
 
 
-        float value = (float)getcurrenthealth() / attr.healthpoint;
-        float magic = (float)getcurrentmagic() /  attr.magicpoint;
+        float value = (float)getcurrenthealth() / ResultAttr().healthpoint;
+        float magic = (float)getcurrentmagic() / ResultAttr().magicpoint;
 
         Slider[] y = canvas.GetComponentsInChildren<Slider>();
         y[0].value = value;
         y[1].value = magic;
         TMP_Text[] x= canvas.GetComponentsInChildren<TMP_Text>();
-        x[0].text = getcurrenthealth() + "/" + attr.healthpoint;
-        x[1].text = getcurrentmagic() + "/" + attr.magicpoint;
-        if (attr.attackdamagebonus > 0)
+        x[0].text = getcurrenthealth() + "/" + ResultAttr().healthpoint;
+        x[1].text = getcurrentmagic() + "/" + ResultAttr().magicpoint;
+        if (ResultAttr().attackdamagebonus > 0)
         {
-            x[5].text = attr.attackdamage.ToString() + "<color=green>+" + attr.attackdamagebonus.ToString() + "</color>";
+            x[5].text = ResultAttr().attackdamage.ToString() + "<color=green>+" + ResultAttr().attackdamagebonus.ToString() + "</color>";
         }
-        if (attr.attackdamagebonus < 0)
+        if (ResultAttr().attackdamagebonus < 0)
         {
-            x[5].text = attr.attackdamage.ToString() + "<color=red>+" + attr.attackdamagebonus.ToString() + "</color>";
+            x[5].text = ResultAttr().attackdamage.ToString() + "<color=red>+" + ResultAttr().attackdamagebonus.ToString() + "</color>";
         }
-        if (attr.attackdamagebonus == 0)
+        if (ResultAttr().attackdamagebonus == 0)
         {
-            x[5].text = attr.attackdamage.ToString();
+            x[5].text = ResultAttr().attackdamage.ToString();
         }
-        x[6].text = attr.critdamage.ToString();
-        x[7].text = attr.damageblock.ToString();
+        x[6].text = ResultAttr().critdamage.ToString();
+        x[7].text = ResultAttr().damageblock.ToString();
     }
     private void FixedUpdate()
     {
@@ -98,12 +111,12 @@ public class player : MonoBehaviour
     }
     private void healthregenpersec()
     {
-        if (currenthealth < attr.healthpoint)
+        if (currenthealth < ResultAttr().healthpoint)
         {
             timecaculate += Time.deltaTime;
             if (timecaculate > 1.0f)
             {
-                currenthealth = currenthealth + attr.healthregen;
+                currenthealth = currenthealth + ResultAttr().healthregen;
                 timecaculate = 0.0f;
             }
         }
@@ -126,18 +139,33 @@ public class player : MonoBehaviour
         return currentmagicpoint;
     }
 
-    public Attributes GetAttributes()
+    public Attributes GetBaseAttributes()
     {
         return attr;
     }
 
-    public void SetAttributes(Attributes newAttr)
+    public Attributes GetEquipAttributes()
     {
-        attr = newAttr;
+        return equipAttr;
     }
 
-    public void IncreaseAttributes(Attributes newAttr)
+    public Attributes GetSkillAttributes()
+    {
+        return skillAttr;
+    }
+
+    public void SetEquipAttributes(Attributes newAttr)
+    {
+        equipAttr = newAttr;
+    }
+
+    public void SetSkillAttributes(Attributes newAttr)
+    {
+        equipAttr = newAttr;
+    }
+
+    /*public void IncreaseAttributes(Attributes newAttr)
     {
         attr += newAttr;
-    }
+    }*/
 }
