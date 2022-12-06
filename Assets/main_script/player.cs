@@ -51,9 +51,7 @@ public class player : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-       
+    {       
         TMP_Text[] x = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
         x[3].text = gems.ToString();
         x[4].text = gold.ToString();
