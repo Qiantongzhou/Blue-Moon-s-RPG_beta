@@ -10,7 +10,7 @@ TagManager:
   - Item
   - Door
   - creature
-  - SnowBall
+  - defensetarget
   layers:
   - Default
   - TransparentFX

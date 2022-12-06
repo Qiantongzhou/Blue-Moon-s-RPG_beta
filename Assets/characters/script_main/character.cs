@@ -23,6 +23,8 @@ public class character : MonoBehaviour
     bool movelock = false;
     Animator animator;
 
+    public float aoe;
+    public float piece;
 
     //player class
     [SerializeField]
@@ -60,6 +62,8 @@ public class character : MonoBehaviour
                 bool iscrit=false;
                 vfx.GetComponent<ProjectileMover>().damage = DamageCalculator.outputdamage(aplayer.ResultAttr(), out iscrit);
                 vfx.GetComponent<ProjectileMover>().iscritic = iscrit;
+                vfx.GetComponent<ProjectileMover>().radius = aoe;
+                vfx.GetComponent<ProjectileMover>().piece= piece; 
                 vfx.transform.localRotation = gameObject.transform.rotation;
                 fired = true;
             }
@@ -184,15 +188,6 @@ public class character : MonoBehaviour
         return running;
     }
 
-    private void OnApplicationFocus(bool focus)
-    {
-        if (focus)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
+
+
 }

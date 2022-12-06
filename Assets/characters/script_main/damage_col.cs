@@ -57,7 +57,7 @@ public class damage_col : MonoBehaviour
     {
 
         npc.takedamage(dam);
-        Updatetext(dam, false); ;
+        //Updatetext(dam, false); ;
     }
     public void Updatetext(int dam,bool iscrit)
     {

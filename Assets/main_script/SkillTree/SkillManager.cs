@@ -20,7 +20,7 @@ public class SkillManager : MonoBehaviour
                 skillAmount++;
             }
         }*/
-
+      
     }
 
     private void Start()
@@ -35,13 +35,14 @@ public class SkillManager : MonoBehaviour
                         }*//*
                 }
         }*/
-        player = GetComponent<player>();
-        TempAttr = player.skillAttr;
+     
         
     }
 
     private void Update()
     {
+        player = transform.GetComponent<player>();
+        TempAttr = player.skillAttr;
         if (activeSkills[0] != null)
         {
             if (Input.GetKeyDown(activeSkills[0].GetkeyBind()))
