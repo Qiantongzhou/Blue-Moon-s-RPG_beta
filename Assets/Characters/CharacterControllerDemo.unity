@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhino
       objectReference: {fileID: 0}
-    - target: {fileID: 4075670686739249568, guid: c1ef3330cee2634419cbb611be07beff, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4075670686739497136, guid: c1ef3330cee2634419cbb611be07beff, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -829,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2a324f57e37954d95113767dd547d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoint: 1
-  SpawnHealthPoint: 1
+  MaxHealthPoint: 50
+  SpawnHealthPoint: 50
   IsAlive: 1
 --- !u!195 &817924433790711252
 NavMeshAgent:
