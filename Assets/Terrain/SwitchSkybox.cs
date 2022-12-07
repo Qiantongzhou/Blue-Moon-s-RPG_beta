@@ -28,7 +28,6 @@ public class SwitchSkybox : MonoBehaviour
         {
 
         }
-
         else if (isForest)
         {
             RenderSettings.skybox = skyboxList[1];

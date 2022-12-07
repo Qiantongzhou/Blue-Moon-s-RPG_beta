@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum CreatureTag
 {
-   fatDragon, rhino, titan, arachnid
+   fatDragon, rhino, titan, arachnid, snowtiger, wolf
 }
