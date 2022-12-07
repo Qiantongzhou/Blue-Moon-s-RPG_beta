@@ -17,7 +17,7 @@ public class zoom : EnhancementSkill
         {
             source = gameObject.AddComponent<AudioSource>();
             source.clip = clip;
-            source.volume = 0.2f;
+            source.volume = 0.05f;
             source.Play();
         }
         GameObject.FindGameObjectWithTag("Player").transform.GetComponent<Rigidbody>().AddForce(GameObject.FindGameObjectWithTag("Player").transform.forward *100,ForceMode.Impulse);

@@ -31,7 +31,9 @@ public class character : MonoBehaviour
     public player aplayer;
 
     Canvas canvas;
-    
+
+    public Rigidbody rb;
+
 
     void Start()
     {
@@ -190,7 +192,7 @@ public class character : MonoBehaviour
 
     void CursorControl()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             Cursor.lockState = CursorLockMode.Locked;
         }
