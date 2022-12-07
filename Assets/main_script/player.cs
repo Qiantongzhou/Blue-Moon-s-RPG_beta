@@ -10,9 +10,6 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class player : MonoBehaviour
 {
-
-
-
     public Attributes attr;
 
     public Attributes equipAttr;
