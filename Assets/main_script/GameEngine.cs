@@ -136,7 +136,9 @@ public class GameEngine : MonoBehaviour
         if (currentenemy != enmeytospwan)
         {
            currentenemy++;
-            Instantiate(All_NPC[1], ENEMY_POS[0].transform.position, Quaternion.identity);
+            int x = Random.Range(1, All_NPC.Length - 1);
+            
+            Instantiate(All_NPC[x], ENEMY_POS[0].transform.position, Quaternion.identity);
            StartCoroutine(enmeyspawn());
         }
         else
