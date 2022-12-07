@@ -2979,6 +2979,7 @@ GameObject:
   - component: {fileID: 8957657143430233214}
   - component: {fileID: -4111490241796865880}
   - component: {fileID: -9028261320772446490}
+  - component: {fileID: 9010266144196581421}
   m_Layer: 0
   m_Name: Arachnid
   m_TagString: creep
@@ -3082,6 +3083,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags: 0000000005000000
   creatureTags: 3
+--- !u!114 &9010266144196581421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8957657143422974037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73b38d271468ee4d824c10c6cb03487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAmount: 10
+  maxAmount: 20
 --- !u!1 &8957657143422975203
 GameObject:
   m_ObjectHideFlags: 0

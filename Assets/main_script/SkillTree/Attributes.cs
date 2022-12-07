@@ -53,7 +53,7 @@ public class Attributes : MonoBehaviour
         attr.critchance += other.critchance;
         attr.magicdamage += other.magicdamage;
         attr.attackrange += other.attackrange;
-        attr.attackspeed += other.attackrange;
+        attr.attackspeed += other.attackspeed;
         attr.movespeed += other.movespeed;
 
         return attr;
