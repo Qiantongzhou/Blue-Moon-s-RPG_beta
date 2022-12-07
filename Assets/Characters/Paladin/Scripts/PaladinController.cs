@@ -10,6 +10,7 @@ public class PaladinController : MonoBehaviour
         CameraDragAngularSpeed = 1;
     [SerializeField]
     private GameObject cameraObject;
+    public Rigidbody rb;
 
     private const string animatorParameter_MovementForward = "Movement Forward",
         animatorParameter_MovementRightward = "Movement Right",
@@ -275,13 +276,5 @@ public class PaladinController : MonoBehaviour
         myAnimator.ResetTrigger(animatorParameter_DodgeRight);
     }
 
-    public Rigidbody rb;
-    //public void SnowBallHit()
-    //{
-    //    Vector3 forceDirection = new Vector3(5.0f, 2.0f, 5.0f);
-    //    rb.velocity = Vector3.zero;
-    //    rb.AddForce(forceDirection,ForceMode.Impulse);
-
-    //}
 
 }
