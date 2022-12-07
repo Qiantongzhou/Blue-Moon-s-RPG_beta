@@ -2759,6 +2759,70 @@ MonoBehaviour:
   - {fileID: 6210984}
   - {fileID: 1716405067}
   - {fileID: 2081041051}
+--- !u!114 &755294876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755294870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: defacc5762030e6439bea6b1d1e5f290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spells:
+  - {fileID: 6575545987593663132, guid: ac19308fdda54af4eb8ba91bb184fab8, type: 3}
+  - {fileID: 6575545987593663132, guid: 47de456a6ea872a4dbd2b17f7fc4379b, type: 3}
+  - {fileID: 6575545987593663132, guid: 14a0d24fa7e5ad645ac2c8d4b59a9cea, type: 3}
+  - {fileID: 6575545987593663132, guid: 997f6616d0440ac4fb2ae397dacf0b16, type: 3}
+  - {fileID: 6575545987593663132, guid: 4190965b404fa5145a681c1d62d0b975, type: 3}
+  - {fileID: 6575545987593663132, guid: 055802f39199dea49aea79f8a2097e41, type: 3}
+  - {fileID: 6575545987593663132, guid: 82fbba4fc10315b45b4219ba1348b1a4, type: 3}
+  - {fileID: 6575545987593663132, guid: aaa461ba94cf31e448546dff03090fab, type: 3}
+  - {fileID: 6575545987593663132, guid: 484e7d40d1dd3924aa5223504c8d2e61, type: 3}
+  - {fileID: 6575545987593663132, guid: 479132e7adf03c74bad41b46bd45bbaa, type: 3}
+  - {fileID: 6575545987593663132, guid: 67c8c5057178c9e44b574efb58536e02, type: 3}
+  - {fileID: 6575545987593663132, guid: 0647df030ef368749a4d1e51aa4b9b44, type: 3}
+  items:
+  - {fileID: 6575545987593663132, guid: e3f5b6dd2a83c504f85a00aca35cdf7f, type: 3}
+  - {fileID: 6575545987593663132, guid: eac6d48e6109d2343b6edb773dd245ab, type: 3}
+  - {fileID: 6575545987593663132, guid: 03353fe06fedad945994493dac0b9cd0, type: 3}
+  - {fileID: 6575545987593663132, guid: eac6d48e6109d2343b6edb773dd245ab, type: 3}
+  - {fileID: 6575545987593663132, guid: 962ad1a48e3d7234ab34cb0432226d00, type: 3}
+  - {fileID: 6575545987593663132, guid: 850c751de2785064f96c192e1fce186b, type: 3}
+  - {fileID: 6575545987593663132, guid: 0a86798dff6233d4691ee4365e292ac1, type: 3}
+  - {fileID: 6575545987593663132, guid: 79eb02c3f91c9e246bf4232205d43258, type: 3}
+  - {fileID: 6575545987593663132, guid: 172ae4d29ba9cfc4c8581ec6c0b6a992, type: 3}
+  - {fileID: 6575545987593663132, guid: 06bcf2d72ee630644911b272d27615a9, type: 3}
+  - {fileID: 6575545987593663132, guid: 06bcf2d72ee630644911b272d27615a9, type: 3}
+  randomespelllist:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  randomeitems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shopperwaittime: 1
 --- !u!224 &762500933 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3026821560299388300, guid: 760b450ca1d204af2ad179272bbec195, type: 3}
@@ -6398,7 +6462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2525639443491620036, guid: 7e15140b905e76742bec7b1303f57ac6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.59
+      value: 9.587
       objectReference: {fileID: 0}
     - target: {fileID: 2525639443491620036, guid: 7e15140b905e76742bec7b1303f57ac6, type: 3}
       propertyPath: m_LocalPosition.z
