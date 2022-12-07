@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class TitanController : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class TitanController : MonoBehaviour
     }
 
     [SerializeField]
-    private Transform Target;
-    [SerializeField]
     private LayerMask EnemyMask;
+    [SerializeField]
+    private GameObject SmokeEmitterPrefab;
     [SerializeField]
     private float AttackRange, AttackInterval,
         ShoutInterval,
@@ -23,7 +24,8 @@ public class TitanController : MonoBehaviour
         SpotRange, SpotAngle,
         PursuitSpeed,
         SearchRange, SearchTime, SearchSpeed,
-        AngularSpeed;
+        AngularSpeed,
+        SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
     protected const string MovementAnimationName = "Movement",
         Attack1AnimationName = "Attack 1",
@@ -37,10 +39,12 @@ public class TitanController : MonoBehaviour
         patrolTimeFinishAt = 0f,
         searchTimeFinishedAt = 0f;
 
+    private Transform target;
     private NavMeshAgent agent;
     private Animator myAnimator;
     private ActionMode actionMode;
     private Health myHealth;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -48,28 +52,38 @@ public class TitanController : MonoBehaviour
         Rest();
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
+        myHealth.OnDead += MyHealth_OnDead;
     }
     private void Start()
     {
-        Target = Players.CurrentPlayer.transform;
+        target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
     {
-        if (actionMode == ActionMode.Search)
-        {
-            return;
-        }
         if (actionMode != ActionMode.Aggressive)
         {
             actionMode = ActionMode.Search;
             Search(direction);
         }
     }
+    private void MyHealth_OnDead(object sender, System.EventArgs e)
+    {
+        StartCoroutine(Dead());
+    }
+
+    private IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(DeathToSmokeInterval);
+        GameObject smokeEmitter = Instantiate(SmokeEmitterPrefab, transform.position, transform.rotation);
+        Destroy(smokeEmitter, SmokeEmitterLifeTime);
+        yield return new WaitForSeconds(SmokeToCleatCorpseInterval);
+        Destroy(gameObject);
+    }
     private void Pursuit()
     {
         agent.speed = PursuitSpeed;
-        agent.destination = Target.position;
+        agent.destination = target.position;
     }
     private void Attack()
     {
@@ -129,15 +143,15 @@ public class TitanController : MonoBehaviour
     }
     private bool IsEnemyWithinSpotingDistance()
     {
-        return Vector3.Distance(transform.position, Target.position) <= SpotRange;
+        return Vector3.Distance(transform.position, target.position) <= SpotRange;
     }
     private bool IsEnemyWithinSpotAngle()
     {
-        return Vector3.Angle(transform.forward, Target.position - transform.position) <= SpotAngle;
+        return Vector3.Angle(transform.forward, target.position - transform.position) <= SpotAngle;
     }
     private bool IsEnemyInSight()
     {
-        bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
+        bool isHit = Physics.Raycast(new Ray(transform.position, target.position - transform.position), out RaycastHit hit, SpotRange);
         Debug.DrawLine(transform.position, hit.point, Color.red);
         if (isHit)
         { return EnemyMask == (EnemyMask | (1 << hit.transform.gameObject.layer)); }
@@ -162,7 +176,7 @@ public class TitanController : MonoBehaviour
     }
     private void FaceTarget()
     {
-        Vector3 lookPos = Target.position - transform.position;
+        Vector3 lookPos = target.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed * Time.deltaTime);
@@ -197,7 +211,7 @@ public class TitanController : MonoBehaviour
                         Rest();
                     }
                     Pursuit();
-                    if (Vector3.Distance(Target.position, transform.position) <= AttackRange)
+                    if (Vector3.Distance(target.position, transform.position) <= AttackRange)
                     { FaceTarget(); Attack(); }
                     else { Shout(); }
                     break;

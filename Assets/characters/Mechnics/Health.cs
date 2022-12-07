@@ -4,6 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public event EventHandler<Vector3> OnHurt;
+    public event EventHandler OnDead;
     [SerializeField]
     private float MaxHealthPoint, SpawnHealthPoint;
     public bool IsAlive;
@@ -25,7 +26,7 @@ public class Health : MonoBehaviour
         CurrentHealthPoint += damageAmount;
 
         myAnimator.SetTrigger(Hurt);
-        OnHurt?.Invoke(this.gameObject, direction);
+        OnHurt?.Invoke(gameObject, direction);
         if (CurrentHealthPoint <= 0)
         {
             Die();
@@ -38,6 +39,7 @@ public class Health : MonoBehaviour
         myAnimator.SetFloat("Movement", 0);
         myAnimator.SetTrigger(Dead);
         IsAlive = false;
+        OnDead?.Invoke(gameObject, null);
     }
     public float HealthPoint()
     {

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/characters/Monsters/SnowTigerW.meta
 guid: d820401f3985de845abf121cf42d9752
+=======
+guid: d6bfdb6b508eb7f4591f503b44dfbe52
+>>>>>>> Stashed changes:Assets/Effect/Smoke.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

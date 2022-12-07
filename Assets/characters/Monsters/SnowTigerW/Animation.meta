@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/characters/Monsters/SnowTigerW/Animation.meta
 guid: c06fd3fdf05a6194fb8fe4d2a56b7a4b
 folderAsset: yes
 DefaultImporter:
+=======
+guid: 1c3c00a63bdb5cd4eb2f4e0ba8912536
+PrefabImporter:
+>>>>>>> Stashed changes:Assets/Characters/Monsters/Prefabs/Wizard/Wizard.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

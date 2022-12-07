@@ -796,10 +796,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04766f6c1eed6147a465bd51e4b0fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: e8ccbe756bcf6d54a9f822672a8875fb, type: 3}
   AttackRange: 2
   AttackInterval: 1.5
   ShoutInterval: 10
@@ -814,6 +814,9 @@ MonoBehaviour:
   SearchTime: 10
   SearchSpeed: 2
   AngularSpeed: 1
+  SmokeEmitterLifeTime: 2
+  DeathToSmokeInterval: 10
+  SmokeToCleatCorpseInterval: 1
 --- !u!114 &4068658461620208629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2a324f57e37954d95113767dd547d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoint: 1000
-  SpawnHealthPoint: 1000
+  MaxHealthPoint: 1
+  SpawnHealthPoint: 1
   IsAlive: 1
 --- !u!195 &817924433790711252
 NavMeshAgent:

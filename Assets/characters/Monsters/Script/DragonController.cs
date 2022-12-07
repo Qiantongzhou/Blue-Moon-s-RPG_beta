@@ -20,9 +20,9 @@ public class DragonController : MonoBehaviour
     }
 
     [SerializeField]
-    private Transform Target;
-    [SerializeField]
     private LayerMask EnemyMask;
+    [SerializeField]
+    private GameObject SmokeEmitterPrefab;
     [SerializeField]
     private float MeleeAttackRange, RangeAttackRange, MeleeAttackInterval, RangeAttackInterval,
         ShoutInterval,
@@ -35,7 +35,8 @@ public class DragonController : MonoBehaviour
         AirSpeedFactor, AirAccelerationFactor, AirTime,
         HealthPointThreshold,
         AngularSpeed,
-        MeleeStopDistance, RangeStopDistance;
+        MeleeStopDistance, RangeStopDistance,
+        SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
     protected const string MovementAnimationName = "Movement",
         Attack1AnimationName = "Attack 1",
@@ -51,11 +52,13 @@ public class DragonController : MonoBehaviour
         searchTimeFinishedAt = 0f,
         airTimeFinishedAt = 0f;
 
+    private Transform target;
     private NavMeshAgent agent;
     private Animator myAnimator;
     private ActionMode actionMode;
     private MovementMode movementMode;
     private Health myHealth;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -64,10 +67,13 @@ public class DragonController : MonoBehaviour
         movementMode = MovementMode.Ground;
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
+        myHealth.OnDead += MyHealth_OnDead;
     }
+
+
     private void Start()
     {
-        Target = Players.CurrentPlayer.transform;
+        target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
@@ -79,6 +85,19 @@ public class DragonController : MonoBehaviour
             actionMode = ActionMode.Search;
             Search(direction);
         }
+    }
+    private void MyHealth_OnDead(object sender, System.EventArgs e)
+    {
+        StartCoroutine(Dead());
+    }
+
+    private IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(DeathToSmokeInterval);
+        GameObject smokeEmitter = Instantiate(SmokeEmitterPrefab, transform.position, transform.rotation);
+        Destroy(smokeEmitter, SmokeEmitterLifeTime);
+        yield return new WaitForSeconds(SmokeToCleatCorpseInterval);
+        Destroy(gameObject);
     }
     private void TakeOff()
     {
@@ -108,7 +127,7 @@ public class DragonController : MonoBehaviour
                 airTimeFinishedAt = Time.time + AirTime;
                 break;
         }
-        agent.destination = Target.position;
+        agent.destination = target.position;
     }
     private void MeleeAttack()
     {
@@ -184,15 +203,15 @@ public class DragonController : MonoBehaviour
     }
     private bool IsEnemyWithinSpotingDistance()
     {
-        return Vector3.Distance(transform.position, Target.position) <= SpotRange;
+        return Vector3.Distance(transform.position, target.position) <= SpotRange;
     }
     private bool IsEnemyWithinSpotAngle()
     {
-        return Vector3.Angle(transform.forward, Target.position - transform.position) <= SpotAngle;
+        return Vector3.Angle(transform.forward, target.position - transform.position) <= SpotAngle;
     }
     private bool IsEnemyInSight()
     {
-        bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
+        bool isHit = Physics.Raycast(new Ray(transform.position, target.position - transform.position), out RaycastHit hit, SpotRange);
         //Debug.DrawLine(transform.position, hit.point, Color.red);
         if (isHit)
         {
@@ -245,14 +264,14 @@ public class DragonController : MonoBehaviour
     }
     private void FaceTarget()
     {
-        Vector3 lookPos = Target.position - transform.position;
+        Vector3 lookPos = target.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed * Time.deltaTime);
     }
     private void Update()
     {
-        bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
+        bool isHit = Physics.Raycast(new Ray(transform.position, target.position - transform.position), out RaycastHit hit, SpotRange);
         if (myHealth.IsAlive)
         {
             switch (actionMode)
@@ -275,17 +294,17 @@ public class DragonController : MonoBehaviour
                     switch (movementMode)
                     {
                         case MovementMode.Ground:
-                            if (Vector3.Distance(Target.position, transform.position) <= MeleeAttackRange) { FaceTarget(); MeleeAttack(); }
+                            if (Vector3.Distance(target.position, transform.position) <= MeleeAttackRange) { FaceTarget(); MeleeAttack(); }
                             else
                             {
                                 Scream();
-                                if (Vector3.Distance(Target.position, transform.position) > RangeAttackRange && IsHealthy()) { TakeOff(); }
+                                if (Vector3.Distance(target.position, transform.position) > RangeAttackRange && IsHealthy()) { TakeOff(); }
                             }
                             break;
                         case MovementMode.Air:
-                            if (Vector3.Distance(Target.position, transform.position) <= MeleeAttackRange)
+                            if (Vector3.Distance(target.position, transform.position) <= MeleeAttackRange)
                             { Land(); }
-                            else if (Vector3.Distance(Target.position, transform.position) <= RangeAttackRange) { FaceTarget(); RangeAttack(); }
+                            else if (Vector3.Distance(target.position, transform.position) <= RangeAttackRange) { FaceTarget(); RangeAttack(); }
                             else { Scream(); }
                             break;
                     }
