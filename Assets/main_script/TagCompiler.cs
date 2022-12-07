@@ -45,6 +45,7 @@ public class TagCompiler : MonoBehaviour
                                                     minionCreatureArribute[(int)tags].speed,
                                                     minionCreatureArribute[(int)tags].health,
                                                     minionCreatureArribute[(int)tags].attackDamage,
-                                                    minionCreatureArribute[(int)tags].healthRegen);
+                                                    minionCreatureArribute[(int)tags].healthRegen,
+                                                    minionCreatureArribute[(int)tags].dir);
     }
 }
