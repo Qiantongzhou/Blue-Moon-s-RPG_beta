@@ -46,3 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   All_NPC: []
   NPC_POS: []
+  ENEMY_POS: []
+  startwave: 0
+  firstwavetime: 0
+  timebetweenwaves: 0
+  enmeytospwan: 0
+  currentenemy: 0
+  Enemymultiper: 0
+  missionfailed: {fileID: 1826972702189333382, guid: 8f474653e24a82148bf41b1fb73ea11e, type: 3}

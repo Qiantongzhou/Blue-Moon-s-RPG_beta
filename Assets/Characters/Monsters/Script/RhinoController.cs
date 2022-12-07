@@ -26,6 +26,8 @@ public class RhinoController : MonoBehaviour
         patrolTimeFinishAt = 0f,
         fleeTimeFinishedAt;
 
+    private bool wizardSpawned = false;
+
     private NavMeshAgent agent;
     private Animator myAnimator;
     private ActionMode actionMode;
@@ -54,17 +56,22 @@ public class RhinoController : MonoBehaviour
     }
     private void MyHealth_OnDead(object sender, System.EventArgs e)
     {
-        StartCoroutine(Dead());
+        IEnumerator coroutine = Dead();
+        StartCoroutine(coroutine);
     }
 
     private IEnumerator Dead()
     {
-        yield return new WaitForSeconds(DeathToSmokeInterval);
-        GameObject smokeEmitter = Instantiate(SmokeEmitter, transform.position, transform.rotation);
-        Destroy(smokeEmitter, SmokeEmitterLifeTime);
-        yield return new WaitForSeconds(SmokeToWizardInterval);
-        Instantiate(WizardPrefab, transform.position, transform.rotation);
-        Destroy(gameObject);
+        if (!wizardSpawned)
+        {
+            wizardSpawned = true;
+            yield return new WaitForSeconds(DeathToSmokeInterval);
+            GameObject smokeEmitter = Instantiate(SmokeEmitter, transform.position, transform.rotation);
+            Destroy(smokeEmitter, SmokeEmitterLifeTime);
+            yield return new WaitForSeconds(SmokeToWizardInterval);
+            Instantiate(WizardPrefab, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     private void Patrol()

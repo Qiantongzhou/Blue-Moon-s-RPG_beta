@@ -799,7 +799,7 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
-  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: e8ccbe756bcf6d54a9f822672a8875fb, type: 3}
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: 63fc98479efd60347ab873eedb32ca26, type: 3}
   AttackRange: 2
   AttackInterval: 1.5
   ShoutInterval: 10

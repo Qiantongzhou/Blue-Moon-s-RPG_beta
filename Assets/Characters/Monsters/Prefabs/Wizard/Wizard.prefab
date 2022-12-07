@@ -21118,12 +21118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c20a1dea2aed534ead6f0e9cd318819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
   PainPrefab: {fileID: 444598368702033525, guid: 1a747854d3baf4246a4af4db5028a763, type: 3}
-  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: e22a9aab6ae4b4441885c88765b80fd0, type: 3}
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: e7ea1f6de480b9547af08653f0ba4194, type: 3}
   AttackRange: 2
   AttackInterval: 3
   PursuitSpeed: 3
@@ -21172,7 +21171,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ea4366bacad8b104686385f328720e48, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

@@ -23,16 +23,15 @@ public class Health : MonoBehaviour
 
     public void HealthChange(float damageAmount, Vector3 direction)
     {
-        CurrentHealthPoint += damageAmount;
-
-        myAnimator.SetTrigger(Hurt);
-        OnHurt?.Invoke(gameObject, direction);
-        if (CurrentHealthPoint <= 0)
+        if (IsAlive)
         {
-            Die();
-            return;
-        }
+            CurrentHealthPoint += damageAmount;
 
+            myAnimator.SetTrigger(Hurt);
+            OnHurt?.Invoke(gameObject, direction);
+            if (CurrentHealthPoint <= 0)
+            { Die(); }
+        }
     }
     private void Die()
     {

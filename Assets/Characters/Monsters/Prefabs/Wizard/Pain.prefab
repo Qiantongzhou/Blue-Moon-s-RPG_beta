@@ -11277,9 +11277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9b57bc5b8d3f14bbd8f1d3a02883e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MasterWizard: {fileID: 0}
-  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: e22a9aab6ae4b4441885c88765b80fd0, type: 3}
-  Target: {fileID: 0}
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: 472a37d49a7af43418c12a77b07781b4, type: 3}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
