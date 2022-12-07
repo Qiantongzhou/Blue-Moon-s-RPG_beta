@@ -26,6 +26,46 @@ public class GameEngine : MonoBehaviour
         DamageCalculator.multiPerElite = Enemymultiper;
         DamageCalculator.maxcreatureCount = 30;
         DamageCalculator.currentwave = 0;
+
+
+
+
+        if (gamesetting.difficulty == 0)
+        {
+            firstwavetime = 100;
+            timebetweenwaves = 60;
+            DamageCalculator.multiPerEnemy = 1;
+            DamageCalculator.multiPerElite = 1;
+        }
+        if (gamesetting.difficulty == 1)
+        {
+            firstwavetime = 60;
+            timebetweenwaves = 50;
+            DamageCalculator.multiPerEnemy = 2;
+            DamageCalculator.multiPerElite = 2;
+        }
+        if (gamesetting.difficulty ==2)
+        {
+            firstwavetime = 30;
+            timebetweenwaves = 30;
+            DamageCalculator.multiPerEnemy = 5;
+            DamageCalculator.multiPerElite = 5;
+        }
+
+        if(gamesetting.mode ==1)
+        {
+            enmeytospwan = 20;
+            
+        }
+        if (gamesetting.mode == 0)
+        {
+            enmeytospwan = 10;
+
+        }
+
+
+
+
     }
 
     // Update is called once per frame

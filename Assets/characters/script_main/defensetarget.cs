@@ -27,14 +27,9 @@ public class defensetarget : MonoBehaviour
         if (takedamaged)
         {
             gamestatistics.isunderattack = true;
-            timer = 5.0f;
+          
         }
-        timer -= Time.deltaTime;
-        if(timer < 0)
-        {
-            takedamaged = false;
-            gamestatistics.isunderattack = false;
-        }
+      
         
     }
     public void takedamage(int amount)
@@ -54,7 +49,10 @@ public class defensetarget : MonoBehaviour
 
     public void destorytraget()
     {
-        animator.SetBool("destory", true);
+        if (animator != null)
+        {
+            animator.SetBool("destory", true);
+        }
         source.Play();
         StartCoroutine(setfakse());
         Destroy(gameObject,4f);
