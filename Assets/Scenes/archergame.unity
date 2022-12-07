@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   currenthealth: 0
-  destory: {fileID: 0}
+  destory: {fileID: 8300000, guid: 2825113e9ade7a04da5cc55be7ea85ae, type: 3}
 --- !u!95 &462148148
 Animator:
   serializedVersion: 4
@@ -4111,6 +4111,7 @@ MonoBehaviour:
   wavetimer: {fileID: 8076838830144744685, guid: d31d16ff0821ac644a46672a6e2e4756, type: 3}
   wavedisplay: {fileID: 9174051170443978203, guid: 8ee544baebed6924abbda044aab6a965, type: 3}
   Clip: {fileID: 8300000, guid: 1765aaa660fcbb34f91d0ce5cebc45ae, type: 3}
+  startwave: 0
 --- !u!4 &1022860028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 675914372638059622, guid: b68fdf1d8ecb3114495a79b5a8bed4ab, type: 3}
@@ -7724,7 +7725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1518928172638882167, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 939.71216
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1609126740629198528, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7852,7 +7853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4794394565210612478, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1275.7122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5653849863217071551, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7888,7 +7889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5897609112721934337, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 689.0521
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6289618750236921262, guid: 82a639aea2dc240b8b46918227ceec0c, type: 3}
       propertyPath: m_Name
@@ -14717,6 +14718,10 @@ PrefabInstance:
       propertyPath: firstwavetime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
+      propertyPath: missionfailed
+      value: 
+      objectReference: {fileID: 1826972702189333382, guid: 8f474653e24a82148bf41b1fb73ea11e, type: 3}
     - target: {fileID: 1970373892452368298, guid: 519df046daa6c42469315677281f0fdc, type: 3}
       propertyPath: timebetweenwaves
       value: 20

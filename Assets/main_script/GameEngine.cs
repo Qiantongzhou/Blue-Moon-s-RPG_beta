@@ -14,6 +14,8 @@ public class GameEngine : MonoBehaviour
     public int enmeytospwan;
     public int currentenemy;
     public int Enemymultiper;
+    public GameObject missionfailed;
+    bool lose = false;
     void Start()
     {
         unity_diceng.NPC_GEN = All_NPC;
@@ -29,27 +31,56 @@ public class GameEngine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!startwave)
+        if (startwave)
         {
+            GameObject.Find("Canvas").GetComponent<uicontroller>().startwave = true;
             StartCoroutine(startfirstwave());
         }
+        if (!lose)
+        {
+            checkwin();
+        }
+       
+
     }
     IEnumerator startfirstwave()
     {
-        startwave = true;
+        startwave = false;
     yield return new WaitForSeconds(firstwavetime);
         DamageCalculator.currentwave++;
         print("wave"+DamageCalculator.currentwave);
         StartCoroutine(enmeyspawn());
         endwave();
     }
+    public void checkwin()
+    {
+        if (DamageCalculator.currentwave > 10)
+        {
+        }
+        if (gamestatistics.housecount == 0)
+        {
+            GameObject.Find("Canvas").GetComponent<uicontroller>().startwave = false;
+            gameover();
+        }
+    }
+
+    public void gameover()
+    {
+        Instantiate(missionfailed,GameObject.Find("Canvas").transform);
+        lose = true;
+    }
     public void endwave()
     {
-        
-        
-        
 
-       StartCoroutine(beginwave());
+
+        if (DamageCalculator.currentwave > 10)
+        {
+        }
+        else
+        {
+
+            StartCoroutine(beginwave());
+        }
     }
     IEnumerator beginwave()
     {
