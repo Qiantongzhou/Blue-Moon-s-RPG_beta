@@ -139,7 +139,7 @@ public class GameEngine : MonoBehaviour
             int x = Random.Range(1, All_NPC.Length - 1);
             
             Instantiate(All_NPC[x], ENEMY_POS[0].transform.position, Quaternion.identity);
-           StartCoroutine(enmeyspawn());
+            StartCoroutine(enmeyspawn());
         }
         else
         {
