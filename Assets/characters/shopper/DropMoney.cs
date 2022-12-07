@@ -12,6 +12,6 @@ public class DropMoney : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<player>().GiveMoney(Random.Range(minAmount,maxAmount));
+        GameObject.FindWithTag("Player").GetComponent<player>().GiveMoney(Random.Range(minAmount,maxAmount));
     }
 }

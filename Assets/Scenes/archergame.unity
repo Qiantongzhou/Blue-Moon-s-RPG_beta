@@ -3285,8 +3285,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: critdamage
+      value: 1300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
       propertyPath: attackspeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055570377253916440, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
+      propertyPath: healthpoint
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2685053076001528538, guid: ab296ce2a32edd049af86eb97d883927, type: 3}
       propertyPath: TempAttr
