@@ -12,8 +12,8 @@ public class SwitchSkybox : MonoBehaviour
     bool isVillage;
     bool isWinter;
 
-    [SerializeField] LayerMask forestlayer;
     [SerializeField] LayerMask villagelayer;
+    [SerializeField] LayerMask forestlayer;
     [SerializeField] LayerMask winterlayer;
 
     void Start()
@@ -24,28 +24,39 @@ public class SwitchSkybox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckIsVillage();
+        CheckIsForest();
+        CheckIsWinter();
+
         if (isVillage)
         {
-
+            RenderSettings.skybox = skyboxList[0];
+            DynamicGI.UpdateEnvironment();
         }
         else if (isForest)
         {
             RenderSettings.skybox = skyboxList[1];
+            DynamicGI.UpdateEnvironment();
+        }
+        else if (isWinter)
+        {
+            RenderSettings.skybox = skyboxList[2];
+            DynamicGI.UpdateEnvironment();
         }
     }
 
-    void CheckIsForest()
-    {
-        isForest = Physics.Raycast(transform.position, Vector3.down, 30.0f, forestlayer);
-    }
 
     void CheckIsVillage()
+    {
+        isVillage = Physics.Raycast(transform.position, Vector3.down, 30.0f, villagelayer);
+    }
+    void CheckIsForest()
     {
         isForest = Physics.Raycast(transform.position, Vector3.down, 30.0f, forestlayer);
     }
 
     void CheckIsWinter()
     {
-        isForest = Physics.Raycast(transform.position, Vector3.down, 30.0f, forestlayer);
+        isWinter = Physics.Raycast(transform.position, Vector3.down, 30.0f, winterlayer);
     }
 }

@@ -44,7 +44,7 @@ public class character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        CursorControl();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("AttackA 0"))
         {
 
@@ -188,6 +188,16 @@ public class character : MonoBehaviour
         return running;
     }
 
-
+    void CursorControl()
+    {
+        if (Input.GetKey(KeyCode.P))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
 
 }
