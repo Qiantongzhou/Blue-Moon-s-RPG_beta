@@ -16,7 +16,7 @@ public class GameEngine : MonoBehaviour
     public int Enemymultiper;
     public GameObject missionfailed;
     bool lose = false;
-    void Start()
+    void Awake()
     {
         unity_diceng.NPC_GEN = All_NPC;
         unity_diceng.NPC_POS= NPC_POS;
@@ -115,6 +115,7 @@ public class GameEngine : MonoBehaviour
 
         if (DamageCalculator.currentwave > 10)
         {
+            Instantiate(All_NPC[1], ENEMY_POS[0].transform.position, Quaternion.identity);
         }
         else
         {

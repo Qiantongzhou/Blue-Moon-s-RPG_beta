@@ -10,11 +10,16 @@ public class defensetarget : MonoBehaviour
    public AudioClip destory;
     AudioSource source;
     Animator animator;
-    bool takedamaged;
+    bool died = false;
+
     float timer;
-    private void Start()
+    private void Awake()
     {
         gamestatistics.housecount += 1;
+    }
+    private void Start()
+    {
+        
         health = (int)(health * DamageCalculator.multiPerEnemy);
         currenthealth = health;
         animator = transform.GetComponent<Animator>();
@@ -24,11 +29,10 @@ public class defensetarget : MonoBehaviour
     }
     private void Update()
     {
-        if (takedamaged)
-        {
-            gamestatistics.isunderattack = true;
+       
+            
           
-        }
+       
       
         
     }
@@ -37,10 +41,11 @@ public class defensetarget : MonoBehaviour
         gamestatistics.maxhealth = health;
         gamestatistics.currenthealth = currenthealth;
 
-        takedamaged = true;
+        gamestatistics.isunderattack = true;
         currenthealth -= amount;
-        if (currenthealth < 0)
+        if (currenthealth < 0&&!died)
         {
+            died = true;
             currenthealth = 0;
             gamestatistics.housecount -= 1;
             destorytraget();
@@ -61,7 +66,9 @@ public class defensetarget : MonoBehaviour
     IEnumerator setfakse()
     {
         yield return new WaitForSeconds(3f);
+       
         gamestatistics.isunderattack = false;
+        
     }
 
 }

@@ -57,11 +57,11 @@ public class uicontroller : MonoBehaviour
         }
         if (gamestatistics.isunderattack == true)
         {
-            transform.Find("townhealth").gameObject.SetActive(true);
+            transform.GetChild(5).gameObject.SetActive(true);
         }
         else
         {
-            transform.Find("townhealth").gameObject.SetActive(false);
+            transform.GetChild(5).gameObject.SetActive(false);
         }
         
     }
