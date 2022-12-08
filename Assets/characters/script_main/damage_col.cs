@@ -18,13 +18,14 @@ public class damage_col : MonoBehaviour
         {
             crited = gameObject.AddComponent<AudioSource>();
             crited.clip = crit;
+            crited.playOnAwake = false;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "playersattack" && transform.tag == "Boss")
         {
-            takedamageboss(npc.aplayer.ResultAttr.attackdamage);
+            takedamageboss(collision.collider.GetComponent<ProjectileMover>().damage, collision.collider.GetComponent<ProjectileMover>().iscritic);
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creep")
         {
@@ -32,10 +33,14 @@ public class damage_col : MonoBehaviour
         }
         if (collision.collider.tag == "playersattack" && transform.tag == "creature")
         {
-            takedamagecreature(npc.aplayer.ResultAttr.attackdamage);
+            takedamagecreature(collision.collider.GetComponent<ProjectileMover>().damage, collision.collider.GetComponent<ProjectileMover>().iscritic);
+        }
+        if (collision.collider.tag == "playersattack" && transform.tag == "nutral")
+        {
+            takedamagenutral(collision.collider.GetComponent<ProjectileMover>().damage, collision.collider.GetComponent<ProjectileMover>().iscritic);
         }
     }
-    public void takedamageboss(int dam)
+    public void takedamageboss(int dam, bool iscrit)
     {
         enemy x = GetComponent<enemy>();
         x.takedamage(dam);
@@ -47,11 +52,17 @@ public class damage_col : MonoBehaviour
         x.takedamage(dam);
         Updatetext(dam,iscrit);
     }
-    public void takedamagecreature(int dam)
+    public void takedamagecreature(int dam, bool iscrit)
     {
         creature x = GetComponent<creature>();
         x.takedamage(dam);
-        Updatetext(dam, false);
+        Updatetext(dam, iscrit);
+    }
+    public void takedamagenutral(int dam, bool iscrit)
+    {
+        nutral x = GetComponent<nutral>();
+        x.takedamage(dam);
+        Updatetext(dam, iscrit);
     }
     public void takedamage(int dam)
     {

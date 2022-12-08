@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class selectlevelfocus : MonoBehaviour
 {
+    private void Start()
+    {
+        Time.timeScale = 1F;
+    }
     public void SelectNormal()
     {
         transform.GetChild(0).GetChild(1).gameObject.SetActive(true);

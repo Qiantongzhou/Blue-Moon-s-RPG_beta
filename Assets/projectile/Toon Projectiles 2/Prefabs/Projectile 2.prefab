@@ -14544,7 +14544,14 @@ MonoBehaviour:
   rotationOffset: {x: 0, y: 0, z: 0}
   hit: {fileID: 1270034117851066, guid: e46e60dfd73d7ed4fa8a4ef323af2e69, type: 3}
   flash: {fileID: 1024167407391004, guid: 63baf4956cfa45d4aa5cd12cbc8b7689, type: 3}
+  lunch: {fileID: 8300000, guid: 0cb3b948c4a44004eba7528358e93b54, type: 3}
+  destory: {fileID: 8300000, guid: 40e0bda075c98984e88b62d9695b5be0, type: 3}
   Detached: []
+  aoe: {fileID: 0}
+  damage: 0
+  iscritic: 0
+  radius: 0
+  piece: 0
 --- !u!199 &199009954964016290
 ParticleSystemRenderer:
   serializedVersion: 6

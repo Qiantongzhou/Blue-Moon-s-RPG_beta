@@ -23,6 +23,7 @@ public class meleattackauto : MonoBehaviour
         def = enemy.target.GetComponent<defensetarget>();
         
         anims = GetComponent<Animator>();
+        
         if (Mathf.Abs(transform.position.x - enemy.target.transform.position.x) < enemy.stopRange && Mathf.Abs(transform.position.z - enemy.target.transform.position.z) < enemy.stopRange)
         {
             anims.SetBool("Attack 1", true);

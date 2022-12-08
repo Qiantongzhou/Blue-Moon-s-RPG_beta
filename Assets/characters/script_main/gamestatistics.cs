@@ -8,4 +8,5 @@ public static class gamestatistics
     public static bool isunderattack;
     public static int currenthealth=1;
     public static int maxhealth=1;
+    public static bool playerdied = false;
 }

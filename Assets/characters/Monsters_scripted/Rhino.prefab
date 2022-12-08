@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 556458078551402701}
   - component: {fileID: 3891858392364160528}
   - component: {fileID: -5595961482596350289}
+  - component: {fileID: 7853319028180778705}
   m_Layer: 0
   m_Name: Rhino
   m_TagString: creep
@@ -289,6 +290,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textshowprefed: {fileID: 5579572903247597706, guid: f5d644b0b6c05d34abf3b63f0cba3d79, type: 3}
+  textcritprefab: {fileID: 0}
+  crit: {fileID: 0}
   offset: {x: 0, y: 2, z: 0}
 --- !u!65 &556458078551402701
 BoxCollider:
@@ -333,6 +336,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags: 0000000005000000
   creatureTags: 1
+--- !u!114 &7853319028180778705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556458078551402695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b73b38d271468ee4d824c10c6cb03487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAmount: 10
+  maxAmount: 30
 --- !u!1 &556458078619182946
 GameObject:
   m_ObjectHideFlags: 0
