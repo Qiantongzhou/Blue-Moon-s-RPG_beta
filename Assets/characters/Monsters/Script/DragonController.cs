@@ -38,12 +38,15 @@ public class DragonController : MonoBehaviour
         MeleeStopDistance, RangeStopDistance,
         SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
-    protected const string MovementAnimationName = "Movement",
-        Attack1AnimationName = "Attack 1",
-        Attack2AnimationName = "Attack 2",
-        ScreamAnimationName = "Scream",
-        TakeOffAnimationName = "Take Off",
-        LandAnimationName = "Land";
+    protected const string 
+        animationParameter_Movement = "Movement",
+        animationParameter_Attack_1 = "Attack 1",
+        animationParameter_Attack_2 = "Attack 2",
+        animationParameter_Scream = "Scream",
+        animationParameter_TakeOff = "Take Off",
+        animationParameter_Land = "Land",
+        animationParameter_Hurt = "Hurt", 
+        animationParameter_Dead = "Dead";
 
     private float nextAttack = 0f,
         nextScream = 0f,
@@ -85,9 +88,12 @@ public class DragonController : MonoBehaviour
             actionMode = ActionMode.Search;
             Search(direction);
         }
+        myAnimator.SetTrigger(animationParameter_Hurt);
     }
     private void MyHealth_OnDead(object sender, System.EventArgs e)
     {
+        myAnimator.SetFloat(animationParameter_Movement, 0);
+        myAnimator.SetTrigger(animationParameter_Dead);
         StartCoroutine(Dead());
     }
 
@@ -102,13 +108,13 @@ public class DragonController : MonoBehaviour
     private void TakeOff()
     {
         airTimeFinishedAt = Time.time + AirTime;
-        myAnimator.SetTrigger(TakeOffAnimationName);
+        myAnimator.SetTrigger(animationParameter_TakeOff);
         movementMode = MovementMode.Air;
     }
     private void Land()
     {
         airTimeFinishedAt = Time.time;
-        myAnimator.SetTrigger(LandAnimationName);
+        myAnimator.SetTrigger(animationParameter_Land);
         movementMode = MovementMode.Ground;
     }
     private void Pursuit()
@@ -131,30 +137,30 @@ public class DragonController : MonoBehaviour
     }
     private void MeleeAttack()
     {
-        myAnimator.ResetTrigger(ScreamAnimationName);
+        myAnimator.ResetTrigger(animationParameter_Scream);
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + MeleeAttackInterval;
-            myAnimator.SetTrigger(Attack1AnimationName);
+            myAnimator.SetTrigger(animationParameter_Attack_1);
         }
     }
     private void RangeAttack()
     {
-        myAnimator.ResetTrigger(ScreamAnimationName);
+        myAnimator.ResetTrigger(animationParameter_Scream);
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + RangeAttackInterval;
-            myAnimator.SetTrigger(Attack2AnimationName);
+            myAnimator.SetTrigger(animationParameter_Attack_2);
         }
     }
     private void Scream()
     {
-        myAnimator.ResetTrigger(Attack1AnimationName);
-        myAnimator.ResetTrigger(Attack2AnimationName);
+        myAnimator.ResetTrigger(animationParameter_Attack_1);
+        myAnimator.ResetTrigger(animationParameter_Attack_2);
         if (Time.time >= nextScream)
         {
             nextScream = Time.time + ShoutInterval;
-            myAnimator.SetTrigger(ScreamAnimationName);
+            myAnimator.SetTrigger(animationParameter_Scream);
         }
     }
     private void Patrol()
@@ -255,10 +261,10 @@ public class DragonController : MonoBehaviour
         switch (movementMode)
         {
             case MovementMode.Ground:
-                myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / PursuitSpeed);
+                myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / PursuitSpeed);
                 break;
             case MovementMode.Air:
-                myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / (PursuitSpeed * AirSpeedFactor));
+                myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / (PursuitSpeed * AirSpeedFactor));
                 break;
         }
     }

@@ -14,8 +14,11 @@ public class PainController : MonoBehaviour
         AngularSpeed = 1,
         SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 3, SmokeToCleatCorpseInterval = 1;
 
-    protected const string MovementAnimationName = "Movement",
-        Attack1AnimationName = "Attack";
+    protected const string 
+        animationParameter_Movement = "Movement",
+        animationParameter_Attack = "Attack",
+        animationParameter_Hurt = "Hurt", 
+        animationParameter_Dead = "Dead";
 
     private float nextAttack = 0f;
 
@@ -30,10 +33,12 @@ public class PainController : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myHealth = GetComponent<Health>();
         myHealth.OnDead += MyHealth_OnDead;
+        myHealth.OnHurt += MyHealth_OnHurt;
 
         GameObject smokeEmitter = Instantiate(SmokeEmitterPrefab, transform.position, transform.rotation);
         Destroy(smokeEmitter, SmokeEmitterLifeTime);
     }
+
     private void Start()
     {
         target = Players.CurrentPlayer.transform;
@@ -42,7 +47,13 @@ public class PainController : MonoBehaviour
 
     private void MyHealth_OnDead(object sender, System.EventArgs e)
     {
+        myAnimator.SetFloat(animationParameter_Movement, 0);
+        myAnimator.SetTrigger(animationParameter_Dead);
         StartCoroutine(Dead());
+    }
+    private void MyHealth_OnHurt(object sender, Vector3 e)
+    {
+        myAnimator.SetTrigger(animationParameter_Hurt);
     }
 
     private IEnumerator Dead()
@@ -63,12 +74,12 @@ public class PainController : MonoBehaviour
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + AttackInterval;
-            myAnimator.SetTrigger(Attack1AnimationName);
+            myAnimator.SetTrigger(animationParameter_Attack);
         }
     }
     private void UpdateMovementAnimation()
     {
-        myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / PursuitSpeed);
+        myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / PursuitSpeed);
     }
     private void FaceTarget()
     {

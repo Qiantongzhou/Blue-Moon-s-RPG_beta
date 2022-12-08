@@ -20,7 +20,10 @@ public class RhinoController : MonoBehaviour
         DeathToSmokeInterval = 3, SmokeEmitterLifeTime = 3,
         SmokeToWizardInterval = 2;
 
-    protected const string MovementAnimationName = "Movement";
+    protected const string 
+        animationParameter_Movement = "Movement",
+        animationParameter_Hurt = "Hurt", 
+        animationParameter_Dead = "Dead";
 
     private float restTimeFinishAt = 0f,
         patrolTimeFinishAt = 0f,
@@ -53,9 +56,12 @@ public class RhinoController : MonoBehaviour
             actionMode = ActionMode.Flee;
             Flee(-direction);
         }
+        myAnimator.SetTrigger(animationParameter_Hurt);
     }
     private void MyHealth_OnDead(object sender, System.EventArgs e)
     {
+        myAnimator.SetFloat(animationParameter_Movement, 0);
+        myAnimator.SetTrigger(animationParameter_Dead);
         IEnumerator coroutine = Dead();
         StartCoroutine(coroutine);
     }
@@ -108,7 +114,7 @@ public class RhinoController : MonoBehaviour
     }
     private void UpdateMovementAnimation()
     {
-        myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / FleeSpeed);
+        myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / FleeSpeed);
     }
     private void Update()
     {
