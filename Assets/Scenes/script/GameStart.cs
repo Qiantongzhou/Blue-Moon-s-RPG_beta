@@ -50,9 +50,4 @@ public class GameStart : MonoBehaviour
     {
         SceneManager.LoadScene("PaladinWinterGame");
     }
-
-    public void EndGame()
-    {
-        Application.Quit();
-    }
 }
