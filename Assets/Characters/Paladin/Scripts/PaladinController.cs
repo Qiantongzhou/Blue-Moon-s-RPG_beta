@@ -325,15 +325,4 @@ public class PaladinController : MonoBehaviour
         rb.AddForce(forceDir, ForceMode.Impulse);
     }
 
-    //private void OnApplicationFocus(bool focus)
-    //{
-    //    if (focus)
-    //    {
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //    }
-    //    else
-    //    {
-    //        Cursor.lockState = CursorLockMode.None;
-    //    }
-    //}
 }
