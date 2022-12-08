@@ -48,6 +48,6 @@ public class GameStart : MonoBehaviour
     }
     public void loadpaladinleve()
     {
-        SceneManager.LoadScene("paladingame");
+        SceneManager.LoadScene("PaladinWinterGame");
     }
 }
