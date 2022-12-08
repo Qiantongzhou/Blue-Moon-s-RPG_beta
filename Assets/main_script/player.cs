@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -74,7 +75,7 @@ public class player : MonoBehaviour
 
         TMP_Text[] j = GameObject.Find("Canvas").GetComponent<Canvas>().GetComponentsInChildren<TMP_Text>();
         j[3].text = gems.ToString();
-        j[4].text = gold.ToString();
+        j[4].text = Mathf.FloorToInt(gold).ToString();
 
 
         float value = (float)getcurrenthealth() / ResultAttr.healthpoint;

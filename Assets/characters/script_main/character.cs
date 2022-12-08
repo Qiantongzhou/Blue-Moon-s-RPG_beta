@@ -39,8 +39,8 @@ public class character : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        
-        
+
+        gamestatistics.playerdied = false;
         Players.SetCurrentPlayer(gameObject);
     }
 
@@ -185,6 +185,7 @@ public class character : MonoBehaviour
     public void die()
     {
         animator.SetBool("dead", true);
+        gamestatistics.playerdied = true;
         Time.timeScale = 0.1f;
     }
     public bool isrunning()
