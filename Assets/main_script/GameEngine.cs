@@ -114,8 +114,8 @@ public class GameEngine : MonoBehaviour
 
 
         if (DamageCalculator.currentwave > 10)
-        {
-        }
+        { 
+        } 
         else
         {
 
@@ -133,18 +133,24 @@ public class GameEngine : MonoBehaviour
     IEnumerator enmeyspawn()
     {
         yield return new WaitForSeconds(0.5f);
-        if (currentenemy != enmeytospwan)
-        {
-           currentenemy++;
-            int x = Random.Range(1, All_NPC.Length - 1);
-            
-            Instantiate(All_NPC[x], ENEMY_POS[0].transform.position, Quaternion.identity);
-            StartCoroutine(enmeyspawn());
-        }
+        if (DamageCalculator.currentwave <= 10){
+            if (currentenemy != enmeytospwan)
+            {
+                currentenemy++;
+                int x = Random.Range(1, All_NPC.Length - 1);
+
+                Instantiate(All_NPC[x], ENEMY_POS[0].transform.position, Quaternion.identity);
+                StartCoroutine(enmeyspawn());
+            }
+            else
+            {
+                currentenemy = 0;
+                print("waveend");
+            }
+        } 
         else
         {
-            currentenemy = 0;
-            print("waveend");
+            Instantiate(All_NPC[0], ENEMY_POS[0].transform.position, Quaternion.identity);
         }
        
     }
