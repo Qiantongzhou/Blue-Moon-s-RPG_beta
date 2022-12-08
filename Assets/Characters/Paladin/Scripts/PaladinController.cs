@@ -33,7 +33,11 @@ public class PaladinController : MonoBehaviour
         animatorParameter_DodgeForward = "Dodge Forward",
         animatorParameter_DodgeBackward = "Dodge Backward",
         animatorParameter_DodgeLeft = "Dodge Left",
-        animatorParameter_DodgeRight = "Dodge Right";
+        animatorParameter_DodgeRight = "Dodge Right",
+        animatorParameter_DieForward_1 = "Die Forward 1",
+        animatorParameter_DieForward_2 = "Die Forward 2",
+        animatorParameter_DieBackward_1 = "Die Backward 1",
+        animatorParameter_DieBackward_2 = "Die Backward 2";
 
 
     private float currentForwardSpeed = 0,
@@ -44,18 +48,21 @@ public class PaladinController : MonoBehaviour
 
     private Animator myAnimator;
     private Rigidbody myRigidbody;
+    private Health myHealth;
+    private CapsuleCollider myCollider;
+
     private void Awake()
     {
         myAnimator = GetComponent<Animator>();
         myRigidbody = GetComponent<Rigidbody>();
         myRigidbody.centerOfMass = Vector3.zero;
-
+        myHealth = GetComponent<Health>();
+        myHealth.OnDead += MyHealth_OnDead;
+        myCollider = GetComponent<CapsuleCollider>();
         StandUp();
         ToggleCursorOff();
         Players.SetCurrentPlayer(gameObject);
     }
-
-    // Update is called once per frame
     void Update()
     {
         // Get Movement Inputs
@@ -66,8 +73,6 @@ public class PaladinController : MonoBehaviour
         // Move Camera
         if (!isCursorOn)
         {
-            float mouseX = Input.GetAxis("Mouse X");
-            transform.Rotate(transform.up, mouseX);
             float mouseY = Input.GetAxis("Mouse Y");
             float angleCameraPlayer = Vector3.Angle(transform.forward, cameraObject.transform.forward);
 
@@ -84,28 +89,54 @@ public class PaladinController : MonoBehaviour
             {
                 cameraObject.transform.RotateAround(transform.position, transform.right, -CameraDragAngularSpeed);
             }
+            if (myHealth.IsAlive)
+            {
+                float mouseX = Input.GetAxis("Mouse X");
+                transform.Rotate(transform.up, mouseX);
 
-            if (Input.GetButtonDown("Fire1")) { LightAttack(); }
-            if (Input.GetButtonDown("Fire2")) { SwingAttack(); }
-            if (Input.GetButtonDown("Fire3")) { JumpAttack(); }
-            if (Input.GetButtonDown("Block/Unblock"))
-            {
-                if (isBlocking) { Unblock(); }
-                else { Block(); }
+                if (Input.GetButtonDown("Fire1")) { LightAttack(); }
+                if (Input.GetButtonDown("Fire2")) { SwingAttack(); }
+                if (Input.GetButtonDown("Fire3")) { JumpAttack(); }
+                if (Input.GetButtonDown("Block/Unblock"))
+                {
+                    if (isBlocking) { Unblock(); }
+                    else { Block(); }
+                }
+                if (Input.GetButtonDown("Jump")) { Jump(); }
+                if (Input.GetButtonDown("Power Up")) { PowerUp(); }
+                if (Input.GetButtonDown("Cast 1")) { CastWithSword(); }
+                if (Input.GetButtonDown("Cast 2")) { CastWithShield(); }
+                if (Input.GetButtonDown("Stand/Crouch"))
+                {
+                    if (isStanding) { CrouchDown(); }
+                    else { StandUp(); }
+                }
+                if (Input.GetButtonDown("Dodge")) { Dodge(); }
             }
-            if (Input.GetButtonDown("Jump")) { Jump(); }
-            if (Input.GetButtonDown("Power Up")) { PowerUp(); }
-            if (Input.GetButtonDown("Cast 1")) { CastWithSword(); }
-            if (Input.GetButtonDown("Cast 2")) { CastWithShield(); }
-            if (Input.GetButtonDown("Stand/Crouch"))
-            {
-                if (isStanding) { CrouchDown(); }
-                else { StandUp(); }
-            }
-            if (Input.GetButtonDown("Dodge")) { Dodge(); }
         }
         if (Input.GetButtonDown("ToggleCursor")) { ToggleCursorOn(); }
         if (Input.GetButtonUp("ToggleCursor")) { ToggleCursorOff(); }
+    }
+
+    private void MyHealth_OnDead(object sender, System.EventArgs e)
+    {
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                myAnimator.SetTrigger(animatorParameter_DieForward_1);
+                break;
+            case 1:
+                myAnimator.SetTrigger(animatorParameter_DieForward_2);
+                break;
+            case 2:
+                myAnimator.SetTrigger(animatorParameter_DieBackward_1);
+                break;
+            case 3:
+                myAnimator.SetTrigger(animatorParameter_DieBackward_2);
+                break;
+        }
+        myCollider.direction = 2;
+        myCollider.radius /= 2;
     }
     private void ToggleCursorOn()
     {
@@ -250,8 +281,11 @@ public class PaladinController : MonoBehaviour
     }
     private void UpdateMovement()
     {
-        myAnimator.SetFloat(animatorParameter_MovementForward, currentForwardSpeed);
-        myAnimator.SetFloat(animatorParameter_MovementRightward, currentRightwardSpeed);
+        if (myHealth.IsAlive)
+        {
+            myAnimator.SetFloat(animatorParameter_MovementForward, currentForwardSpeed);
+            myAnimator.SetFloat(animatorParameter_MovementRightward, currentRightwardSpeed);
+        }
     }
     private void ResetActionLayerTrigger()
     {
@@ -276,5 +310,22 @@ public class PaladinController : MonoBehaviour
         myAnimator.ResetTrigger(animatorParameter_DodgeRight);
     }
 
+    public void HitBySnowBall()
+    {
+        rb.transform.rotation = Quaternion.Euler(new Vector3(0, rb.transform.rotation.eulerAngles.y, 0));
+        Vector3 forceDir = new Vector3(5.0f, 20.0f, 5.0f);
+        rb.AddForce(forceDir, ForceMode.Impulse);
+    }
 
+    //private void OnApplicationFocus(bool focus)
+    //{
+    //    if (focus)
+    //    {
+    //        Cursor.lockState = CursorLockMode.Locked;
+    //    }
+    //    else
+    //    {
+    //        Cursor.lockState = CursorLockMode.None;
+    //    }
+    //}
 }

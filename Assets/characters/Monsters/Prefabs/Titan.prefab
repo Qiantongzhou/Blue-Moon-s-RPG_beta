@@ -573,8 +573,8 @@ Transform:
   m_GameObject: {fileID: 4961132997724091937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.98, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4961132997724580439}
   - {fileID: 4961132997724580473}
@@ -796,10 +796,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04766f6c1eed6147a465bd51e4b0fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: 63fc98479efd60347ab873eedb32ca26, type: 3}
   AttackRange: 2
   AttackInterval: 1.5
   ShoutInterval: 10
@@ -814,6 +814,9 @@ MonoBehaviour:
   SearchTime: 10
   SearchSpeed: 2
   AngularSpeed: 1
+  SmokeEmitterLifeTime: 2
+  DeathToSmokeInterval: 10
+  SmokeToCleatCorpseInterval: 1
 --- !u!114 &4068658461620208629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2a324f57e37954d95113767dd547d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealthPoint: 1000
-  SpawnHealthPoint: 1000
+  MaxHealthPoint: 50
+  SpawnHealthPoint: 50
   IsAlive: 1
 --- !u!195 &817924433790711252
 NavMeshAgent:
@@ -1583,7 +1586,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.57
+  m_Radius: 1
   m_Center: {x: 0.1661281, y: -0.093619406, z: -0.07374281}
 --- !u!114 &6544297957955183196
 MonoBehaviour:
@@ -1760,7 +1763,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.5707419
+  m_Radius: 1
   m_Center: {x: -0.19408818, y: 0.095542885, z: 0.12149044}
 --- !u!114 &114471880756522343
 MonoBehaviour:
