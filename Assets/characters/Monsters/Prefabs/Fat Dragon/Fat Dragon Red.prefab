@@ -2543,10 +2543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85b112fb36c68d4fae07ce180c0de44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   EnemyMask:
     serializedVersion: 2
     m_Bits: 64
+  SmokeEmitterPrefab: {fileID: 3102731888834105149, guid: 623db6c9bbcd7b8439c072abec907287, type: 3}
   MeleeAttackRange: 6.5
   RangeAttackRange: 15
   MeleeAttackInterval: 1
@@ -2570,6 +2570,9 @@ MonoBehaviour:
   AngularSpeed: 1
   MeleeStopDistance: 6
   RangeStopDistance: 13
+  SmokeEmitterLifeTime: 2
+  DeathToSmokeInterval: 10
+  SmokeToCleatCorpseInterval: 1.5
 --- !u!114 &2732210987787779059
 MonoBehaviour:
   m_ObjectHideFlags: 0
