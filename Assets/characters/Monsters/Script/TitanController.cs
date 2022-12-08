@@ -27,13 +27,13 @@ public class TitanController : MonoBehaviour
         AngularSpeed,
         SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
-    protected const string 
+    protected const string
         animationParameter_Movement = "Movement",
         animationParameter_Attack_1 = "Attack 1",
         animationParameter_Attack_2 = "Attack 2",
         animationParameter_Shout_1 = "Shout 1",
         animationParameter_Shout_2 = "Shout 2",
-        animationParameter_Hurt = "Hurt", 
+        animationParameter_Hurt = "Hurt",
         animationParameter_Dead = "Dead";
 
     private float nextAttack = 0f,
@@ -64,10 +64,10 @@ public class TitanController : MonoBehaviour
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
     {
+        Search(direction);
         if (actionMode != ActionMode.Aggressive)
         {
             actionMode = ActionMode.Search;
-            Search(direction);
         }
         myAnimator.SetTrigger(animationParameter_Hurt);
     }
@@ -144,8 +144,6 @@ public class TitanController : MonoBehaviour
         agent.speed = SearchSpeed;
         agent.destination = transform.position + (direction * SearchRange);
         searchTimeFinishedAt = Time.time + SearchTime;
-        /*Debug.DrawRay(agent.destination, Vector3.up * 100, Color.green, 3600);
-        Debug.DrawRay(transform.position, (direction * SearchRange), Color.red, 5);*/
     }
     private bool IsEnemyWithinSpotingDistance()
     {

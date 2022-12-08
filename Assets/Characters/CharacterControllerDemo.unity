@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhino
       objectReference: {fileID: 0}
+    - target: {fileID: 4075670686739249568, guid: c1ef3330cee2634419cbb611be07beff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4075670686739497136, guid: c1ef3330cee2634419cbb611be07beff, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3438,11 +3442,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 475544895, guid: da0647b51454d8547b822d597730d76a, type: 3}
       propertyPath: MaxHealthPoint
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 475544895, guid: da0647b51454d8547b822d597730d76a, type: 3}
       propertyPath: SpawnHealthPoint
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 16806825054091323, guid: da0647b51454d8547b822d597730d76a, type: 3}
       propertyPath: m_LocalPosition.x

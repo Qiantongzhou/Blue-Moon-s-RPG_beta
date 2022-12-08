@@ -15,20 +15,17 @@ public class ShockwaveController : MonoBehaviour
     private Material material;
     private void Awake()
     {
-        Debug.Log("Awake");
         material = GetComponent<Renderer>().material;
         DeathTime = Time.time + LifeTime;
     }
     private void Update()
     {
-        Debug.Log("Update");
         if (Time.time < DeathTime)
         {
             if (IsLinear)
             { transform.localScale += Vector3.one * ExpendingSpeed * Time.deltaTime; }
             else
             {
-                Debug.Log("Not Linear");
                 transform.localScale *= 1 + (ExpendingSpeed * Time.deltaTime); }
             if (material.GetFloat("_AlphaClip") < 1f)
             { material.SetFloat("_AlphaClip", 1 - ((DeathTime - Time.time) / LifeTime)); }

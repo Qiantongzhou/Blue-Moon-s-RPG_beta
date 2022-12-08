@@ -96,7 +96,6 @@ public class WizardController : MonoBehaviour
         {
             SpawnPain();
         }
-        Debug.Log(Pains.Count);
     }
     private void Pursuit()
     {

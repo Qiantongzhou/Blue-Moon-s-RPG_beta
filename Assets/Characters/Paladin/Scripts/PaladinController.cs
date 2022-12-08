@@ -7,7 +7,8 @@ public class PaladinController : MonoBehaviour
     private float JumpForce,
         MinCameraXAngle = 5,
         MaxCameraXAngle = 60,
-        CameraDragAngularSpeed = 1;
+        CameraDragAngularSpeed = 1,
+        GroundedOffset = 2f;
     [SerializeField]
     private GameObject cameraObject;
     public Rigidbody rb;
@@ -44,6 +45,7 @@ public class PaladinController : MonoBehaviour
         currentRightwardSpeed = 0;
     private bool isStanding = true,
         isBlocking = false,
+        isGrounded = false,
         isCursorOn;
 
     private Animator myAnimator;
@@ -70,6 +72,7 @@ public class PaladinController : MonoBehaviour
         currentRightwardSpeed = Input.GetAxis("Horizontal") / Time.timeScale;
 
         UpdateMovement();
+        UpdateIsGrounded();
         // Move Camera
         if (!isCursorOn)
         {
@@ -137,6 +140,10 @@ public class PaladinController : MonoBehaviour
         }
         myCollider.direction = 2;
         myCollider.radius /= 2;
+    }
+    private void UpdateIsGrounded()
+    {
+        isGrounded = Physics.Raycast(transform.position + transform.up, -transform.up, out RaycastHit raycastHit, GroundedOffset);
     }
     private void ToggleCursorOn()
     {
@@ -239,6 +246,7 @@ public class PaladinController : MonoBehaviour
     private void Jump()
     {
         ResetActionLayerTrigger();
+        if (!isGrounded) { return; }
         if (isBlocking) { return; }
         if (!isStanding) { return; }
         if (currentForwardSpeed > 0.9 && Mathf.Abs(currentRightwardSpeed) < 0.2)

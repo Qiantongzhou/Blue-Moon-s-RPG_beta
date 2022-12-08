@@ -27,7 +27,7 @@ public class ParticleDamageDealer : MonoBehaviour
                 DamageReceiver damageReceiver = opponent.GetComponent<DamageReceiver>();
                 Vector3 direction = transform.position - opponent.transform.position;
                 Vector3 direction2D = new Vector3(direction.x, 0f, direction.z);
-                damageReceiver.ReceiveDamage(DamageAmout, direction2D);
+                damageReceiver.ReceiveDamage(DamageAmout, direction2D.normalized);
             }
         }
     }
