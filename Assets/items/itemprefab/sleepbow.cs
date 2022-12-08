@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class sleepbow :Equipment
 {
-    public override Attributes attributeList => throw new System.NotImplementedException();
+    public override Attributes attributeList => transform.GetComponent<Attributes>();
 
-    public override string Name => throw new System.NotImplementedException();
+    public override string Name => "";
 
-    public override string Description => throw new System.NotImplementedException();
+    public override string Description => "";
 
     public override kind GetKinds()
     {

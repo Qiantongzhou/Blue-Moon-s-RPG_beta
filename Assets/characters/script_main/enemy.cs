@@ -15,12 +15,14 @@ public class enemy : MonoBehaviour
     public float health;
     public float attackDamage;
     public float healthRegen;
+    public float dir;
 
     float currenthealth;
     bool die;
     float timecaculate;
     void Awake()
     {
+        
         GetComponent<TagEntity>().UpdateAttr();
         healthbar[0] = ((GameObject)Resources.Load("healthdisplayboss")).GetComponent<Canvas>();
         health = health * DamageCalculator.multiPerEnemy;
@@ -55,6 +57,10 @@ public class enemy : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
                 // Determine which direction to rotate towards
                 Vector3 targetDirection = target.transform.position - transform.position;
+                if (dir == -1)
+                {
+                    targetDirection = transform.position - target.transform.position;
+                }
 
                 // The step size is equal to speed times frame time.
                 float singleStep = speed * Time.deltaTime;
@@ -130,7 +136,7 @@ public class enemy : MonoBehaviour
 
     }
 
-    public void InitializeAttr(float range, float stopRange, float speed, float health, float attackDamage, float healthRegen)
+    public void InitializeAttr(float range, float stopRange, float speed, float health, float attackDamage, float healthRegen,float dir)
     {
         this.range = range;
         this.stopRange = stopRange;
@@ -138,6 +144,7 @@ public class enemy : MonoBehaviour
         this.health = health;
         this.attackDamage = attackDamage;
         this.healthRegen = healthRegen;
+        this.dir = dir;
     }
     private void OnDestroy()
     {
