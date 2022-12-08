@@ -1535,7 +1535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 427177646968878805, guid: c70daff1171de3444888eb3e0ebe2455, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70daff1171de3444888eb3e0ebe2455, type: 3}
@@ -1771,7 +1771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4961132997724091937, guid: eacb965109268754c9bd7b0e8e7d999d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4961132997724580353, guid: eacb965109268754c9bd7b0e8e7d999d, type: 3}
       propertyPath: m_RootOrder
@@ -3436,6 +3436,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475544895, guid: da0647b51454d8547b822d597730d76a, type: 3}
+      propertyPath: MaxHealthPoint
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 475544895, guid: da0647b51454d8547b822d597730d76a, type: 3}
+      propertyPath: SpawnHealthPoint
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 16806825054091323, guid: da0647b51454d8547b822d597730d76a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0000000025320332

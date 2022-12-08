@@ -27,11 +27,14 @@ public class TitanController : MonoBehaviour
         AngularSpeed,
         SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
-    protected const string MovementAnimationName = "Movement",
-        Attack1AnimationName = "Attack 1",
-        Attack2AnimationName = "Attack 2",
-        Shout1AnimationName = "Shout 1",
-        Shout2AnimationName = "Shout 2";
+    protected const string 
+        animationParameter_Movement = "Movement",
+        animationParameter_Attack_1 = "Attack 1",
+        animationParameter_Attack_2 = "Attack 2",
+        animationParameter_Shout_1 = "Shout 1",
+        animationParameter_Shout_2 = "Shout 2",
+        animationParameter_Hurt = "Hurt", 
+        animationParameter_Dead = "Dead";
 
     private float nextAttack = 0f,
         nextShout = 0f,
@@ -66,9 +69,12 @@ public class TitanController : MonoBehaviour
             actionMode = ActionMode.Search;
             Search(direction);
         }
+        myAnimator.SetTrigger(animationParameter_Hurt);
     }
     private void MyHealth_OnDead(object sender, System.EventArgs e)
     {
+        myAnimator.SetFloat(animationParameter_Movement, 0);
+        myAnimator.SetTrigger(animationParameter_Dead);
         StartCoroutine(Dead());
     }
 
@@ -87,36 +93,36 @@ public class TitanController : MonoBehaviour
     }
     private void Attack()
     {
-        myAnimator.ResetTrigger(Shout1AnimationName);
-        myAnimator.ResetTrigger(Shout2AnimationName);
+        myAnimator.ResetTrigger(animationParameter_Shout_1);
+        myAnimator.ResetTrigger(animationParameter_Shout_2);
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + AttackInterval;
             switch (Random.Range(0, 2))
             {
                 case 0:
-                    myAnimator.SetTrigger(Attack1AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Attack_1);
                     break;
                 case 1:
-                    myAnimator.SetTrigger(Attack2AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Attack_2);
                     break;
             }
         }
     }
     private void Shout()
     {
-        myAnimator.ResetTrigger(Attack1AnimationName);
-        myAnimator.ResetTrigger(Attack2AnimationName);
+        myAnimator.ResetTrigger(animationParameter_Attack_1);
+        myAnimator.ResetTrigger(animationParameter_Attack_2);
         if (Time.time >= nextShout)
         {
             nextShout = Time.time + ShoutInterval;
             switch (Random.Range(0, 2))
             {
                 case 0:
-                    myAnimator.SetTrigger(Shout1AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Shout_1);
                     break;
                 case 1:
-                    myAnimator.SetTrigger(Shout2AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Shout_2);
                     break;
             }
         }
@@ -172,7 +178,7 @@ public class TitanController : MonoBehaviour
     }
     private void UpdateMovementAnimation()
     {
-        myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / PursuitSpeed);
+        myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / PursuitSpeed);
     }
     private void FaceTarget()
     {
