@@ -14,6 +14,7 @@ public class character : MonoBehaviour
     public GameObject firepoint;
     public List<GameObject> vfx = new List<GameObject>();
     private GameObject effect;
+    public int vfxnumber=0;
     private bool fired = false;
 
     //animation
@@ -38,7 +39,7 @@ public class character : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        effect = vfx[0];
+        
         
         Players.SetCurrentPlayer(gameObject);
     }
@@ -46,6 +47,7 @@ public class character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        effect = vfx[vfxnumber];
         CursorControl();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("AttackA 0"))
         {

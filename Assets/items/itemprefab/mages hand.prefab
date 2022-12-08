@@ -232,11 +232,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthpoint: 0
   healthregen: 0
-  magicpoint: 1000
+  magicpoint: 100
   damageblock: 0
   attackdamage: 0
   attackdamagebonus: 0
-  critdamage: 0
+  critdamage: 100
   critchance: 15
   magicdamage: 0
   attackrange: 0

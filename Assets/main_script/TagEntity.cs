@@ -12,7 +12,7 @@ public class TagEntity : MonoBehaviour
     public CreatureTag creatureTags;
     void Awake()
     {
-        print("1");
+        
         cp = GameObject.Find("TagCompiler").GetComponent<TagCompiler>();
         cp.AddressingTags(gameObject, tags);
         
