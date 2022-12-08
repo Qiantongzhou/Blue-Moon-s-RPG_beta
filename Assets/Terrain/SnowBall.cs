@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SnowBall : MonoBehaviour
 {
+    private void Start()
+    {
+        Destroy(gameObject, 10.0f);
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
