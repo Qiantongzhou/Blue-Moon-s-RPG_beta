@@ -276,5 +276,10 @@ public class PaladinController : MonoBehaviour
         myAnimator.ResetTrigger(animatorParameter_DodgeRight);
     }
 
-
+    public void HitBySnowBall()
+    {
+        rb.transform.rotation = Quaternion.Euler(new Vector3(0, rb.transform.rotation.eulerAngles.y, 0));
+        Vector3 forceDir = new Vector3(5.0f, 10.0f, 5.0f);
+        rb.AddForce(forceDir, ForceMode.Impulse);
+    }
 }
