@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class TitanController : MonoBehaviour
 {
@@ -12,9 +13,9 @@ public class TitanController : MonoBehaviour
     }
 
     [SerializeField]
-    private Transform Target;
-    [SerializeField]
     private LayerMask EnemyMask;
+    [SerializeField]
+    private GameObject SmokeEmitterPrefab;
     [SerializeField]
     private float AttackRange, AttackInterval,
         ShoutInterval,
@@ -23,13 +24,17 @@ public class TitanController : MonoBehaviour
         SpotRange, SpotAngle,
         PursuitSpeed,
         SearchRange, SearchTime, SearchSpeed,
-        AngularSpeed;
+        AngularSpeed,
+        SmokeEmitterLifeTime = 2, DeathToSmokeInterval = 10, SmokeToCleatCorpseInterval = 1;
 
-    protected const string MovementAnimationName = "Movement",
-        Attack1AnimationName = "Attack 1",
-        Attack2AnimationName = "Attack 2",
-        Shout1AnimationName = "Shout 1",
-        Shout2AnimationName = "Shout 2";
+    protected const string 
+        animationParameter_Movement = "Movement",
+        animationParameter_Attack_1 = "Attack 1",
+        animationParameter_Attack_2 = "Attack 2",
+        animationParameter_Shout_1 = "Shout 1",
+        animationParameter_Shout_2 = "Shout 2",
+        animationParameter_Hurt = "Hurt", 
+        animationParameter_Dead = "Dead";
 
     private float nextAttack = 0f,
         nextShout = 0f,
@@ -37,10 +42,12 @@ public class TitanController : MonoBehaviour
         patrolTimeFinishAt = 0f,
         searchTimeFinishedAt = 0f;
 
+    private Transform target;
     private NavMeshAgent agent;
     private Animator myAnimator;
     private ActionMode actionMode;
     private Health myHealth;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -48,61 +55,74 @@ public class TitanController : MonoBehaviour
         Rest();
         myHealth = GetComponent<Health>();
         myHealth.OnHurt += MyHealth_OnHurt;
+        myHealth.OnDead += MyHealth_OnDead;
     }
     private void Start()
     {
-        Target = Players.CurrentPlayer.transform;
+        target = Players.CurrentPlayer.transform;
     }
 
     private void MyHealth_OnHurt(object sender, Vector3 direction)
     {
-        if (actionMode == ActionMode.Search)
-        {
-            return;
-        }
         if (actionMode != ActionMode.Aggressive)
         {
             actionMode = ActionMode.Search;
             Search(direction);
         }
+        myAnimator.SetTrigger(animationParameter_Hurt);
+    }
+    private void MyHealth_OnDead(object sender, System.EventArgs e)
+    {
+        myAnimator.SetFloat(animationParameter_Movement, 0);
+        myAnimator.SetTrigger(animationParameter_Dead);
+        StartCoroutine(Dead());
+    }
+
+    private IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(DeathToSmokeInterval);
+        GameObject smokeEmitter = Instantiate(SmokeEmitterPrefab, transform.position, transform.rotation);
+        Destroy(smokeEmitter, SmokeEmitterLifeTime);
+        yield return new WaitForSeconds(SmokeToCleatCorpseInterval);
+        Destroy(gameObject);
     }
     private void Pursuit()
     {
         agent.speed = PursuitSpeed;
-        agent.destination = Target.position;
+        agent.destination = target.position;
     }
     private void Attack()
     {
-        myAnimator.ResetTrigger(Shout1AnimationName);
-        myAnimator.ResetTrigger(Shout2AnimationName);
+        myAnimator.ResetTrigger(animationParameter_Shout_1);
+        myAnimator.ResetTrigger(animationParameter_Shout_2);
         if (Time.time >= nextAttack)
         {
             nextAttack = Time.time + AttackInterval;
             switch (Random.Range(0, 2))
             {
                 case 0:
-                    myAnimator.SetTrigger(Attack1AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Attack_1);
                     break;
                 case 1:
-                    myAnimator.SetTrigger(Attack2AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Attack_2);
                     break;
             }
         }
     }
     private void Shout()
     {
-        myAnimator.ResetTrigger(Attack1AnimationName);
-        myAnimator.ResetTrigger(Attack2AnimationName);
+        myAnimator.ResetTrigger(animationParameter_Attack_1);
+        myAnimator.ResetTrigger(animationParameter_Attack_2);
         if (Time.time >= nextShout)
         {
             nextShout = Time.time + ShoutInterval;
             switch (Random.Range(0, 2))
             {
                 case 0:
-                    myAnimator.SetTrigger(Shout1AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Shout_1);
                     break;
                 case 1:
-                    myAnimator.SetTrigger(Shout2AnimationName);
+                    myAnimator.SetTrigger(animationParameter_Shout_2);
                     break;
             }
         }
@@ -129,15 +149,15 @@ public class TitanController : MonoBehaviour
     }
     private bool IsEnemyWithinSpotingDistance()
     {
-        return Vector3.Distance(transform.position, Target.position) <= SpotRange;
+        return Vector3.Distance(transform.position, target.position) <= SpotRange;
     }
     private bool IsEnemyWithinSpotAngle()
     {
-        return Vector3.Angle(transform.forward, Target.position - transform.position) <= SpotAngle;
+        return Vector3.Angle(transform.forward, target.position - transform.position) <= SpotAngle;
     }
     private bool IsEnemyInSight()
     {
-        bool isHit = Physics.Raycast(new Ray(transform.position, Target.position - transform.position), out RaycastHit hit, SpotRange);
+        bool isHit = Physics.Raycast(new Ray(transform.position, target.position - transform.position), out RaycastHit hit, SpotRange);
         Debug.DrawLine(transform.position, hit.point, Color.red);
         if (isHit)
         { return EnemyMask == (EnemyMask | (1 << hit.transform.gameObject.layer)); }
@@ -158,11 +178,11 @@ public class TitanController : MonoBehaviour
     }
     private void UpdateMovementAnimation()
     {
-        myAnimator.SetFloat(MovementAnimationName, agent.velocity.magnitude / PursuitSpeed);
+        myAnimator.SetFloat(animationParameter_Movement, agent.velocity.magnitude / PursuitSpeed);
     }
     private void FaceTarget()
     {
-        Vector3 lookPos = Target.position - transform.position;
+        Vector3 lookPos = target.position - transform.position;
         lookPos.y = 0;
         Quaternion rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, AngularSpeed * Time.deltaTime);
@@ -197,7 +217,7 @@ public class TitanController : MonoBehaviour
                         Rest();
                     }
                     Pursuit();
-                    if (Vector3.Distance(Target.position, transform.position) <= AttackRange)
+                    if (Vector3.Distance(target.position, transform.position) <= AttackRange)
                     { FaceTarget(); Attack(); }
                     else { Shout(); }
                     break;
