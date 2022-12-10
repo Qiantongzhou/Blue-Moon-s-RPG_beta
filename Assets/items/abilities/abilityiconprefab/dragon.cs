@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sleepbow :Equipment
+public class dragon : EnhancementSkill
 {
-    public override Attributes attributeList => transform.GetComponent<Attributes>();
-
     public override string Name => "";
 
     public override string Description => "";
 
-    public override kind GetKinds()
+    public override void DoAction()
     {
-       return kind.normal;
+        GameObject.FindWithTag("Player").GetComponent<character>().vfxnumber = 7;
     }
-
 
 }

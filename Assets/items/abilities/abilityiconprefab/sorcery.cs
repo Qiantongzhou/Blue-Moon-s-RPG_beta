@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class infinitestr : EnhancementSkill
+public class sorcery : EnhancementSkill
 {
     // Start is called before the first frame update
     public override string Name => "";
@@ -11,7 +11,7 @@ public class infinitestr : EnhancementSkill
 
     public override void DoAction()
     {
-        GameObject.FindWithTag("Player").GetComponent<character>().vfxnumber = 4;
-
+        GameObject.FindWithTag("Player").GetComponent<character>().vfxnumber = 11;
     }
+
 }
